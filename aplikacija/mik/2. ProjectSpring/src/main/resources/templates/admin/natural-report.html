@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/%22%3E">
+<head>
+    <meta charset="UTF-8">
+    <title>EcoHaven</title>
+    <link rel="icon" th:href="@{/img/logo.png}" type="image">
+    <link rel="stylesheet" th:href="@{/css/tablica.css}"/>
+</head>
+<body>
+<style>
+    a:link { text-decoration: none; }
+    .pushable {
+        background-color: #4A90E2;
+        border-radius: 12px;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        outline-offset: 4px;
+    }
+    .front {
+        display: block;
+        padding: 12px 42px;
+        border-radius: 12px;
+        font-size: 1.25rem;
+        background-color: #185875;
+        color: white;
+        transform: translateY(-6px);
+    }
+
+    .pushable:active .front {
+        transform: translateY(-2px);
+    }
+    .pull-xs-right{float:right!important}
+    table{
+        grid-template-columns: auto auto auto auto;
+
+        width: 100%;
+    }
+    table th td{
+        width: 100%;
+        margin-left: -2px;
+    }
+</style>
+<!--<div class="col-12" th:if="${podatoci.size() > 0}">-->
+
+<!--    <div>-->
+<!--        <table class="table table-striped">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--                <th scope="col">Image</th>-->
+<!--                <th scope="col">Name</th>-->
+<!--                <th scope="col">Email</th>-->
+<!--                <th scope="col">Phone Number</th>-->
+<!--                <th scope="col">Description</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:each="p : ${podatoci}">-->
+<!--                <td><img alt="" th:src="*{'data:image/jpeg;base64,'+{p.getImage()}}"-->
+<!--                         style="width: 100px;height: 100px;"></td>-->
+<!--                <td th:text="${p.getName()}"></td>-->
+<!--                <td th:text="${p.getEmail()}"></td>-->
+<!--                <td th:text="${p.getPhoneNumber()}"></td>-->
+<!--                <td th:text="${p.getDescription()}"></td>-->
+<!--                <td class="text-right">-->
+<!--                    <th:block sec:authorize="hasRole('ROLE_ADMIN')">-->
+<!--                        <form th:action="@{'/admin/delete/{id}' (id=${p.getId()})}"-->
+<!--                              th:method="DELETE">-->
+<!--                            <button type="submit"-->
+<!--                                    class="btn btn-sm btn-danger delete-product">-->
+<!--                                <i class="fa fa-trash">Delete</i>-->
+<!--                            </button>-->
+<!--                        </form>-->
+<!--                    </th:block>-->
+<!--                    <th:block sec:authorize="hasRole('ROLE_ADMIN')">-->
+<!--                        <a th:href="@{'/admin/edit/{id}' (id=${p.getId()})}"-->
+<!--                           class="btn btn-sm btn-info edit-product">-->
+<!--                            <i class="fa fa-trash">Edit</i>-->
+<!--                        </a>-->
+<!--                    </th:block>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--        </table>-->
+
+<!--    </div>-->
+<!--</div>-->
+
+
+<h1>Natural reports: </h1>
+<Br>
+
+<div class="col-12" th:if="${podatoci.size() > 0}">
+    <!-- The form below should invoke the method ProductsController.showProducts -->
+    <form id="filter-form">
+
+        <label for="nameSearch">Name</label>
+        <input id="nameSearch" type="text" name="nameSearch"/>
+        <label for="emailSearch">Email</label>
+        <input id="emailSearch" type="text" name="emailSearch"/>
+
+        <button id="filter" type="submit">Filter</button>
+    </form>
+    <div class="col-12">
+    <table>
+<!--        <thead>-->
+        <tr>
+            <th scope="col">Image</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Description</th>
+            <th scope="col">Latitude</th>
+            <th scope="col">Longitude</th>
+            <th></th>
+        </tr>
+<!--        </thead>-->
+        <tbody>
+        <tr th:each="p : ${podatoci}">
+            <td><img alt="" th:src="*{'data:image/jpeg;base64,'+{p.getImage()}}"
+                     style="width: 100px;height: 100px;"></td>
+            <td th:text="${p.getName()}"></td>
+            <td th:text="${p.getEmail()}"></td>
+            <td th:text="${p.getPhoneNumber()}"></td>
+            <td th:text="${p.getDescription()}"></td>
+            <td th:text="${p.getLatitude()}"></td>
+            <td th:text="${p.getLongitude()}"></td>
+            <td class="text-right">
+                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                    <form th:action="@{'/admin/delete/{id}' (id=${p.getId()})}"
+                          th:method="DELETE">
+                        <button type="submit"
+                                class="btn btn-sm btn-danger delete-product">
+                            <i class="fa fa-trash">Delete</i>
+                        </button>
+                    </form>
+                </th:block>
+                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a th:href="@{'/admin/edit/{id}' (id=${p.getId()})}"
+                       class="btn btn-sm btn-info edit-product">
+                        <button><i class="fa fa-trash">Edit</i></button>
+                    </a>
+                </th:block>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+
+</div>
+
+
+<div>
+    <a class="pull-xs-right pushable" th:href="@{'/admin'}" style="margin-left: 10px"><span class="front">Back</span></a>
+</div>
+
+<div>
+    <a class="pull-xs-right pushable" th:href="@{'/pocetna'}"><span class="front">Home</span></a>
+</div>
+</body>
+</html>

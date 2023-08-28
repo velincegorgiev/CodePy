@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/%22%3E">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>CodePy</title>
+    <link rel="icon" th:href="@{/img/logo.png}" type="image">
+    <!--    <link rel="stylesheet" href="../static/sliki/css/all.css">-->
+    <!--    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">-->
+    <!--    <link rel="stylesheet" href="../static/font-awesome-4.5.0/css/font-awesome.min.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/bootstrap.min.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/hero-slider-style.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/magnific-popup.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/templatemo-style.css">-->
+
+    <link rel="stylesheet" th:href="@{/css/all.css}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <!--    <link rel="stylesheet" href="../static/font-awesome-4.5.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" th:href="@{/font-awesome-4.5.0/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/hero-slider-style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}"/>
+    <link rel="stylesheet" th:href="@{/css/templatemo-style11.css}"/>
+
+
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+</head>
+
+<body>
+<style>
+    /*.cd-hero-slider li:nth-of-type(1) {*/
+    /*    background-image: url(../../static/img/42.jpg);*/
+    /*}*/
+
+    /*.cd-hero-slider li:nth-of-type(2) {*/
+    /*    background-image: url(../../static/img/43.jpg);*/
+    /*}*/
+
+    .green a {
+        color: orangered;
+    }
+
+    .green i {
+        color: dodgerblue;
+    }
+
+    .tm-submit-btn:hover {
+        background-color: dodgerblue;
+    }
+
+    .tm-submit-btn:focus {
+        background-color: dodgerblue;
+    }
+
+    .tm-submit-btn {
+        background-color: dodgerblue;
+    }
+
+    .cd-slider-nav .nav-item.selected .nav-link,
+    .cd-slider-nav .nav-link:hover,
+    .cd-slider-nav .nav-link:focus {
+        background-color: rgba(255, 255, 255, 1);
+        color: orangered;
+    }
+
+    figure.effect-ruby {
+        background-color: orangered;
+    }
+
+    .tm-img {
+        max-height: 440px;
+        object-fit: cover;
+    }
+
+    .ako:hover {
+        text-shadow: 0 1px 0 orangered, 0 2px 0 orangered,
+        0 3px 0 orangered, 0 4px 0 orangered,
+        0 5px 0 orangered, 0 6px 0 orangered,
+        0 7px 0 orangered, 0 8px 0 orangered,
+        0 9px 0 orangered, 0 10px 0 orangered,
+        0 11px 0 orangered, 0 12px 0 orangered,
+        0 20px 30px rgba(0, 0, 0, 0.5);
+    }
+
+
+    .akoo:hover {
+        text-shadow: 0 1px 0 dodgerblue, 0 2px 0 dodgerblue,
+        0 3px 0 dodgerblue, 0 4px 0 dodgerblue,
+        0 5px 0 dodgerblue, 0 6px 0 dodgerblue,
+        0 7px 0 dodgerblue, 0 8px 0 dodgerblue,
+        0 9px 0 dodgerblue, 0 10px 0 dodgerblue,
+        0 11px 0 dodgerblue, 0 12px 0 dodgerblue,
+        0 20px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .pushable {
+        background-color: dodgerblue;
+        border-radius: 12px;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        outline-offset: 4px;
+    }
+
+    .front {
+        display: block;
+        padding: 12px 42px;
+        border-radius: 12px;
+        font-size: 1.25rem;
+        background-color: orangered;
+        color: white;
+        transform: translateY(-6px);
+    }
+
+    .pushable:active .front {
+        transform: translateY(-2px);
+    }
+    .code-block {
+        background-color: #2b2b2b;
+        color: #d0d0d0;
+        border: 1px solid #383838;
+        border-radius: 3px;
+        padding: 10px;
+        font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 14px;
+        line-height: 1.5;
+        overflow-x: auto;
+        counter-reset: linenumber;
+    }
+
+    .code-block pre {
+        margin: 0;
+        counter-increment: linenumber;
+    }
+
+    .code-block code {
+        display: block;
+        white-space: pre;
+        position: relative;
+    }
+
+    .code-block code::before {
+        content: counter(linenumber);
+        position: absolute;
+        left: -2em;
+        width: 2em;
+        text-align: right;
+        opacity: 0.5;
+    }
+
+    .code-block .token.keyword {
+        color: #d78700;
+        font-weight: bold;
+    }
+
+    .code-block .token.function {
+        color: #55b4d4;
+    }
+
+    .code-block .token.string {
+        color: #9c4d4d;
+    }
+
+
+</style>
+<div class="cd-hero">
+    <div class="cd-slider-nav">
+        <nav class="navbar">
+            <div class="tm-navbar-bg">
+                <div class="green">
+                    <a class="navbar-brand text-uppercase" href="/index2"><span class="ako">
+                        <i class="fa fa-solid fa-python tm-brand-icon"></i></span><span class="akoo">CodePy</span></a>
+                </div>
+
+            </div>
+
+        </nav>
+    </div>
+    <ul class="cd-hero-slider">
+
+        <!-- Page 1 -->
+        <li class="selected">
+            <div class="cd-full-width">
+                <div class="container-fluid js-tm-page-content" data-page-no="1" data-page-type="gallery">
+                    <div class="tm-img-gallery-container tm-img-gallery-container-3">
+                        <div class="tm-img-gallery gallery-three">
+                            <!-- Gallery Two pop up connected with JS code below -->
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="tm-flex">
+                                        <div class="tm-bg-white-translucent text-xs-left tm-textbox tm-textbox-padding tm-white-box-margin-b">
+                                            <form th:method="get" th:action="@{'/index2/smart_plant/buy'}">
+                                                <h2 class="tm-text-title">Податочна структура</h2>
+                                                <p class="tm-text">
+                                                    <b>Вовед во листи</b>
+                                                    <br>
+                                                    <br>
+                                                    Python има неколку составени типови на податоци кои се користат за групирање на податоци. Најфлексибилен од нив е листата, која може да се запише како серија на вредности (елементи) разделени со запирка и затворени во квадратни загради, пример: lst = [елемент1, елемент2]. Листите можат да содржат елементи од различни типови, но обично сите елементи во листата се од ист тип. Слично на низите, листите можат да се индексираат и сечат . Сите операции со сечење враќаат нова листа која ги содржи бараните елементи.
+<br>
+                                                    Листите исто така ги поддржуваат операциите на спојување:
+                                                <div class="code-block">
+  <pre><code style="color: blue" class="language-javascript">
+      <a style="color: gray">#Користете го делењето на листи за да го испечатите [4, 9, 16].</a>
+      <a style="color: white">squares = [</a>1<a style="color: orange">,</a> 4<a style="color: orange">,</a> 9<a style="color: orange">,</a> 16<a style="color: orange">,</a> 25<a style="color: white">]</a>
+      <a style="color: white">squares + [</a>36<a style="color: orange">,</a> 49<a style="color: orange">,</a> 64<a style="color: orange">,</a> 81<a style="color: orange">,</a> 100<a style="color: white">]</a>
+      <a style="color: white">[</a>1<a style="color: orange">,</a> 4<a style="color: orange">,</a> 9<a style="color: orange">,</a> 16<a style="color: orange">,</a> 25<a style="color: orange">,</a> 36<a style="color: orange">,</a> 49<a style="color: orange">,</a> 64<a style="color: orange">,</a> 81<a style="color: orange">,</a> 100<a style="color: white">]</a>
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      squares = [<a style="color: blue">1</a><a style="color: orange">,</a> <a style="color: blue">4</a><a style="color: orange">,</a> <a style="color: blue">9</a><a style="color: orange">,</a> <a style="color: blue">16</a><a style="color: orange">,</a> <a style="color: blue">25</a>]  <a style="color: gray"> # Направете нова листа</a>
+      <a style="color: purple">print</a>(squares)
+
+      <a style="color: purple">print</a>(???)
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Операции со листи</b>
+                                                    <br>
+                                                    <br>
+                                                    За разлика од низите, листите се променлив тип, односно е можно да се променува нивната содржина со користење на lst[index] = нов_елемент.
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      cubes = [<a style="color: blue">1</a><a style="color: orange">,</a> <a style="color: blue">8</a><a style="color: orange">,</a> <a style="color: blue">27</a><a style="color: orange">,</a> <a style="color: blue">65</a><a style="color: orange">,</a> <a style="color: blue">125</a>]  <a style="color: gray"># нешто не е во ред тука</a>
+      <a style="color: blue">4</a> ** <a style="color: blue">3</a>  <a style="color: gray"># коцката од 4 е 64, а не 65!</a>
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+     64
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      cubes[<a style="color: blue">3</a>] = <a style="color: blue">64</a>  <a style="color: gray"># заменете ја погрешната вредност</a>
+      cubes
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      [1, 8, 27, 64, 125]
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Можете да додавате нови ставки на крајот од листата со користење на методот append() или конкатенација на листа.
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      squares = [<a style="color: blue">1</a><a style="color: orange">,</a> <a style="color: blue">4</a><a style="color: orange">,</a> <a style="color: blue">9</a><a style="color: orange">,</a> <a style="color: blue">16</a><a style="color: orange">,</a> <a style="color: blue">25</a>]
+      squares.append(<a style="color: blue">6</a>**<a style="color: blue">2</a>)
+      squares
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      [1, 4, 9, 16, 25, 36]
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Заменете "dino" со "dinosaur" во листата на животни.</a>
+      animals = [<a style="color: green">"elephant"</a><a style="color: orange">,</a><a style="color: green"> "lion"</a><a style="color: orange">,</a> <a style="color: green">"tiger"</a><a style="color: orange">,</a> <a style="color: green">"giraffe"</a>] <a style="color: gray"> # Направете нова листа</a>
+      <a style="color: purple">print</a>(animals)
+
+      animals += [<a style="color: green">"monkey"</a><a style="color: orange">,</a><a style="color: green"> "dog"</a>]   <a style="color: gray"> # Додадете два елементи во листата.</a>
+      <a style="color: purple">print</a>(animals)
+
+      animals.append(<a style="color: green">"dino"</a>)  <a style="color: gray"> # Додадете уште една ставка на листата користејќи го методот append().</a>
+      <a style="color: purple">print</a>(animals)
+
+      <a style="color: gray"># Заменете "dino" со "dinosaur" тука.</a>
+      <a style="color: purple">print</a>(animals)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Елементи во листата</b>
+                                                    <br>
+                                                    <br>
+                                                    Доделување е можно за сечива на листи, исто како и за поединечни елементи на листи. На овој начин дури може да се промени големината на листата или целосно да се испразни со нешто како:
+<br>
+                                                    animals[:] = []
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Направете ги сите животни слонови со замена на последните две ставки.</a>
+      animals = [<a style="color: green">"elephant"</a><a style="color: orange">,</a> <a style="color: green">"lion"</a><a style="color: orange">,</a> <a style="color: green">"tiger"</a><a style="color: orange">,</a> <a style="color: green">"giraffe"</a><a style="color: orange">,</a> <a style="color: green">"monkey"</a><a style="color: orange">,</a> <a style="color: green">"dog"</a>]  <a style="color: gray"># Направете нова листа</a>
+      <a style="color: purple">print</a>(animals)
+
+      animals[<a style="color: blue">1</a>:<a style="color: blue">3</a>] = [<a style="color: green">"cat"</a>]    <a style="color: gray"># Заменете 2 eлементи -- "lion" и "tiger" со еден eлемент -- "cat"</a>
+      <a style="color: purple">print</a>(animals)
+
+      animals[<a style="color: blue">1</a>:<a style="color: blue">3</a>] = []     <a style="color: gray"># Отстранете 2 eлементи -- "cat" and "giraffe" од листата</a>
+      <a style="color: purple">print</a>(animals)
+
+      <a style="color: gray"># Направете ги сите животни слонови со замена на последните две eлементи.</a>
+      <a style="color: purple">print</a>(animals)
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Вгнездени листи</b>
+                                                    <br>
+                                                    <br>
+                                                    Листата може да содржи било каков вид на објекти, дури и други листи (под-листи). Оваа структура на податоци е позната како вгнездена листа.
+<br>
+                                                    Можете да користите вгнездени листи за да подредите податоци во хиерархиска структура.
+<br>
+                                                    Вгнездена листа може да се креира со запишување на разделени со запирка под-листи:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      nested_list = [[<a style="color: blue">1</a><a style="color: orange">,</a> <a style="color: blue">2</a><a style="color: orange">,</a> <a style="color: blue">3</a>]<a style="color: orange">, </a>[<a style="color: blue">4</a><a style="color: orange">,</a><a style="color: blue"> 5</a>]<a style="color: orange">,</a> <a style="color: blue">6</a>]
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Исто така, можете да пристапите до елементите во вгнездената листа со користење на индекси како што сте правеле и до сега:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      print(nested_list[<a style="color: blue">1</a>])
+      print(nested_list[<a style="color: blue">2</a>])
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Излез
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      [4, 5]
+      6
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Можете да пристапите до елементите во под-листите во вгнездената листа со користење на повеќе индекси. За да пристапите до бројот 1 од вгнездената листа, користете го индексот 0 двапати. Прво пристапете до елементот [1,2,3], а потоа до првиот елемент од таа под-листа:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      print(nested_list[<a style="color: blue">0</a>][<a style="color: blue">0</a>])
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Излез
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      1
+
+  </code></pre>
+                                                </div>
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+     <a style="color: gray"> #Во уредникот за код, користете индексирање за да пристапите и испечатите елементи 9 и 10 од вгнездената листа my_list.</a>
+      my_list = [[<a style="color: blue">1</a><a style="color: orange">,</a> <a style="color: blue">2</a><a style="color: orange">,</a> <a style="color: blue">3</a>]<a style="color: orange">,</a> [<a style="color: blue">4</a><a style="color: orange">,</a> <a style="color: blue">5</a><a style="color: orange">,</a> <a style="color: blue">6</a>]<a style="color: orange">,</a> [<a style="color: blue">7</a><a style="color: orange">,</a> <a style="color: blue">8</a><a style="color: orange">,</a> <a style="color: blue">9</a>]<a style="color: orange">,</a> <a style="color: blue">10</a>]
+
+      <a style="color: purple">print</a>(<a style="color: green">'Print number 9 from the nested list'</a>)
+      <a style="color: purple">print</a>(<a style="color: green">'Print number 10 from the nested list'</a>)
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Торки</b>
+                                                    <br>
+                                                    <br>
+                                                    Торките претставуваат уште еден стандарден тип на податоци за низи. Тие се скоро идентични на листите. Единствената значајна разлика помеѓу торките и листите е тоа што торките се непроменливи: не можете да додадете, замените или избришете елементи во торка. Торките се креираат со елементи разделени со запирки, во загради, на пример:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      (a<a style="color: orange">,</a> b<a style="color: orange">,</a> c)
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Посебна ситуација е креирањето на торки што содржат 0 или 1 елемент. Празните торки се креираат со празен пар на загради; торка со еден елемент се креира со следење на вредност со запирка. На пример:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      empty = ()
+      singleton = <a style="color: green">'hello'</a><a style="color: orange">,</a>    <a style="color: gray"># <-- забележете ја задната запирка</a>
+      len(empty)
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      0
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      len(singleton)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      1
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      singleton
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      ('hello',)
+
+  </code></pre>
+                                                </div>
+                                                Изразот t = 12345, 54321, 'hello!' е пример за пакување на торки: вредностите 12345, 54321 и hello! се пакуваат заедно во торка.
+                                                </p>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Испечатете ја должината на торката alphabet. Потоа создадете торка со еден елемент 'fun_tuple'. Можете да ја извршите кодот за да видите што печати.</a>
+      alphabet = (<a style="color: green">'a'</a><a style="color: orange">,</a> <a style="color: green">'b'</a><a style="color: orange">,</a> <a style="color: green">'c'</a><a style="color: orange">,</a><a style="color: green"> 'd'</a><a style="color: orange">,</a> <a style="color: green">'e'</a><a style="color: orange">,</a> <a style="color: green">'f'</a><a style="color: orange">,</a><a style="color: green"> 'g'</a><a style="color: orange">,</a> <a style="color: green">'h'</a><a style="color: orange">,</a> <a style="color: green">'i'</a><a style="color: orange">,</a> <a style="color: green">'j'</a><a style="color: orange">,</a> <a style="color: green">'k'</a><a style="color: orange">,</a> <a style="color: green">'l'</a><a style="color: orange">,</a> <a style="color: green">'m'</a><a style="color: orange">,</a> <a style="color: green">'n'</a><a style="color: orange">,</a> <a style="color: green">'o'</a><a style="color: orange">,</a><a style="color: green">'p'</a><a style="color: orange">,</a> <a style="color: green">'q'</a><a style="color: orange">,</a> <a style="color: green">'r'</a><a style="color: orange">,</a><a style="color: green">'s'</a><a style="color: orange">,</a> <a style="color: green">'t'</a><a style="color: orange">,</a> <a style="color: green">'u'</a><a style="color: orange">,</a> <a style="color: green">'v'</a><a style="color: orange">,</a> <a style="color: green">'w'</a><a style="color: orange">,</a> <a style="color: green">'x'</a><a style="color: orange">,</a> <a style="color: green">'y'</a><a style="color: orange">,</a> <a style="color: green">'z'</a>)
+
+      <a style="color: purple">print</a>(???)
+
+
+      my_tuple = ???
+
+      <a style="color: purple">print</a>(<a style="color: purple">type</a>(my_tuple))
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Методот join()</b>
+                                                    <br>
+                                                    <br>
+                                                    .join() е, во секој случај, метод за низи, но зборуваме за него бидејќи потребно е да се разберат итерабилните објекти, како што се низи, листи и кортежи. Овој метод обезбедува флексибилен начин за креирање на низи од итерабилни објекти. Тој ги спојува секое елемент од итерабилниот објект (како листа, низа или кортеж) со знак за одделување на низи (низа на која е повикан методот join()) и враќа конкатенирана низа. Ако има некои не-низни вредности во итерабилниот објект, ќе се издигне TypeError.
+<br>
+                                                    Синтаксата на методот join() изгледа како следно:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      string.join(iterable)
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Пример:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      string_ = <a style="color: green">'abcde'</a><a style="color: gray">  # низа итерабилна</a>
+      tuple_ = (<a style="color: green">'aa'</a><a style="color: orange">,</a> <a style="color: green">'bb'</a><a style="color: orange">,</a> <a style="color: green">'cc'</a>) <a style="color: gray"> # тократен повторлив</a>
+      list_ = [<a style="color: green">'Python'</a><a style="color: orange">,</a> <a style="color: green">'programming language'</a>]  <a style="color: gray"># листа повторлива</a>
+
+      <a style="color: purple">print</a>(<a style="color: green">' + '</a>.join(string_))  <a style="color: gray"># придружете се со ' + ' сепаратор</a>
+      <a style="color: purple">print</a>(<a style="color: green">' = '</a>.join(tuple_))  <a style="color: gray"># придружете се со ' = ' сепаратор</a>
+
+      sep = <a style="color: green">' is a '</a>
+      <a style="color: purple">print</a>(sep.join(list_)) <a style="color: gray"> # приклучи се со раздвојувачот  ' is a ' .</a>
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      a + b + c + d + e
+      aa = bb = cc
+      Python is a programming language
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      fruits = [<a style="color: green">'apples'</a><a style="color: orange">,</a> <a style="color: green">'bananas'</a><a style="color: orange">,</a> <a style="color: green">'peaches'</a><a style="color: orange">,</a> <a style="color: green">'grapes'</a>]
+      separator = <a style="color: green">' and I like '</a>
+      joined = ???
+      <a style="color: purple">print</a>(<a style="color: green">'I like'</a><a style="color: orange">,</a> joined)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Доделете вредност на променливата joined таква што испишувачката на екранот печати следното:
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      I like apples and I like bananas and I like peaches and I like grapes
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      fruits = [<a style="color: green">'apples'</a><a style="color: orange">,</a> <a style="color: green">'bananas'</a><a style="color: orange">,</a> <a style="color: green">'peaches'</a><a style="color: orange">,</a> <a style="color: green">'grapes'</a>]
+      separator = <a style="color: green">' and I like '</a>
+      joined = ???
+      <a style="color: purple"> print</a>(<a style="color: green">'I like'</a><a style="color: orange">,</a> joined)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Речници</b>
+                                                    <br>
+                                                    Речникот е сличен на листа, освен што му пристапувате на вредностите со пребарување на клуч, а не со индекс. Клучот може да биде било кој немутибилен тип. Низи и броеви можат да бидат клучеви; кортежите можат да се користат како клучеви доколку содржат само немутибилни објекти. Не може да се користат листи како клучеви.
+
+                                                    Мислете на речник како на сет од парови key: value, со услов дека клучевите се уникатни во еден речник. Речниците се затворени во витичести загради, на пример dct = {'key1' : "value1", 'key2' : "value2"}. Пар на загради креира празен речник: {}.
+
+                                                    Речник исто така може да се креира со конструкторот dict:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      a = dict(one=<a style="color: blue">1</a><a style="color: orange">,</a> two=<a style="color: blue">2</a><a style="color: orange">,</a> three=<a style="color: blue">3</a>)
+      b = {<a style="color: green">'one'</a>: <a style="color: blue">1</a><a style="color: orange">,</a> <a style="color: green">'two'</a>:<a style="color: blue"> 2</a>, <a style="color: green">'three'</a>: <a style="color: blue">3</a>}
+      c = dict([(<a style="color: green">'two'</a><a style="color: orange">,</a> <a style="color: blue">2</a>)<a style="color: orange">,</a> (<a style="color: green">'one'</a><a style="color: orange">,</a> <a style="color: blue">1</a>)<a style="color: orange">,</a> (<a style="color: green">'three'</a><a style="color: orange">,</a> <a style="color: blue">3</a>)])
+      <a style="color: purple">print</a>(a == b == c)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+     True
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Можете да пристапите до вредност во речник на сличен начин како што би пристапиле до вредност во листа, но со употреба на клуч, а не индекс.
+
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Додадете го бројот 570 на Џеред ("Jared") во телефонскиот именик. Избришете го бројот на Џерард ("Gerard") од телефонскиот именик.
+          #Испечатете го телефонскиот број на Џејн ("Jane") од телефонскиот именик.</a>
+      <a style="color: gray"># Креирајте нов речник, каде</a>
+      <a style="color: gray"># "John", "Jane" и "Gerard" клучевите се зборови, а вредностите се броеви.</a>
+      phone_book = {<a style="color: green">"John"</a>: <a style="color: blue">123</a><a style="color: orange">,</a> <a style="color: green">"Jane"</a>: <a style="color: blue">234</a><a style="color: orange">,</a> <a style="color: green">"Gerard"</a>: <a style="color: blue">345</a>}
+      <a style="color: purple">print</a>(phone_book)
+
+      <a style="color: gray"># Додадете нов елемент во речникот.</a>
+      phone_book[<a style="color: green">"Jill"</a>] = <a style="color: blue">345</a>
+      <a style="color: purple">print</a>(phone_book)
+
+      <a style="color: gray"># Отстранете ја клуч-вредност парата од phone_book.</a>
+      <a style="color: orange">del</a> phone_book[<a style="color: green">"John"</a>]
+
+      <a style="color: gray"># Додадете го бројот на Jared во телефонскиот именик.</a>
+
+      <a style="color: gray"># Отстранете го бројот на Gerard од телефонскиот именик.</a>
+
+      <a style="color: purple">print</a>(phone_book)
+      <a style="color: purple">print</a>(???)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Дефинирани се две листи и еден празен речник.</b>
+                                                    <br>
+                                                    <br>
+                                                    Вашата задача е со користење на for јамка да ја итерирате секоја од листите и да ги додадете клуч-вредност паровите на соодветните елементи од листата (key1: 100, key2: 200, key3: 300) во речникот.
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Испечатете ги сите вредности од телефонскиот именик.</a>
+      list_of_keys = [<a style="color: green">"key1"</a><a style="color: orange">,</a><a style="color: green"> "key2"</a><a style="color: orange">,</a> <a style="color: green">"key3"</a>]
+      list_of_values = [<a style="color: blue">100</a><a style="color: orange">,</a> <a style="color: blue">200</a><a style="color: orange">,</a> <a style="color: blue">300</a>]
+
+      my_dict = {}
+      <a style="color: orange">for</a> x <a style="color: orange">in</a> <a style="color: purple">range</a>(<a style="color: purple">len</a>(list_of_keys)):
+      <a style="color: greenyellow"># TODO: пополнете го речникот со key:value парови од списоците</a>
+
+      <a style="color: purple">print</a>(my_dict.items())
+
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Речнички клучеви () и вредности ()</b>
+                                                    <br>
+                                                    <br>
+
+                                                    Во речниците има многу корисни методи, како keys(), values() и items(). Методот keys() враќа објект за преглед кој прикажува список од сите клучеви во речникот во редослед на вметнување. values() враќа нов преглед на вредностите на речникот. Кога се повика методот items(), тој враќа нов преглед на ставките на речникот како кортежи во список ((клуч, вредност) парови).
+<br>
+                                                    Објектите враќени од dict.keys(), dict.values() и dict.items() обезбедуваат динамички преглед на влезовите на речникот, што значи дека кога речникот се менува, прегледот ги отсега овие промени.
+<br>
+                                                    Можете да истражите повеќе користејќи Ctrl+Space по dict_name, а потоа точка.
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      phone_book = {<a style="color: green">"John"</a>: <a style="color: blue">123</a><a style="color: orange">,</a> <a style="color: green">"Jane"</a>: <a style="color: blue">234</a><a style="color: orange">,</a> <a style="color: green">"Gerard"</a>: <a style="color: blue">345</a>}  <a style="color: gray"># Креирајте нов речник.</a>
+      <a style="color: purple">print</a>(phone_book.keys())
+
+      <a style="color: gray"># Додадете нов предмет на речникот..</a>
+      phone_book[<a style="color: green">"Jill"</a>] = <a style="color: blue">456</a>
+
+      <a style="color: purple">print</a>(phone_book.keys())
+
+      <a style="color: purple">print</a>(???)
+
+
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Клучеви на речникот</b>
+                                                    <br>
+                                                    <br>
+                                                    Обидете се да откриете што не е во ред со овој речник и да го поправите.
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      ages_dict = {
+      <a style="color: green">"Alice"</a>: <a style="color: blue">21</a><a style="color: orange">,</a>
+      <a style="color: green">"Bob"</a>: <a style="color: blue">39</a><a style="color: orange">,</a>
+      <a style="color: green">"George"</a>: <a style="color: blue">30</a><a style="color: orange">,</a>
+      <a style="color: green">"Susanne"</a>: <a style="color: blue">27</a><a style="color: orange">,</a>
+      <a style="color: green">"Bob"</a>: <a style="color: blue">19</a><a style="color: orange">,</a>
+      [<a style="color: green">"Ashley"</a><a style="color: orange">,</a> <a style="color: green">"Alex"</a><a style="color: orange">,</a> <a style="color: green">"Nancy"</a>]: <a style="color: blue">35</a>
+      }
+
+
+      <a style="color: orange">if</a>__name__ == <a style="color: green">"__main__"</a>:
+      <a style="color: purple"> print</a>(ages_dict.values())
+
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                </p>
+                                                <p style="clear: both;">
+                                                    <b>Клучовен збор "in"</b>
+                                                    <br>
+                                                    <br>
+                                                    Клучовниот збор "in" се користи за проверка дали една листа или речник содржи одреден предмет. Истото правило што го користевте со низи го применувате и на листи и речници.
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Проверете дали вредностите на grocery_dict содржат бројот 6.
+          #Проверете дали речникот содржи "базилик". Ве молам, завршете го задачата во наведениот редослед.</a>
+      grocery_list = [<a style="color: green">"fish"</a><a style="color: orange">,</a> <a style="color: green">"tomato"</a><a style="color: orange">,</a> <a style="color: green">"apples"</a>]   <a style="color: gray">#Креирајте нова листа.</a>
+
+      <a style="color: purple">print</a>(<a style="color: green">"tomato"</a> <a style="color: orange">in</a> grocery_list)    <a style="color: gray"># Проверете дали grocery_list содржи ставката "tomato".</a>
+
+      grocery_dict = {<a style="color: green">"fish"</a>:<a style="color: blue"> 1</a><a style="color: orange">,</a> <a style="color: green">"tomato"</a>: <a style="color: blue">6</a><a style="color: orange">,</a> <a style="color: green">"apples"</a>>": <a style="color: blue">3</a>}   <a style="color: gray">#Креирајте нов речник.</a>
+
+      <a style="color: purple">print</a>('???')
+      <a style="color: purple">print</a>('???')
+
+
+  </code></pre>
+                                                </div>
+                                                </p>
+                                                <!--                                            <p class="tm-text">Price on this product is $150 <button type="submit" class="pull-xs-right tm-submit-btn pushable"onclick="document.location='pay1.html'" style="margin-left: 5px"><span class="front">Buy the product</span></button></p>-->
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- .tm-img-gallery-container -->
+                </div>
+            </div>
+        </li>
+    </ul> <!-- .cd-hero-slider -->
+
+
+</div> <!-- .cd-hero -->
+
+
+<!-- Preloader, https://ihatetomatoes.net/create-custom-preloading-screen/ -->
+<div id="loader-wrapper">
+
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+
+</div>
+
+<!-- load JS files -->
+<!--<script src="../static/js/jquery-1.11.3.min.js"></script>         &lt;!&ndash; jQuery (https://jquery.com/download/) &ndash;&gt;-->
+<!--<script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script> &lt;!&ndash; Tether for Bootstrap (http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h) &ndash;&gt;-->
+<!--<script src="../static/js/bootstrap.min.js"></script>             &lt;!&ndash; Bootstrap js (v4-alpha.getbootstrap.com/) &ndash;&gt;-->
+<!--<script src="../static/js/hero-slider-main.js"></script>          &lt;!&ndash; Hero slider (https://codyhouse.co/gem/hero-slider/) &ndash;&gt;-->
+<!--<script src="../static/js/jquery.magnific-popup.min.js"></script> &lt;!&ndash; Magnific popup (http://dimsemenov.com/plugins/magnific-popup/) &ndash;&gt;-->
+
+<script th:src="@{/js/jquery-1.11.3.min.js}"></script>
+<script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/hero-slider-main.js}"></script>
+<script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+
+
+<script>
+
+    function adjustHeightOfPage(pageNo) {
+
+        var offset = 80;
+        var pageContentHeight = 0;
+
+        var pageType = $('div[data-page-no="' + pageNo + '"]').data("page-type");
+
+        if (pageType != undefined && pageType == "gallery") {
+            pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .tm-img-gallery-container").height();
+        } else {
+            pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .js-tm-page-content").height();
+        }
+
+        if ($(window).width() >= 992) {
+            offset = 120;
+        } else if ($(window).width() < 480) {
+            offset = 40;
+        }
+
+        // Get the page height
+        var totalPageHeight = 15 + $('.cd-slider-nav').height()
+            + pageContentHeight + offset
+            + $('.tm-footer').height();
+
+        // Adjust layout based on page height and window height
+        if (totalPageHeight > $(window).height()) {
+            $('.cd-hero-slider').addClass('small-screen');
+            $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", totalPageHeight + "px");
+        } else {
+            $('.cd-hero-slider').removeClass('small-screen');
+            $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", "100%");
+        }
+    }
+
+    /*
+        Everything is loaded including images.
+    */
+    $(window).load(function () {
+
+        adjustHeightOfPage(1); // Adjust page height
+
+
+
+        /* Collapse menu after click
+        -----------------------------------------*/
+        $('#tmNavbar a').click(function () {
+            $('#tmNavbar').collapse('hide');
+
+            adjustHeightOfPage($(this).data("no")); // Adjust page height
+        });
+
+        /* Browser resized
+        -----------------------------------------*/
+        $(window).resize(function () {
+            var currentPageNo = $(".cd-hero-slider li.selected .js-tm-page-content").data("page-no");
+
+            // wait 3 seconds
+            setTimeout(function () {
+                adjustHeightOfPage(currentPageNo);
+            }, 1000);
+
+        });
+
+        // Remove preloader (https://ihatetomatoes.net/create-custom-preloading-screen/)
+        $('body').addClass('loaded');
+
+    });
+
+</script>
+
+</body>
+</html>

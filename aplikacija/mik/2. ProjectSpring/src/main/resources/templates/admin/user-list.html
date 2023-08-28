@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/%22%3E">
+<head>
+    <meta charset="UTF-8">
+    <title>EcoHaven</title>
+    <link rel="icon" th:href="@{/img/logo.png}" type="image">
+    <link rel="stylesheet" th:href="@{/css/tablica.css}"/>
+    <style>
+        a:link { text-decoration: none; }
+        .pushable {
+            background-color: #4A90E2;
+            border-radius: 12px;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            outline-offset: 4px;
+        }
+        .front {
+            display: block;
+            padding: 12px 42px;
+            border-radius: 12px;
+            font-size: 1.25rem;
+            background-color: #185875;
+            color: white;
+            transform: translateY(-6px);
+        }
+
+        .pushable:active .front {
+            transform: translateY(-2px);
+        }
+        .pull-xs-right{float:right!important}
+        table{
+            grid-template-columns: auto auto auto auto;
+
+            width: 100%;
+        }
+        table th td{
+            width: 100%;
+            margin-left: -2px;
+        }
+    </style>
+</head>
+<body>
+<h1>List of users:</h1>
+<div class="col-12" th:if="${users.size() > 0}">
+    <table>
+        <!--        <thead>-->
+        <tr>
+            <th scope="col">Username</th>
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Role</th>
+            <th></th>
+        </tr>
+        <!--        </thead>-->
+        <tbody>
+        <tr th:each="u : ${users}">
+            <td th:text="${u.getUsername()}"></td>
+            <td th:text="${u.getName()}"></td>
+            <td th:text="${u.getSurname()}"></td>
+            <td th:text="${u.getRole()}"></td>
+            <td class="text-right">
+                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                    <form th:action="@{'/admin/delete-user/{id}' (id=${u.getId()})}"
+                          th:method="DELETE">
+                        <button type="submit"
+                                class="btn btn-sm btn-danger delete-product">
+                            <i class="fa fa-trash">Delete</i>
+                        </button>
+                    </form>
+                </th:block>
+                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a th:href="@{'/admin/edit-user/{id}' (id=${u.getId()})}"
+                       class="btn btn-sm btn-info edit-product">
+                        <button><i class="fa fa-trash">Edit</i></button>
+                    </a>
+                </th:block>
+            </td>
+        </tr>
+
+        <div>
+            <th:block th:if="${hasError}">
+                <div th:text="${errorMessage}"></div>
+            </th:block>
+        </div>
+        </tbody>
+    </table>
+    <a type="button" class="btn btn-primary pull-xs-right pushable" href="/admin"><span class="front">Back</span></a>
+</div>
+</body>
+</html>

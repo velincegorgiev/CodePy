@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/%22%3E">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>CodePy</title>
+    <link rel="icon" th:href="@{/img/logo.png}" type="image">
+    <!--    <link rel="stylesheet" href="../static/sliki/css/all.css">-->
+    <!--    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">-->
+    <!--    <link rel="stylesheet" href="../static/font-awesome-4.5.0/css/font-awesome.min.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/bootstrap.min.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/hero-slider-style.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/magnific-popup.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/templatemo-style.css">-->
+
+    <link rel="stylesheet" th:href="@{/css/all.css}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <!--    <link rel="stylesheet" href="../static/font-awesome-4.5.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" th:href="@{/font-awesome-4.5.0/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/hero-slider-style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}"/>
+    <link rel="stylesheet" th:href="@{/css/templatemo-style11.css}"/>
+
+
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+</head>
+
+<body>
+<style>
+    /*.cd-hero-slider li:nth-of-type(1) {*/
+    /*    background-image: url(../../static/img/42.jpg);*/
+    /*}*/
+
+    /*.cd-hero-slider li:nth-of-type(2) {*/
+    /*    background-image: url(../../static/img/43.jpg);*/
+    /*}*/
+
+    .green a {
+        color: orangered;
+    }
+
+    .green i {
+        color: dodgerblue;
+    }
+
+    .tm-submit-btn:hover {
+        background-color: dodgerblue;
+    }
+
+    .tm-submit-btn:focus {
+        background-color: dodgerblue;
+    }
+
+    .tm-submit-btn {
+        background-color: dodgerblue;
+    }
+
+    .cd-slider-nav .nav-item.selected .nav-link,
+    .cd-slider-nav .nav-link:hover,
+    .cd-slider-nav .nav-link:focus {
+        background-color: rgba(255, 255, 255, 1);
+        color: orangered;
+    }
+
+    figure.effect-ruby {
+        background-color: orangered;
+    }
+
+    .tm-img {
+        max-height: 440px;
+        object-fit: cover;
+    }
+
+    .ako:hover {
+        text-shadow: 0 1px 0 orangered, 0 2px 0 orangered,
+        0 3px 0 orangered, 0 4px 0 orangered,
+        0 5px 0 orangered, 0 6px 0 orangered,
+        0 7px 0 orangered, 0 8px 0 orangered,
+        0 9px 0 orangered, 0 10px 0 orangered,
+        0 11px 0 orangered, 0 12px 0 orangered,
+        0 20px 30px rgba(0, 0, 0, 0.5);
+    }
+
+
+    .akoo:hover {
+        text-shadow: 0 1px 0 dodgerblue, 0 2px 0 dodgerblue,
+        0 3px 0 dodgerblue, 0 4px 0 dodgerblue,
+        0 5px 0 dodgerblue, 0 6px 0 dodgerblue,
+        0 7px 0 dodgerblue, 0 8px 0 dodgerblue,
+        0 9px 0 dodgerblue, 0 10px 0 dodgerblue,
+        0 11px 0 dodgerblue, 0 12px 0 dodgerblue,
+        0 20px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .pushable {
+        background-color: dodgerblue;
+        border-radius: 12px;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        outline-offset: 4px;
+    }
+
+    .front {
+        display: block;
+        padding: 12px 42px;
+        border-radius: 12px;
+        font-size: 1.25rem;
+        background-color: orangered;
+        color: white;
+        transform: translateY(-6px);
+    }
+
+    .pushable:active .front {
+        transform: translateY(-2px);
+    }
+    .code-block {
+        background-color: #2b2b2b;
+        color: #d0d0d0;
+        border: 1px solid #383838;
+        border-radius: 3px;
+        padding: 10px;
+        font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 14px;
+        line-height: 1.5;
+        overflow-x: auto;
+        counter-reset: linenumber;
+    }
+
+    .code-block pre {
+        margin: 0;
+        counter-increment: linenumber;
+    }
+
+    .code-block code {
+        display: block;
+        white-space: pre;
+        position: relative;
+    }
+
+    .code-block code::before {
+        content: counter(linenumber);
+        position: absolute;
+        left: -2em;
+        width: 2em;
+        text-align: right;
+        opacity: 0.5;
+    }
+
+    .code-block .token.keyword {
+        color: #d78700;
+        font-weight: bold;
+    }
+
+    .code-block .token.function {
+        color: #55b4d4;
+    }
+
+    .code-block .token.string {
+        color: #9c4d4d;
+    }
+
+
+</style>
+<div class="cd-hero">
+    <div class="cd-slider-nav">
+        <nav class="navbar">
+            <div class="tm-navbar-bg">
+                <div class="green">
+                    <a class="navbar-brand text-uppercase" href="/index2"><span class="ako">
+                        <i class="fa fa-solid fa-python tm-brand-icon"></i></span><span class="akoo">CodePy</span></a>
+                </div>
+
+            </div>
+
+        </nav>
+    </div>
+    <ul class="cd-hero-slider">
+
+        <!-- Page 1 -->
+        <li class="selected">
+            <div class="cd-full-width">
+                <div class="container-fluid js-tm-page-content" data-page-no="1" data-page-type="gallery">
+                    <div class="tm-img-gallery-container tm-img-gallery-container-3">
+                        <div class="tm-img-gallery gallery-three">
+                            <!-- Gallery Two pop up connected with JS code below -->
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="tm-flex">
+                                        <div class="tm-bg-white-translucent text-xs-left tm-textbox tm-textbox-padding tm-white-box-margin-b">
+                                            <form th:method="get" th:action="@{'/index2/smart_plant/buy'}">
+                                                <h2 class="tm-text-title">Влезно/излезен операции со датотеки</h2>
+                                                <p class="tm-text">
+                                                    <b>Отвори датотека</b>
+                                                    <br>
+                                                    <br>
+                                                    Python има неколку вградени функции за читање и запишување информации во датотека на вашиот компјутер.
+
+                                                    open() враќа објект за датотека и најчесто се користи со два аргументи: open(filename, mode):
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      f = open(<a style="color: green">'somefile.txt'</a><a style="color: orange">,</a> <a style="color: green">'w'</a>)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Првиот аргумент е низа која содржи името на датотеката. Вториот аргумент е друга низа која содржи неколку карактери што описуваат начинот на кој датотеката ќе се користи. Може да биде 'r' ако датотеката ќе се чита само, 'w' - за запишување само (постоечка датотека со истото име ќе биде избришана), и 'a' отвара датотека за додавање - секоја податочна информација што се запишува во датотеката се додава на крајот. 'r+' отвара датотека за читање и запишување. Аргументот за начинот е опционален; ако се пропушти, се претпоставува 'r'.
+
+                                                Добра пракса е да се користи клучниот збор "with" кога се работи со објекти за датотеки. Предноста е што датотеката се затвора правилно откако завршува кодот.
+
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">with</a> open(<a style="color: green">'somefile.txt'</a>) <a style="color: orange">as</a> f:
+    read_data = f.read()
+
+      <a style="color: gray"># Можеме да провериме дали датотеката е автоматски затворена.</a>
+      f.closed
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      True
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Важно: Ако не го користите клучниот збор "with", тогаш треба да ја повикате f.close() за да ја затворите датотеката и да ја ослободите било какви системски ресурси кои се користат од неа. По затворањето, не можете повторно да користите објектот за датотека, било тоа преку with наредбата или со повикување на f.close().
+
+                                                Во кодот за уредувачот, правилно отворете ја датотеката input1.txt во режим на читање користејќи го клучниот збор "with". Погледнете го името на датотеката што се користи на следната линија и користете го тоа. Потоа, затворете ја излезната датотека outfile која беше отворена.
+
+                                                Откако ќе го извршите вашиот код, погледнете ја излезната датотека што се појави во курсот меѓу другите датотеки.
+                                                <div class="grid-item">
+
+                                                    <img th:src="@{/img/q3.png}" alt="Image" class="img-fluid tm-img">
+
+
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    open_file.py
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">with</a> <a style="color: purple">open</a>(<a style="color: green">'input.txt'</a><a style="color: orange">,</a> <a style="color: green">'r'</a>) <a style="color: orange">as</a> my_file:
+      <a style="color: gray"># Изврши некоја акција со датотеката, методот read() ќе биде објаснет подоцна.</a>
+      <a style="color: purple">print</a>(my_file.read()<a style="color: orange">,</a> <a style="color: orange">'</a><a style="color: orange">\n</a><a style="color: orange">'</a>)
+
+
+<a style="color: gray"># Отвори ја датотеката input1.txt во режим на читање користејќи го изразот with.</a>
+      <a style="color: purple">print</a>(file.read())
+
+
+outfile = <a style="color: purple">open</a>(<a style="color: green">'outfile.txt'</a><a style="color: orange">,</a> <a style="color: green">'w'</a>)  <a style="color: gray"># Отвори ја датотеката во режим на запишување (користејќи го аргументот w)</a>
+      outfile.write(<a style="color: green">'Hello World'</a>)  <a style="color: gray"># Запишување во датотеката, методот write() е објаснет понатаму.</a>
+      <a style="color: gray"># Затворете го излезниот документ!</a>
+
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                input.txt
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      This is the first line of the file.
+      Second line of the file.
+      Here's another one!
+      The last line.
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                input1.txt
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      This is the entire file.
+
+
+  </code></pre>
+                                                </div>
+                                                </p>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Читајте датотека</b>
+                                                    <br>
+                                                    <br>
+
+                                                    За читање на содржината на датотеката, можете да ја повикате функцијата f.read(size), која чита некоја количина на податоци и ги враќа како низа. Кога size е опуштен или негативен, целосната содржина на датотеката ќе биде прочитана и вратена.
+
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">with</a> <a style="color: purple">open</a>(<a style="color: green">'somefile.txt'</a>) <a style="color: orange">as</a> f:
+      <a style="color: purple">print</a>(f.read())
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      Here's everything that's in the file.\n
+
+
+  </code></pre>
+                                                </div>
+<br>
+                                                Забелешка: ќе има проблем ако датотеката е двапати поголема од меморијата на вашето компјутер.
+
+                                                f.readline() чита еден ред од датотеката; карактерот за нов ред (\n) останува на крајот од низата и се пропушта само на последниот ред од датотеката ако датотеката не завршува со нов ред. Ако f.readline() враќа празен низ, тогаш стигнато е до крајот на датотеката, додека празен ред се претставува со \n, низа која содржи само еден нов ред.
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      f.readline()
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      'This is the first line of the file.\n'
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      f.readline()
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      'Second line of the file\n'
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      f.readline()
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+     ''
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                За читање на редови од датотека, можете да го извршите повторувањето низ објектот за датотека. Ова е ефикасно според меморијата, брзо и го прави кодот едноставен:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">for</a> line <a style="color: orange">in</a> f:
+      <a style="color: purple">print</a>(line)
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      This is the first line of the file.
+      Second line of the file
+
+  </code></pre>
+                                                </div>
+
+                                                Ако сакате да ги прочитате сите редови од датотека во листа, може да го користите list(f) или f.readlines().
+
+                                                Отпечатете ги содржините на "input.txt" во излезот со повторување низ редовите на датотеката и отпечатување на секој од нив. Потоа, отпечатете само првиот ред од "input1.txt".
+
+                                                <br>
+                                                <div class="grid-item">
+
+                                                    <img th:src="@{/img/vv.png}" alt="Image" class="img-fluid tm-img">
+
+
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    input.txt
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      I am a temporary file. Maybe someday, I'll become a real file.
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                input1.txt
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      My first line
+      My second line
+      My third line
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">with</a> <a style="color: purple">open</a>(<a style="color: green">"input.txt"</a><a style="color: orange">,</a> <a style="color: green">"r"</a>) <a style="color: orange">as</a> f:
+    <a style="color: gray"># Повторувајте низ редовите
+        # Испринтајте го секој ред</a>
+
+
+<a style="color: orange">with</a> <a style="color: purple">open</a>(<a style="color: gray">"input1.txt"</a><a style="color: orange">,</a> <a style="color: green">"r"</a>) <a style="color: orange">as</a> f1:
+      <a style="color: gray"> # Испринтајте само првиот ред од f1</a>
+
+
+
+  </code></pre>
+                                                </div>
+                                                </p>
+                                                <p style="clear: both;">
+                                                    <b>Прочитајте ги сите редови</b>
+                                                    <br>
+                                                    <br>
+
+                                                    Прочитајте ги сите редови од фајлот input.txt и ставете ги во листата наречена lines_list. Постојат најмалку два различни начини да го направите ова.
+                                               <br>
+                                                <div class="grid-item">
+
+                                                    <img th:src="@{/img/r.png}" alt="Image" class="img-fluid tm-img">
+
+
+                                                </div>
+                                                <p style="clear: both;">
+                                                    read_all_lines.py
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">with</a> <a style="color: purple">open</a>(<a style="color: green">"input.txt"</a><a style="color: orange">,</a> <a style="color: green">"r"</a>) <a style="color: orange">as</a> infile:
+      <a style="color: yellowgreen"># TODO: Прочитајте ги сите редови од фајлот input.txt и ставете ги во листата наречена lines_list</a>
+
+      <a style="color: orange">if</a> __name__ == <a style="color: green">"__main__"</a>:
+      <a style="color: purple">print</a>(lines_list)
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                input.txt
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      The plates will still shift
+      and the clouds will still spew.
+      The sun will slowly rise
+      and the moon will follow too.
+      (By Amy O. Connor)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                </p>
+                                                </p>
+                                                <p style="clear: both;">
+                                                    <b>Напиши во датотека</b>
+                                                    <br>
+                                                    <br>
+
+                                                    Како што веќе спомнавме, ако користите 'w' како втори аргумент во open(), фајлот се отвара само за запишување. Ќе биде креиран нов празен фајл. Ако веќе постои фајл со истото име, ќе биде избришан. Ако сакате да додадете содржина во веќе постоечки фајл, треба да користите 'a' (додавање) модификатор.
+
+                                                    Друг метод на објектот на фајл, f.write(string), ги запишува содржините на низата во фајлот и враќа број на запишани карактери.
+
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      f. <a style="color: orange">write</a>( <a style="color: green">'This is a test</a> <a style="color: orange">\n</a> <a style="color: green">'</a>)
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      15
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Другите типови на објекти во текст мод мораат прво да бидат претворени во стринг:
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      value = ( <a style="color: green">'the answer'</a> <a style="color: orange">,</a>  <a style="color: blue">42</a>)
+      s = str(value)  <a style="color: gray"> # Преведете ја кортежата во текст</a>
+      f. <a style="color: orange">write</a>(s)
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: blue">18</a>
+  </code></pre>
+                                                </div>
+                                                <br>
+
+                                                Каде што одредениот текст ќе биде вметнат во датотеката зависи од режимот на датотеката ('a' спротив 'w').
+<br>
+                                                'a': текстот ќе биде вметнат на крајот на датотеката.
+<br>
+                                                'w': датотеката ќе биде испразнета пред да се вметне текстот на почетокот.
+<br>
+                                                Ако сакате да вклучите символ како прекин на линија во вашиот текст (за да започнете од нова линија), додадете го со +:
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      f. <a style="color: orange">write</a>( <a style="color: green">'</a> <a style="color: orange">\n</a> <a style="color: green">'</a> +  <a style="color: green">'string,'</a> +  <a style="color: green">' '</a> +  <a style="color: green">'another string'</a>)
+  </code></pre>
+                                                </div>
+                                                <br>
+
+                                                Ова ќе додаде нова линија и ќе запише 'стринг, друг стринг'.
+
+                                                Во уредникот за код, додадете една нова линија во output.txt со сите елементи од списокот zoo, разделени со ' и '. Користете ја синтаксата ' и '.join(lst) за спојување на елементите на списокот во бараниот стринг. Потоа, додадете уште една линија со бројот во истата излезна датотека.
+                                                <br>
+                                                <div class="grid-item">
+
+                                                    <img th:src="@{/img/fi.png}" alt="Image" class="img-fluid tm-img">
+
+
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                output.txt
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+    This is the output file. Do not modify this line :)
+  </code></pre>
+                                                </div>
+
+                                                <br>
+                                                write_to_file.py
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      zoo = [<a style="color: green">"lion"</a><a style="color: orange">,</a> <a style="color: green">"elephant"</a><a style="color: orange">,</a> <a style="color: green">"monkey"</a>]
+number = 15
+
+      <a style="color: orange">with</a> <a style="color: purple">open</a>(<a style="color: green">"output.txt"</a><a style="color: orange">,</a> add modifier) <a style="color: orange">as</a> f:
+   <a style="color: gray"> # На нова линија во "output.txt", додадете ги сите елементи од списокот zoo, споени со " and ".
+       # Додадете го и бројот на излезот.</a>
+
+  </code></pre>
+                                                </div>
+                                                </p>
+
+
+                                                <!--                                            <p class="tm-text">Price on this product is $150 <button type="submit" class="pull-xs-right tm-submit-btn pushable"onclick="document.location='pay1.html'" style="margin-left: 5px"><span class="front">Buy the product</span></button></p>-->
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- .tm-img-gallery-container -->
+                </div>
+            </div>
+        </li>
+    </ul> <!-- .cd-hero-slider -->
+
+
+</div> <!-- .cd-hero -->
+
+
+<!-- Preloader, https://ihatetomatoes.net/create-custom-preloading-screen/ -->
+<div id="loader-wrapper">
+
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+
+</div>
+
+<!-- load JS files -->
+<!--<script src="../static/js/jquery-1.11.3.min.js"></script>         &lt;!&ndash; jQuery (https://jquery.com/download/) &ndash;&gt;-->
+<!--<script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script> &lt;!&ndash; Tether for Bootstrap (http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h) &ndash;&gt;-->
+<!--<script src="../static/js/bootstrap.min.js"></script>             &lt;!&ndash; Bootstrap js (v4-alpha.getbootstrap.com/) &ndash;&gt;-->
+<!--<script src="../static/js/hero-slider-main.js"></script>          &lt;!&ndash; Hero slider (https://codyhouse.co/gem/hero-slider/) &ndash;&gt;-->
+<!--<script src="../static/js/jquery.magnific-popup.min.js"></script> &lt;!&ndash; Magnific popup (http://dimsemenov.com/plugins/magnific-popup/) &ndash;&gt;-->
+
+<script th:src="@{/js/jquery-1.11.3.min.js}"></script>
+<script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/hero-slider-main.js}"></script>
+<script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+
+
+<script>
+
+    function adjustHeightOfPage(pageNo) {
+
+        var offset = 80;
+        var pageContentHeight = 0;
+
+        var pageType = $('div[data-page-no="' + pageNo + '"]').data("page-type");
+
+        if (pageType != undefined && pageType == "gallery") {
+            pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .tm-img-gallery-container").height();
+        } else {
+            pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .js-tm-page-content").height();
+        }
+
+        if ($(window).width() >= 992) {
+            offset = 120;
+        } else if ($(window).width() < 480) {
+            offset = 40;
+        }
+
+        // Get the page height
+        var totalPageHeight = 15 + $('.cd-slider-nav').height()
+            + pageContentHeight + offset
+            + $('.tm-footer').height();
+
+        // Adjust layout based on page height and window height
+        if (totalPageHeight > $(window).height()) {
+            $('.cd-hero-slider').addClass('small-screen');
+            $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", totalPageHeight + "px");
+        } else {
+            $('.cd-hero-slider').removeClass('small-screen');
+            $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", "100%");
+        }
+    }
+
+    /*
+        Everything is loaded including images.
+    */
+    $(window).load(function () {
+
+        adjustHeightOfPage(1); // Adjust page height
+
+
+
+        /* Collapse menu after click
+        -----------------------------------------*/
+        $('#tmNavbar a').click(function () {
+            $('#tmNavbar').collapse('hide');
+
+            adjustHeightOfPage($(this).data("no")); // Adjust page height
+        });
+
+        /* Browser resized
+        -----------------------------------------*/
+        $(window).resize(function () {
+            var currentPageNo = $(".cd-hero-slider li.selected .js-tm-page-content").data("page-no");
+
+            // wait 3 seconds
+            setTimeout(function () {
+                adjustHeightOfPage(currentPageNo);
+            }, 1000);
+
+        });
+
+        // Remove preloader (https://ihatetomatoes.net/create-custom-preloading-screen/)
+        $('body').addClass('loaded');
+
+    });
+
+</script>
+
+</body>
+</html>

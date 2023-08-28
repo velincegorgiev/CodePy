@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>CodePy</title>
+    <link rel="icon" th:href="@{/img/logo.png}" type="image">
+    <!--    <link rel="stylesheet" th:href="@{../static/sliki/css/all.css}">-->
+    <!--    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">-->
+    <!--    <link rel="stylesheet" href="../static/font-awesome-4.5.0/css/font-awesome.min.css">-->
+    <!--    <link rel="stylesheet" th:href="@{../static/css/bootstrap.min.css}">-->
+    <!--    <link rel="stylesheet" th:href="@{../static/css/hero-slider-style.css}">-->
+    <!--    <link rel="stylesheet" th:href="@{../static/css/magnific-popup.css}">-->
+    <!--    <link rel="stylesheet" th:href="@{../static/css/templatemo-style.css}">-->
+
+    <!--    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>-->
+    <!--    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
+
+
+
+    <link rel="stylesheet" th:href="@{/css/all.css}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <link rel="stylesheet" th:href="@{/font-awesome-4.5.0/css/font-awesome.min.css}">
+
+    <!--        <link rel="stylesheet" href="../static/css/bootstrap.min.css">-->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <!--        <link rel="stylesheet" href="../static/css/hero-slider-style.css">-->
+    <link rel="stylesheet" th:href="@{/css/hero-slider-style.css}"/>
+    <!--        <link rel="stylesheet" href="../static/css/magnific-popup.css">-->
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}"/>
+    <!--        <link rel="stylesheet" href="../static/css/templatemo-style.css">-->
+    <link rel="stylesheet" th:href="@{/css/templatemo-style.css}"/>
+
+
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+
+</head>
+
+<body>
+<style>
+    /*.cd-hero-slider li:nth-of-type(1) { background-image: url(img/1-nature.jpg); }*/
+
+    .green a{
+        color:orangered;
+    }
+    .green i{
+        color:dodgerblue;
+    }
+    .ako:hover {
+        text-shadow: 0 1px 0 orangered, 0 2px 0 orangered,
+        0 3px 0 orangered, 0 4px 0 orangered,
+        0 5px 0 orangered, 0 6px 0 orangered,
+        0 7px 0 orangered, 0 8px 0 orangered,
+        0 9px 0 orangered, 0 10px 0 orangered,
+        0 11px 0 orangered, 0 12px 0 orangered,
+        0 20px 30px rgba(0, 0, 0, 0.5);
+    }
+
+
+    .akoo:hover {
+        text-shadow: 0 1px 0 dodgerblue, 0 2px 0 dodgerblue,
+        0 3px 0 dodgerblue, 0 4px 0 dodgerblue,
+        0 5px 0 dodgerblue, 0 6px 0 dodgerblue,
+        0 7px 0 dodgerblue, 0 8px 0 dodgerblue,
+        0 9px 0 dodgerblue, 0 10px 0 dodgerblue,
+        0 11px 0 dodgerblue, 0 12px 0 dodgerblue,
+        0 20px 30px rgba(0, 0, 0, 0.5);
+    }
+    .pushable {
+        background-color: dodgerblue;
+        border-radius: 12px;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        outline-offset: 4px;
+    }
+    .front {
+        display: block;
+        padding: 12px 42px;
+        border-radius: 12px;
+        font-size: 1.25rem;
+        background-color: orangered;
+        color: white;
+        transform: translateY(-6px);
+    }
+
+    .pushable:active .front {
+        transform: translateY(-2px);
+    }
+
+
+</style>
+
+<!--            <label>-->
+<!--                <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me-->
+<!--            </label>-->
+
+<!--            <div class="form-check form-check-inline">-->
+<!--                <input class="form-check-input" name="role" type="radio" id="ROLE_ADMIN" value="ROLE_ADMIN" required>-->
+<!--                <label class="form-check-label" for="ROLE_ADMIN">ROLE_ADMIN</label>-->
+<!--            </div>-->
+<!--            <div class="form-check form-check-inline">-->
+<!--                <input class="form-check-input" name="role"  type="radio" id="ROLE_USER" value="ROLE_USER" required>-->
+<!--                <label class="form-check-label" for="ROLE_USER">ROLE_USER</label>-->
+<!--            </div>-->
+<div class="cd-hero">
+
+    <ul class="cd-hero-slider">
+
+        <!-- Page 6 Contact Us -->
+        <li class="selected">
+            <div class="cd-full-width">
+                <div class="container-fluid js-tm-page-content tm-page-pad" data-page-no="1">
+                    <div class="tm-contact-page">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <br>
+                                <br>
+                                <div class="tm-flex tm-contact-container">
+                                    <div class="tm-bg-white-translucent text-xs-left tm-textbox tm-2-col-textbox-2 tm-textbox-padding tm-textbox-padding-contact">
+                                        <!-- contact form -->
+                                        <form action="/register
+ "  method="POST" class="tm-contact-form" enctype="multipart/form-data">
+                                            <h1>Register</h1>
+                                            <br/>
+
+                                            <!--            <div class="error" th:if="${param.error != null}" th:text="${param.error}"></div>-->
+                                            <!--            <div class="success" th:if="${param.successfullyRegistered != null}">-->
+                                            <!--                Successfully registered. Please log in now.-->
+                                            <!--            </div>-->
+                                            <br/>
+                                            <b>Name</b>
+                                            <input type="text" class="form-control"  placeholder="Name" name="name" required>
+
+                                            <b>Surname</b>
+                                            <input type="text" class="form-control" placeholder="Surname" name="surname" required>
+
+                                            <b>Username</b>
+                                            <input type="text" class="form-control" placeholder="Username" name="username" required>
+
+                                            <b>Password</b>
+                                            <input type="password" class="form-control" placeholder="Password" name="password" required>
+
+                                            <b>Repeat Password</b>
+                                            <input type="password" class="form-control" placeholder="Confirm Password" name="password-repeat" required>
+
+                                            <br>
+                                            <!--                                            <button type="submit" class="pull-xs-right tm-submit-btn pushable"><span class="front">Log in</span></button>-->
+
+                                            <!--                                            <a href="/register">New here? Create an account.</a>-->
+                                            <div th:if="${hasRegisterError}" class="error">
+                                                <div th:text="${registerMessageError}"></div>
+                                            </div>
+                                            <div class="clearfix">
+                                                <button type="submit" class="pull-xs-right tm-submit-btn pushable" style="margin-left: 10px"><span class="front">Register</span></button>
+                                                <!--                <a href="/login" class="registerbtn">Register</a>-->
+                                                <a > <button type="button" class="pull-xs-right tm-submit-btn pushable" onclick="loginFunc()"><span class="front">Back</span></button></a>
+                                                <!--                <button>Log in</button>-->
+                                            </div>
+
+                                        </form>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div> <!-- .cd-full-width -->
+        </li>
+    </ul> <!-- .cd-hero-slider -->
+
+
+
+</div> <!-- .cd-hero -->
+
+
+<!-- Preloader, https://ihatetomatoes.net/create-custom-preloading-screen/ -->
+<div id="loader-wrapper">
+
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+
+</div>
+
+<script th:src="@{/js/jquery-1.11.3.min.js}"></script>
+<script th:src="@{https://www.atlasestateagents.co.uk/javascript/tether.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/hero-slider-main.js}"></script>
+<script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+
+<script>
+
+    function adjustHeightOfPage(pageNo) {
+
+        var offset = 80;
+        var pageContentHeight = 0;
+
+        var pageType = $('div[data-page-no="' + pageNo + '"]').data("page-type");
+
+        if (pageType != undefined && pageType == "gallery") {
+            pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .tm-img-gallery-container").height();
+        } else {
+            pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .js-tm-page-content").height();
+        }
+
+        if ($(window).width() >= 992) {
+            offset = 120;
+        } else if ($(window).width() < 480) {
+            offset = 40;
+        }
+
+        // Get the page height
+        var totalPageHeight = 15 + $('.cd-slider-nav').height()
+            + pageContentHeight + offset
+            + $('.tm-footer').height();
+
+        // Adjust layout based on page height and window height
+        if (totalPageHeight > $(window).height()) {
+            $('.cd-hero-slider').addClass('small-screen');
+            $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", totalPageHeight + "px");
+        } else {
+            $('.cd-hero-slider').removeClass('small-screen');
+            $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", "100%");
+        }
+    }
+
+    /*
+        Everything is loaded including images.
+    */
+    $(window).load(function () {
+
+        adjustHeightOfPage(1); // Adjust page height
+
+        /* Collapse menu after click
+        -----------------------------------------*/
+        $('#tmNavbar a').click(function () {
+            $('#tmNavbar').collapse('hide');
+
+            adjustHeightOfPage($(this).data("no")); // Adjust page height
+        });
+
+        /* Browser resized
+        -----------------------------------------*/
+        $(window).resize(function () {
+            var currentPageNo = $(".cd-hero-slider li.selected .js-tm-page-content").data("page-no");
+
+            // wait 3 seconds
+            setTimeout(function () {
+                adjustHeightOfPage(currentPageNo);
+            }, 1000);
+
+        });
+
+        $('body').addClass('loaded');
+
+    });
+    function loginFunc() {
+        window.location = "login";
+    }
+
+</script>
+
+</body>
+</html>
+

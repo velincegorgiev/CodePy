@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/%22%3E">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>CodePy</title>
+    <link rel="icon" th:href="@{/img/logo.png}" type="image">
+    <!--    <link rel="stylesheet" href="../static/sliki/css/all.css">-->
+    <!--    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">-->
+    <!--    <link rel="stylesheet" href="../static/font-awesome-4.5.0/css/font-awesome.min.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/bootstrap.min.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/hero-slider-style.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/magnific-popup.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/templatemo-style.css">-->
+
+    <link rel="stylesheet" th:href="@{/css/all.css}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <!--    <link rel="stylesheet" href="../static/font-awesome-4.5.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" th:href="@{/font-awesome-4.5.0/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/hero-slider-style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}"/>
+    <link rel="stylesheet" th:href="@{/css/templatemo-style11.css}"/>
+
+
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+</head>
+
+<body>
+<style>
+    /*.cd-hero-slider li:nth-of-type(1) {*/
+    /*    background-image: url(../../static/img/42.jpg);*/
+    /*}*/
+
+    /*.cd-hero-slider li:nth-of-type(2) {*/
+    /*    background-image: url(../../static/img/43.jpg);*/
+    /*}*/
+
+    .green a {
+        color: orangered;
+    }
+
+    .green i {
+        color: dodgerblue;
+    }
+
+    .tm-submit-btn:hover {
+        background-color: dodgerblue;
+    }
+
+    .tm-submit-btn:focus {
+        background-color: dodgerblue;
+    }
+
+    .tm-submit-btn {
+        background-color: dodgerblue;
+    }
+
+    .cd-slider-nav .nav-item.selected .nav-link,
+    .cd-slider-nav .nav-link:hover,
+    .cd-slider-nav .nav-link:focus {
+        background-color: rgba(255, 255, 255, 1);
+        color: orangered;
+    }
+
+    figure.effect-ruby {
+        background-color: orangered;
+    }
+
+    .tm-img {
+        max-height: 440px;
+        object-fit: cover;
+    }
+
+    .ako:hover {
+        text-shadow: 0 1px 0 orangered, 0 2px 0 orangered,
+        0 3px 0 orangered, 0 4px 0 orangered,
+        0 5px 0 orangered, 0 6px 0 orangered,
+        0 7px 0 orangered, 0 8px 0 orangered,
+        0 9px 0 orangered, 0 10px 0 orangered,
+        0 11px 0 orangered, 0 12px 0 orangered,
+        0 20px 30px rgba(0, 0, 0, 0.5);
+    }
+
+
+    .akoo:hover {
+        text-shadow: 0 1px 0 dodgerblue, 0 2px 0 dodgerblue,
+        0 3px 0 dodgerblue, 0 4px 0 dodgerblue,
+        0 5px 0 dodgerblue, 0 6px 0 dodgerblue,
+        0 7px 0 dodgerblue, 0 8px 0 dodgerblue,
+        0 9px 0 dodgerblue, 0 10px 0 dodgerblue,
+        0 11px 0 dodgerblue, 0 12px 0 dodgerblue,
+        0 20px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .pushable {
+        background-color: dodgerblue;
+        border-radius: 12px;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        outline-offset: 4px;
+    }
+
+    .front {
+        display: block;
+        padding: 12px 42px;
+        border-radius: 12px;
+        font-size: 1.25rem;
+        background-color: orangered;
+        color: white;
+        transform: translateY(-6px);
+    }
+
+    .pushable:active .front {
+        transform: translateY(-2px);
+    }
+    .code-block {
+        background-color: #2b2b2b;
+        color: #d0d0d0;
+        border: 1px solid #383838;
+        border-radius: 3px;
+        padding: 10px;
+        font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 14px;
+        line-height: 1.5;
+        overflow-x: auto;
+        counter-reset: linenumber;
+    }
+
+    .code-block pre {
+        margin: 0;
+        counter-increment: linenumber;
+    }
+
+    .code-block code {
+        display: block;
+        white-space: pre;
+        position: relative;
+    }
+
+    .code-block code::before {
+        content: counter(linenumber);
+        position: absolute;
+        left: -2em;
+        width: 2em;
+        text-align: right;
+        opacity: 0.5;
+    }
+
+    .code-block .token.keyword {
+        color: #d78700;
+        font-weight: bold;
+    }
+
+    .code-block .token.function {
+        color: #55b4d4;
+    }
+
+    .code-block .token.string {
+        color: #9c4d4d;
+    }
+
+
+</style>
+<div class="cd-hero">
+    <div class="cd-slider-nav">
+        <nav class="navbar">
+            <div class="tm-navbar-bg">
+                <div class="green">
+                    <a class="navbar-brand text-uppercase" href="/index2"><span class="ako">
+                        <i class="fa fa-solid fa-python tm-brand-icon"></i></span><span class="akoo">CodePy</span></a>
+                </div>
+
+            </div>
+
+        </nav>
+    </div>
+    <ul class="cd-hero-slider">
+
+        <!-- Page 1 -->
+        <li class="selected">
+            <div class="cd-full-width">
+                <div class="container-fluid js-tm-page-content" data-page-no="1" data-page-type="gallery">
+                    <div class="tm-img-gallery-container tm-img-gallery-container-3">
+                        <div class="tm-img-gallery gallery-three">
+                            <!-- Gallery Two pop up connected with JS code below -->
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="tm-flex">
+                                        <div class="tm-bg-white-translucent text-xs-left tm-textbox tm-textbox-padding tm-white-box-margin-b">
+                                            <form th:method="get" th:action="@{'/index2/smart_plant/buy'}">
+                                                <h2 class="tm-text-title">Strings</h2>
+                                                <p class="tm-text">
+                                                    <b>Спојување</b>
+                                                    <br>
+                                                    <br>
+                                                    Запомнете дека некои аритметички операции може да се применат и за ненумерички типови? Комбинирањето на две низи со помош на симболот + се нарекува конкатенација.
+                                                    <br>
+                                                    Користете ги променливите hello и world за да добиете низа „Hello World“.
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      hello = <a style="color: green"> "Hello"</a>
+      world = <a style="color: green">'World'</a>
+
+      hello_world = ???
+      <a style="color: purple">print</a>(hello_world)      # Забелешка: треба да испечати "Hello World"
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Множење низа</b>
+                                                    <br>
+                                                    <br>
+                                                    Пајтон поддржува и множење низа по број (но не и обратно!).
+<br>
+                                                    Користете ја променливата not_yet_food за да добиете име на храна зачувано во променливата храна.
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      not_yet_food = <a style="color: green"> "cous"</a>
+      food =  <a style="color: green">'TODO'</a>
+      <a style="color: purple">print</a>(food)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Индексирање на низа</b>
+                                                    <br>
+                                                    <br>
+                                                    Можете да пристапите до знакот во низата ако ја знаете неговата позиција. На пример, str[index] ќе го даде знакот на индекс на позиција во низата str. Забележете дека индексирањето на низата секогаш започнува на 0. индексот ја зголемува ValueError кога x не се наоѓа во низата.
+<br>
+                                                    Индексите може да бидат и негативни броеви ако треба да почнете да броите од десно (т.е. од крајот на вашата низа). Забележете дека бидејќи -0 е исто како 0, негативните индекси започнуваат од -1.
+<br>
+                                                    Користете го операторот за индекс за да ја добиете буквата "P" од "Python".
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      python = <a style="color: green"> "Python"</a>
+      <a style="color: purple">print</a>((<a style="color: green">"h"</a> + python[<a style="color: blue">4</a>]) * <a style="color: blue">3</a>)     <a style="color: gray"># Забелешка: индексирањето на низата започнува со 0</a>
+
+      p_letter = ???
+      <a style="color: purple">print</a>(p_letter)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Низа негативно индексирање</b>
+                                                    <br>
+                                                    <br>
+                                                    Како што рековме, можете да користите негативни индекси за броење знаци „наназад“ почнувајќи од крајот на низата.
+<br>
+                                                    Користете негативен индекс за да го добиете '!' знак од long_string.
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      long_string = <a style="color: green"> "This is a very long string!"</a>
+      exclamation = ???
+      <a style="color: purple">print</a>(exclamation)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Сечење</b>
+                                                    <br>
+                                                    <br>
+                                                    Сечење се користи за извлекување на повеќе знаци (подстринг) од низа. Неговата синтакса е слична на онаа на индексирањето, но наместо само еден индекс, користите два индекси (броеви) одделени со две точки, на пр., str[ind1:ind2]. Овие два индекса одговараат на почетокот и крајот на поднизата. Имајте предвид дека симболот со индекс ind1 ќе биде вклучен, додека симболот со индекс ind2 – нема.
+<br>
+                                                    Еве визуелно како функционира сечењето во Пајтон:
+                                                </p>
+                                                <div class="grid-item">
+
+                                                    <img th:src="@{/img/v.png}" alt="Image" class="img-fluid tm-img">
+
+
+                                                </div>
+                                                <p style="clear: both;">
+                                                    Пример
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      str[start:end] <a style="color: gray"> # ставките почнуваат до крајот-1</a>
+      str[start:]    <a style="color: gray"># ставките започнуваат низ остатокот од низата</a>
+      str[:end]     <a style="color: gray"># ставки од почеток до крај-1</a>
+      str[:]         <a style="color: gray"># копија од целата низа</a>
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Користете го делењето за да го добиете "Python" од променливата monty_python.</a>
+      monty_python = <a style="color: green"> "Monty Python"</a>
+      <a style="color: gray"># Еден или двата индекса може да се исфрлат. monty_python[:5] е еднакво на monty_python[0:5].</a>
+      monty = monty_python[:<a style="color: blue">5</a>]
+      <a style="color: purple">print</a>(monty)
+      python = ???
+      <a style="color: purple">print</a>(python)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Во оператор</b>
+                                                    <br>
+                                                    <br>
+                                                    Ако сакате да проверите дали низата содржи одредена буква или подниза, можете да го користите клучниот збор во.
+<br>
+                                                    Проверете дали има „ice“ во „ice cream“ и доделете го резултатот на променливата содржи.
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      ice_cream = <a style="color: green">"ice cream"</a>
+      <a style="color: purple">print</a>(<a style="color: green">"cream"</a><a style="color: orange"> in</a> ice_cream)    <a style="color: gray"># Директно печатете го резултатот на boolean</a>
+
+      contains = ???
+      <a style="color: purple">print</a>(contains)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Должина на низата</b>
+                                                    <br>
+                                                    <br>
+                                                    Методот len() се користи за броење колку знаци содржи низата.
+<br>
+                                                    Земете ја првата половина од низата зачувана во променливата фраза.
+                                                    <br>
+                                                    Забелешка: кога го добивате индексот, запомнете за конверзија на типови.
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      phrase = <a style="color: green">"""
+      Тоа е навистина долга низа
+      се користат тројно цитирани низи
+      да се дефинираат низи со повеќе линии
+      """</a>
+      index_to_slice = <a style="color: green">"???"</a>  <a style="color: gray"># Добијте го индексот до кој ќе пресечете.</a>
+      first_half = <a style="color: green">"???"</a>  <a style="color: gray"># Добијте го делот од фразата.</a>
+      <a style="color: purple">print</a>(first_half)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Бегство на ликот</b>
+                                                    <br>
+                                                    <br>
+                                                    Задна коса црта се користи за избегнување на специјални симболи, како што се единечни или двојни наводници, на пример,
+                                                    "It\'s me" или "She said \"Hello\""Ако навистина треба да го напишете знакот \ како дел од вашата низа, ќе треба и вие да го избегнете. На пример, еве како да испечатите една задна коса црта:
+                                              <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: purple">print</a>(<a style="color: green">'</a><a style="color: orange">\\</a><a style="color: green">'</a>)
+
+  </code></pre>
+                                                </div>
+                                                Специјалниот симбол '\n' се користи за додавање прекин на линијата на низа, додека '\t' значи табелирање.
+<br>
+                                                Цитатите имаат посебно значење, и од нив може да се избегне и со обратна коса црта. Ако треба да печатите наводници во низа, користете различен тип на наводници: може да се користат единечни наводници во низа со двоен цитат без бегство, и обратно. Исто така, како споредна забелешка, добра идеја е да го изберете вашиот омилен вид на цитати и да ги користите доследно.
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      dont_worry =<a style="color: green"> "Don't worry about apostrophes"</a>
+      <a style="color: gray"># print(dont_worry)</a>
+      <a style="color: gray"># print("\"Sweet\" is an ice-cream")</a>
+      <a style="color: purple">print</a>(<a style="color: green">'???'</a>)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Основни методи на низа</b>
+                                                    <br>
+                                                    <br>
+                                                    Постојат многу корисни методи на низа. На пример, можете да го користите методот low() за да се ослободите од секоја голема буква во вашите низи. Методот upper() се користи за правење големи букви на низата. За да повикате кој било метод на низа, напишете точка по низата (или променлива што ја содржи низата) и името на методот по неа, на пр., "John".upper(). Во PyCharm, можете да ги истражите сите достапни методи на низа со користење на кратенката Ctrl+Space по точката.
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Испечатете го monty_python во големи букви користејќи соодветен метод за низи.</a>
+      monty_python = <a style="color: green">"Monty Python"</a>
+      <a style="color: purple">print</a>(monty_python)
+
+      <a style="color: purple">print</a>(monty_python.lower())    <a style="color: gray"># Печатете ја верзијата на низата со lower-cased</a>
+
+      <a style="color: purple">print</a>(???)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Форматирање низа</b>
+                                                    <br>
+                                                    <br>
+                                                    Операторот % после низа се користи за комбинирање на низата со променливи. Операторот % ќе го замени %s во низа со променливата низа што доаѓа по неа. Специјалниот симбол %d се користи како место за нумерички или децимални вредности.
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      name = <a style="color: green">"John"</a>
+      <a style="color: gray"># Забелешка: %s е внатре во низата, % е после низата.</a>
+      <a style="color: purple">print</a>(<a style="color: green">"Hello, PyCharm! My name is %s!"</a> % name)
+
+      <a style="color: purple">print</a>(<a style="color: green">"I'm ??? years old" '???'</a>)
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Форматирани стрингови </b>
+                                                    <br>
+                                                    <br>
+                                                    Форматирани стрингови или f-стринг, е стринг буквална што е префиксирана со „f“ или „F“. Овие низи може да содржат полиња за замена, кои се изрази ограничени со кадрави загради {}.
+<br>
+                                                    Деловите од низата надвор од кадравите загради се третираат буквално. Секвенците за бегство се декодираат како во обичните буквални стрингови. Изразите за замена може да содржат прекини на линии (на пр., во низи со тројно цитирано), но не можат да содржат коментари. Секој израз се оценува во контекстот каде што се појавува форматираната низа буквално, со редослед од лево кон десно.
+<br>
+                                                    Еве неколку примери:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      name = <a style="color: green">"Fred"</a>
+      <a style="color: green">f"He said his name is</a> <a style="color: orange">{</a>name<a style="color: orange">}</a>.<a style="color: green">"</a>
+
+  </code></pre>
+
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      'He said his name is Fred.'
+  </code></pre>
+
+                                                </div>
+                                                Има повеќе фенси работи што можете да ги правите во f-стринговите, на пример:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: green"> f"</a> <a style="color: orange">{</a>name.lower() <a style="color: orange">}</a> <a style="color: green"> is funny."</a>
+  </code></pre>
+
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      'fred is funny.'
+  </code></pre>
+
+                                                </div>
+                                                </p>
+                                                </p>
+                                                <!--                                            <p class="tm-text">Price on this product is $150 <button type="submit" class="pull-xs-right tm-submit-btn pushable"onclick="document.location='pay1.html'" style="margin-left: 5px"><span class="front">Buy the product</span></button></p>-->
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- .tm-img-gallery-container -->
+                </div>
+            </div>
+        </li>
+    </ul> <!-- .cd-hero-slider -->
+
+
+</div> <!-- .cd-hero -->
+
+
+<!-- Preloader, https://ihatetomatoes.net/create-custom-preloading-screen/ -->
+<div id="loader-wrapper">
+
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+
+</div>
+
+<!-- load JS files -->
+<!--<script src="../static/js/jquery-1.11.3.min.js"></script>         &lt;!&ndash; jQuery (https://jquery.com/download/) &ndash;&gt;-->
+<!--<script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script> &lt;!&ndash; Tether for Bootstrap (http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h) &ndash;&gt;-->
+<!--<script src="../static/js/bootstrap.min.js"></script>             &lt;!&ndash; Bootstrap js (v4-alpha.getbootstrap.com/) &ndash;&gt;-->
+<!--<script src="../static/js/hero-slider-main.js"></script>          &lt;!&ndash; Hero slider (https://codyhouse.co/gem/hero-slider/) &ndash;&gt;-->
+<!--<script src="../static/js/jquery.magnific-popup.min.js"></script> &lt;!&ndash; Magnific popup (http://dimsemenov.com/plugins/magnific-popup/) &ndash;&gt;-->
+
+<script th:src="@{/js/jquery-1.11.3.min.js}"></script>
+<script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/hero-slider-main.js}"></script>
+<script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+
+
+<script>
+
+    function adjustHeightOfPage(pageNo) {
+
+        var offset = 80;
+        var pageContentHeight = 0;
+
+        var pageType = $('div[data-page-no="' + pageNo + '"]').data("page-type");
+
+        if (pageType != undefined && pageType == "gallery") {
+            pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .tm-img-gallery-container").height();
+        } else {
+            pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .js-tm-page-content").height();
+        }
+
+        if ($(window).width() >= 992) {
+            offset = 120;
+        } else if ($(window).width() < 480) {
+            offset = 40;
+        }
+
+        // Get the page height
+        var totalPageHeight = 15 + $('.cd-slider-nav').height()
+            + pageContentHeight + offset
+            + $('.tm-footer').height();
+
+        // Adjust layout based on page height and window height
+        if (totalPageHeight > $(window).height()) {
+            $('.cd-hero-slider').addClass('small-screen');
+            $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", totalPageHeight + "px");
+        } else {
+            $('.cd-hero-slider').removeClass('small-screen');
+            $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", "100%");
+        }
+    }
+
+    /*
+        Everything is loaded including images.
+    */
+    $(window).load(function () {
+
+        adjustHeightOfPage(1); // Adjust page height
+
+
+
+        /* Collapse menu after click
+        -----------------------------------------*/
+        $('#tmNavbar a').click(function () {
+            $('#tmNavbar').collapse('hide');
+
+            adjustHeightOfPage($(this).data("no")); // Adjust page height
+        });
+
+        /* Browser resized
+        -----------------------------------------*/
+        $(window).resize(function () {
+            var currentPageNo = $(".cd-hero-slider li.selected .js-tm-page-content").data("page-no");
+
+            // wait 3 seconds
+            setTimeout(function () {
+                adjustHeightOfPage(currentPageNo);
+            }, 1000);
+
+        });
+
+        // Remove preloader (https://ihatetomatoes.net/create-custom-preloading-screen/)
+        $('body').addClass('loaded');
+
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/%22%3E">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>CodePy</title>
+    <link rel="icon" th:href="@{/img/logo.png}" type="image">
+    <!--    <link rel="stylesheet" href="../static/sliki/css/all.css">-->
+    <!--    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">-->
+    <!--    <link rel="stylesheet" href="../static/font-awesome-4.5.0/css/font-awesome.min.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/bootstrap.min.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/hero-slider-style.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/magnific-popup.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/templatemo-style.css">-->
+
+    <link rel="stylesheet" th:href="@{/css/all.css}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <!--    <link rel="stylesheet" href="../static/font-awesome-4.5.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" th:href="@{/font-awesome-4.5.0/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/hero-slider-style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}"/>
+    <link rel="stylesheet" th:href="@{/css/templatemo-style11.css}"/>
+
+
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+</head>
+
+<body>
+<style>
+    /*.cd-hero-slider li:nth-of-type(1) {*/
+    /*    background-image: url(../../static/img/42.jpg);*/
+    /*}*/
+
+    /*.cd-hero-slider li:nth-of-type(2) {*/
+    /*    background-image: url(../../static/img/43.jpg);*/
+    /*}*/
+
+    .green a {
+        color: orangered;
+    }
+
+    .green i {
+        color: dodgerblue;
+    }
+
+    .tm-submit-btn:hover {
+        background-color: dodgerblue;
+    }
+
+    .tm-submit-btn:focus {
+        background-color: dodgerblue;
+    }
+
+    .tm-submit-btn {
+        background-color: dodgerblue;
+    }
+
+    .cd-slider-nav .nav-item.selected .nav-link,
+    .cd-slider-nav .nav-link:hover,
+    .cd-slider-nav .nav-link:focus {
+        background-color: rgba(255, 255, 255, 1);
+        color: orangered;
+    }
+
+    figure.effect-ruby {
+        background-color: orangered;
+    }
+
+    .tm-img {
+        max-height: 440px;
+        object-fit: cover;
+    }
+
+    .ako:hover {
+        text-shadow: 0 1px 0 orangered, 0 2px 0 orangered,
+        0 3px 0 orangered, 0 4px 0 orangered,
+        0 5px 0 orangered, 0 6px 0 orangered,
+        0 7px 0 orangered, 0 8px 0 orangered,
+        0 9px 0 orangered, 0 10px 0 orangered,
+        0 11px 0 orangered, 0 12px 0 orangered,
+        0 20px 30px rgba(0, 0, 0, 0.5);
+    }
+
+
+    .akoo:hover {
+        text-shadow: 0 1px 0 dodgerblue, 0 2px 0 dodgerblue,
+        0 3px 0 dodgerblue, 0 4px 0 dodgerblue,
+        0 5px 0 dodgerblue, 0 6px 0 dodgerblue,
+        0 7px 0 dodgerblue, 0 8px 0 dodgerblue,
+        0 9px 0 dodgerblue, 0 10px 0 dodgerblue,
+        0 11px 0 dodgerblue, 0 12px 0 dodgerblue,
+        0 20px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .pushable {
+        background-color: dodgerblue;
+        border-radius: 12px;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        outline-offset: 4px;
+    }
+
+    .front {
+        display: block;
+        padding: 12px 42px;
+        border-radius: 12px;
+        font-size: 1.25rem;
+        background-color: orangered;
+        color: white;
+        transform: translateY(-6px);
+    }
+
+    .pushable:active .front {
+        transform: translateY(-2px);
+    }
+    .code-block {
+        background-color: #2b2b2b;
+        color: #d0d0d0;
+        border: 1px solid #383838;
+        border-radius: 3px;
+        padding: 10px;
+        font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 14px;
+        line-height: 1.5;
+        overflow-x: auto;
+        counter-reset: linenumber;
+    }
+
+    .code-block pre {
+        margin: 0;
+        counter-increment: linenumber;
+    }
+
+    .code-block code {
+        display: block;
+        white-space: pre;
+        position: relative;
+    }
+
+    .code-block code::before {
+        content: counter(linenumber);
+        position: absolute;
+        left: -2em;
+        width: 2em;
+        text-align: right;
+        opacity: 0.5;
+    }
+
+    .code-block .token.keyword {
+        color: #d78700;
+        font-weight: bold;
+    }
+
+    .code-block .token.function {
+        color: #55b4d4;
+    }
+
+    .code-block .token.string {
+        color: #9c4d4d;
+    }
+
+
+</style>
+<div class="cd-hero">
+    <div class="cd-slider-nav">
+        <nav class="navbar">
+            <div class="tm-navbar-bg">
+                <div class="green">
+                    <a class="navbar-brand text-uppercase" href="/index2"><span class="ako">
+                        <i class="fa fa-solid fa-python tm-brand-icon"></i></span><span class="akoo">CodePy</span></a>
+                </div>
+
+            </div>
+
+        </nav>
+    </div>
+    <ul class="cd-hero-slider">
+
+        <!-- Page 1 -->
+        <li class="selected">
+            <div class="cd-full-width">
+                <div class="container-fluid js-tm-page-content" data-page-no="1" data-page-type="gallery">
+                    <div class="tm-img-gallery-container tm-img-gallery-container-3">
+                        <div class="tm-img-gallery gallery-three">
+                            <!-- Gallery Two pop up connected with JS code below -->
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="tm-flex">
+                                        <div class="tm-bg-white-translucent text-xs-left tm-textbox tm-textbox-padding tm-white-box-margin-b">
+                                            <form th:method="get" th:action="@{'/index2/smart_plant/buy'}">
+                                                <h2 class="tm-text-title">Циклуси</h2>
+                                                <p class="tm-text">
+                                                    <b>Циклусот for (for loop)</b>
+                                                    <br>
+                                                    <br>
+                                                    Наредбата for се користи за итерирање низ елементите на некоја последица (како што се низа, кортеж или листа) или некој друг објект што може да биде итериран. Последицата се вреднува само еднаш. При секоја итерација, променливата дефинирана во циклусот for ќе биде присвоена на следната вредност во листата. Кодот што следи после линијата со наредбата for се извршува еднаш за секоја ставка. Кога ставките се искористени, циклусот завршува.
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Испечатете го секој прост број од простите список користејќи ја јамката for.
+          Прост број е природен број поголем од 1 кој нема позитивни делители освен 1 и самиот себе.</a>
+      <a style="color: orange">for</a> i <a style="color: orange">in</a> <a style="color: purple">range</a>(<a style="color: blue">5</a>):    <a style="color: gray"># За секој број i во опсегот од 0 до 4. Функцијата range(5) враќа листа [0, 1, 2, 3, 4]</a>
+      print(i)          <a style="color: gray"># Оваа линија се извршува 5 пати. Прв пат i е 0, потоа 1, ...</a>
+
+      primes = [<a style="color: blue">2</a><a style="color: orange">,</a> <a style="color: blue">3</a><a style="color: orange">,</a> <a style="color: blue">5</a><a style="color: orange">,</a> <a style="color: blue">7</a>]   <a style="color: gray"># Креирајте нова листа.</a>
+
+      <a style="color: gray"># Итерирајте низ простите броеви и испечатете ги секој од нив.</a>
+      <a style="color: purple">print</a>(prime)
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+
+                                                    <b>Итерирајте низ еден стринг</b>
+                                                    <br>
+                                                    <br>
+                                                    Како што го дискутиравме претходно, стринговите во Python се на многу начини слични на листите. Можете да итерирате низ стринг како што би итерирале низ листа.
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Користете јамка за да броите колку знаци содржи hello_world.
+          Чувајте го овој број во променливата length.</a>
+      hello_world = <a style="color: green">"Hello, World!"</a>
+
+      <a style="color: orange">for</a> character <a style="color: orange">in</a> hello_world:    <a style="color: gray"># Отпечатете го секој знак од hello_world</a>
+      <a style="color: purple">print</a>(character)
+
+      length = <a style="color: blue">0</a>      <a style="color: gray"># Иницијализирајте променливата length.</a>
+
+      <a style="color: gray"># Итерирајте низ стрингот.</a>
+      length +=  <a style="color: blue">1</a>      <a style="color: gray"># Додадете 1 на должината на секоја итерација за да ги броите знаците</a>
+
+      <a style="color: purple">print</a>( <a style="color: purple">len</a>(hello_world) == length)
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Вгнездени циклуси</b>
+                                                    <br>
+                                                    <br>
+                                                    Вгнезден циклус е циклус во друг циклус. Внатрешните циклуси се извршува еднаш за секое повторување на надворешната јамка.
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      adjectives = [<a style="color: green">"black"</a><a style="color: orange">,</a> <a style="color: green">"stylish"</a><a style="color: orange">,</a> <a style="color: green">"expensive"</a>]
+      clothes = [<a style="color: green">"jacket"</a><a style="color: orange">,</a> <a style="color: green">"shirt"</a><a style="color: orange">,</a> <a style="color: green">"boots"</a>]
+
+      <a style="color: orange">for</a> x <a style="color: orange">in</a> adjectives:
+      <a style="color: orange">for</a> y <a style="color: orange">in</a> clothes:
+      <a style="color: purple">print</a>(x<a style="color: orange">,</a> y)
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Излез:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      black jacket
+      black shirt
+      black boots
+      stylish jacket
+      stylish shirt
+      stylish boots
+      expensive jacket
+      expensive shirt
+      expensive boots
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    Забележете дека секој тип на јамка може да се вгнезди во друга јамка. На пример, јамката while (види понатаму) може да се вгнезди во јамката за, или обратно.
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Добивате штица со димензии 3x3, вашата задача е да ја испечатите секоја позиција.
+          Координатите долж секоја страна се зачувани во координатите на списокот. Излезот треба да биде:</a>
+      <a style="color: gray">#1 x 1</a>
+      <a style="color: gray">#1 x 2</a>
+      <a style="color: gray">#1 x 3</a>
+      <a style="color: gray">#2 x 1</a>
+      <a style="color: gray">#...</a>
+      coordinates = [<a style="color: blue">1</a><a style="color: orange">,</a> <a style="color: blue">2</a><a style="color: orange">,</a> <a style="color: blue">3</a>]
+
+      користете вгнездена јамка овдеfor</a> coordinate1 <a style="color: orange">in</a> coordinates:
+      <a style="color: greenyellow"># TODO: користете вгнезден циклус овде.</a>
+      <a style="color: purple">print</a>( <a style="color: green">f'</a> <a style="color: orange">{</a>coordinate1 <a style="color: orange">}</a> <a style="color: green"> x</a>  <a style="color: orange">{</a>coordinate2 <a style="color: orange">}</a> <a style="color: green">'</a>)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Листа за собирање</b>
+                                                    <br>
+                                                    <br>
+                                                    Можете да користите циклус за изградба на листа (или друга структура на податоци). На пример:
+
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      my_list = []
+      <a style="color: orange">for</a> i <a style="color: orange">in</a> range(<a style="color: blue">5</a>):
+      my_list.append(i)
+
+      <a style="color: purple">print</a>(my_list)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Излез:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+     [0, 1, 2, 3, 4]
+
+  </code></pre>
+                                                </div>
+                                                Ова е убаво, но доста гломазно. Разбирањето на списоци нуди покомпактна синтакса кога сакате да креирате нова листа врз основа на вредностите на постоечката листа или друга повторувачка (дупла, низа, низа, опсег, итн.). Ја прави истата задача и ја поедноставува програмата. Вообичаено, разбирањата на листите се напишани во една линија код.
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      my_list = [i <a style="color: orange">for</a> i <a style="color: orange">in</a> range(<a style="color: blue">5</a>)]
+      <a style="color: purple">print</a>(my_list)
+
+  </code></pre>
+                                                </div>
+                                                Излез:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      [0, 1, 2, 3, 4]
+
+  </code></pre>
+                                                </div>
+
+
+                                                Листи за собирање исто така се поефикасни пресметковно во споредба со циклусот for.
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#користи листа за собирање за да го изградиш my_efficient_list од елементите на my_inefficient_list
+          со додавање на 10 на секој од нив. На пример, првиот елемент на my_inefficient_list е 1+10=11, така што првиот
+          елемент на my_efficient_list треба да биде 11+10=21, и така натаму.</a>
+      starting_numbers = [<a style="color: blue">1</a><a style="color: orange">,</a> <a style="color: blue">2</a><a style="color: orange">,</a> <a style="color: blue">3</a><a style="color: orange">,</a> <a style="color: blue">4</a><a style="color: orange">,</a> <a style="color: blue">5</a><a style="color: orange">,</a><a style="color: blue"> 6</a><a style="color: orange">,</a> <a style="color: blue">7</a><a style="color: orange">,</a> <a style="color: blue">8</a><a style="color: orange">,</a> <a style="color: blue">9</a><a style="color: orange">,</a> <a style="color: blue">10</a>]
+      my_inefficient_list = []
+
+      <a style="color: orange">for</a> i <a style="color: orange">in</a> starting_numbers:
+      my_inefficient_list.append(i + <a style="color: blue">10</a>)
+
+      <a style="color: purple">print</a>(my_inefficient_list)
+
+      my_efficient_list = [<a style="color: green">'Use list comprehension to build the same list as above'</a>]
+      <a style="color: purple">print</a>(my_efficient_list)
+
+
+  </code></pre>
+                                                </div>
+                                                <p style="clear: both;">
+                                                    <b>Вгнездена листа за собирање</b>
+                                                    <br>
+                                                    <br>
+                                                    Вгнездените листи за собирање се просто листи за собирање вгнездени во други листи за собирање. Ова е многу слично на вгнездените циклуси. Во продолжение е програма која гради вгнездена листа користејќи вгнезден циклус:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      matrix = []
+
+      <a style="color: orange">for</a> i<a style="color: orange"> in</a> range(<a style="color: blue">3</a>):
+
+      <a style="color: gray"># Додадете празна подлиста во листата</a>
+      matrix.append([])
+
+      <a style="color: orange">for</a> j <a style="color: orange">in</a> range(<a style="color: blue">0</a><a style="color: orange">,</a> <a style="color: blue">10</a><a style="color: orange">,</a> <a style="color: blue">2</a>):
+      matrix[i].append(j)
+
+      <a style="color: purple">print</a>(matrix)
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Излез:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+    [0, 2, 4, 6, 8], [0, 2, 4, 6, 8], [0, 2, 4, 6, 8]
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Истото може да се направи во само една линија користејќи вгнездена листа за собирање:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      matrix = [[j <a style="color: orange">for</a> j <a style="color: orange">in</a> range(<a style="color: blue">0</a><a style="color: orange">,</a> <a style="color: blue">10</a><a style="color: orange">,</a> <a style="color: blue">2</a>)] <a style="color: orange">for</a> i <a style="color: orange">in</a> range(<a style="color: blue">3</a>)]
+      <a style="color: purple">print</a>(matrix)
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Излез:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      [0, 2, 4, 6, 8], [0, 2, 4, 6, 8], [0, 2, 4, 6, 8]
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+     <a style="color: gray">Креирајте матрица од 10×10 таква што секој ред (подлиста) содржи знаци од 0 до 9 од низата.
+         Користете листа за собирање за да го завршите задачата во една линија на код.</a>
+      string = <a style="color: green">'0123456789'</a>
+
+      matrix = [<a style="color: green">'TODO'</a>]
+
+      <a style="color: orange">for</a> row <a style="color: orange">in</a> matrix:
+      <a style="color: purple"> print</a>(row)
+
+  </code></pre>
+                                                </div>
+                                                <p style="clear: both;">
+                                                    <b>While циклусот</b>
+                                                    <br>
+                                                    <br>
+                                                    While циклусот е малку сличен на if наредбата: извршува одреден код ако одреден услов е вистински. Клучната разлика е што ќе продолжи да го извршува внатрешниот код се додека условот е вистински. Ако изразот е лажен, циклусот се прекинува.
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Испечати ги сите квадрати од 1 до 9 (1, 4, ..., 81). Користи променливата number во while циклусот.</a>
+      square =  <a style="color: blue">1</a>   <a style="color: gray"># Воведена е променлива за следење на повторувањата</a>
+
+      <a style="color: orange">while</a> square <=  <a style="color: blue">10</a>:
+      <a style="color: purple">print</a>(square)     <a style="color: gray"># Овој код се извршува 10 пати</a>
+      square +=  <a style="color: blue">1</a>       <a style="color: gray"># Овој код се извршува 10 пати</a>
+
+      <a style="color: purple">print</a>( <a style="color: green">"Finished"</a>)   <a style="color: gray"># Овој код се извршува еднаш</a>
+
+      square =  <a style="color: blue">0</a>
+      number =  <a style="color: blue">1</a>
+
+      <a style="color: gray"># Испечатете ги сите квадрати од 1 до 81.</a>
+      <a style="color: gray"># Користете изјава за while и услов овде.</a>
+      square = number ** <a style="color: blue"> 2</a>
+      <a style="color: purple">print</a>(square)
+      number += <a style="color: blue"> 1</a>
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Клучната зборова Break</b>
+                                                    <br>
+                                                    <br>
+                                                    Бескраен циклус е циклус кој никогаш не завршува. Ако условот на циклусот случајно секогаш е Вистина, таков циклус станува бескраен. Наједноставниот начин да се креира бескраен циклус е да се користи while True. Клучната зборова break се користи за излез од циклусот.
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+     <a style="color: gray">Напишете услов за излез од циклусот на неговата трета итерација по проверка дали променливата
+         animal е еднаква на елементот "elephant". Користете го break наредбата. Листата zoo на крајот треба да содржи
+         само лав и тигар (бидејќи ги отстранувате сите други во циклусот).</a>
+      count = <a style="color: blue">0</a>
+
+      <a style="color: orange">while True</a>:  <a style="color: gray"># Оваа услов неможе да биде невистинска.</a>
+      <a style="color: purple">print</a>(count)
+      count += <a style="color: blue">1</a>
+      <a style="color: orange">if</a> count >= <a style="color: blue">5</a>:
+      break           <a style="color: gray"># Излези од циклусот ако count >= 5</a>
+
+      zoo = [<a style="color: green">"lion"</a><a style="color: orange">,</a> <a style="color: green">"tiger"</a><a style="color: orange">,</a> <a style="color: green">"elephant"</a><a style="color: orange">,</a> <a style="color: green">"giraffe"</a><a style="color: orange">,</a> <a style="color: green">"python"</a>]
+      <a style="color: orange"> while True</a>:                        <a style="color: gray"> # Овој услов неможе да биде невистински.</a>
+      animal = zoo.pop()       <a style="color: gray"># Извлечи еден елемент од крајот на листата.</a>
+      <a style="color: purple">print</a>(animal)
+    <a style="color: gray"># Додајте го условот за излез од циклусот.
+        # Излезете од циклусот.</a>
+
+      <a style="color: purple">print</a>(zoo)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Исправете го безкрајното извршување</b>
+                                                    <br>
+                                                    <br>
+                                                    Во уредувачот на кодот, има циклус while дефиниран внатре во една функција. Засега не се притеснувајте за тоа, ќе научите за функциите во следната секција. Во моментов, на начинот на кој е напишано, циклусот while во оваа функција ќе се извршува безкрајно бидејќи условот секогаш ќе биде Вистина. Можете да се уверите во тоа со да ја пуштите кодот. За да го прекинете извршувањето, користете го црвениот стоп копче на левата страна на прозорецот за извршување (Run).
+                                                <div class="grid-item" style="clear: both;">
+
+                                                    <img th:src="@{/img/Screenshot 2023-05-18 173745.png}" alt="Image" class="img-fluid tm-img">
+
+
+                                                </div>
+                                                <br>
+                                                </p>
+                                                <div class="code-block" style="clear: both;">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Исправете го кодот така што циклусот ќе заврши откако ќе го испечати "Hello, World!" 5 пати.</a>
+      <a style="color: orange">def</a> <a style="color: yellow">should_not_be_infinite</a>():  <a style="color: gray">#Дефиниција на функција. Не се грижете за неа моментално.</a>
+      i = <a style="color: blue">5</a>
+
+      <a style="color: orange">while</a> i < <a style="color: blue">15</a>:
+      <a style="color: purple">print</a>(<a style="color: green">"Hello, World!"</a>)
+      <a style="color: greenyellow"> # TODO</a>
+
+      <a style="color: gray"># Главниот блок. Засега, не се претерувате за него. Ќе научите за него подоцна во курсот.</a>
+      <a style="color: orange">if</a> __name__ == <a style="color: green">"__main__"</a>:
+      should_not_be_infinite()  <a style="color: gray"># Повик на функција.</a>
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Else со циклуси</b>
+                                                    <br>
+                                                    <br>
+                                                    Се видовме дека наредбата break го прекинува највнатрешниот зацврстен for или while циклус.
+<br>
+                                                    Во Python исто така се дозволува на циклусните наредби да имаат клазула else. Таа се извршува кога циклусот завршува преку исцрпување на итерабилниот објект (со for) или кога условот станува Лажен (со while), но не се извршува кога циклусот се прекинува со наредбата break. Погледнете го следниот пример на циклус кој бара прости броеви:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">for</a> n <a style="color: orange">in</a> range(<a style="color: blue">2</a><a style="color: orange">,</a> <a style="color: blue">10</a>):
+      <a style="color: orange">for</a> x <a style="color: orange">in</a> range(<a style="color: blue">2</a><a style="color: orange">,</a> n):
+      <a style="color: orange">if</a> n % x == <a style="color: blue">0</a>:
+      print(n, <a style="color: green">'equals'</a><a style="color: orange">,</a> x<a style="color: orange">,</a> <a style="color: green">'*'</a><a style="color: orange">,</a> n//x)
+      <a style="color: orange">break</a>
+      <a style="color: orange">else</a>:
+      <a style="color: gray">#Циклусот заврши без да најде делител.</a>
+      <a style="color: purple">print</a>(n<a style="color: orange">,</a> <a style="color: green">'is a prime number'</a>)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      2 is a prime number
+      3 is a prime number
+      4 equals 2 * 2
+      5 is a prime number
+      6 equals 2 * 3
+      7 is a prime number
+      8 equals 2 * 4
+      9 equals 3 * 3
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Во овој код, клазулата else припаѓа на for циклусот, а не на if наредбата.
+<br>
+                                                Запомнете, клазулата else откако ќе следи if наредбата се прескокнува и НЕ се извршува ако изразот по if е Вистинит, додека во случај на циклуси, клазулата else се извршува откако самиот циклус завршува (освен ако немаше break наредба во него).
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#додадете две линии код во вториот циклус за да бидете сигурни дека циклусот ќе испечати само броевите 1 и 2 и никогаш нема да испечати фразата "for loop is done".</a>
+
+      i =<a style="color: blue"> 0</a>
+      <a style="color: orange">while</a> i < <a style="color: blue">5</a>:
+      <a style="color: purple">print</a>(<a style="color: green">'it\'s less than 5'</a>)
+      i += <a style="color: blue">1</a>
+      <a style="color: orange">else</a>:
+      <a style="color: purple">print</a>(<a style="color: green">'and now it\'s 5'</a>)  <a style="color: gray"># Испечати ја оваа порака кога условот не е повеќе Вистинит.</a>
+
+      <a style="color: orange">for</a> i <a style="color: orange">in</a> range(<a style="color: blue">1</a><a style="color: orange">,</a> <a style="color: blue">5</a>):
+      <a style="color: gray"># Додади услов за прекинување.</a>
+      <a style="color: gray"> # Додади наредба која ќе го прекине циклусот.</a>
+      <a style="color: purple">print</a>(i)
+      <a style="color: orange">else</a>:
+      <a style="color: purple">print</a>(<a style="color: green">"for loop is done"</a>)
+
+      <a style="color: purple">print</a>(<a style="color: green">"Outside the for loop"</a>)
+
+  </code></pre>
+                                                </div>
+                                                </p>
+                                                <p style="clear: both;">
+                                                    <b>Else со циклуси 2 </b>
+                                                    <br>
+                                                    <br>
+                                                    Овој тип на else е корисен само ако има if услов присутен внатре во јазолот, кој на некаков начин зависи од променливата на јазолот. Погледнете уште еднаш на примерот од претходната задача.
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">for</a> n  <a style="color: orange">in</a> range( <a style="color: blue">2</a> <a style="color: orange">,</a>  <a style="color: blue">10</a>):
+      <a style="color: orange">for</a> x  <a style="color: orange">in</a> range( <a style="color: blue">2</a> <a style="color: orange">,</a> n):
+      <a style="color: orange">if</a> n % x ==  <a style="color: blue">0</a>:
+      print(n <a style="color: orange">,</a>  <a style="color: green">'equals'</a> <a style="color: orange">,</a> x <a style="color: orange">,</a>  <a style="color: green">'*'</a> <a style="color: orange">,</a> n//x)
+      <a style="color: orange">break</a>
+      <a style="color: orange">else</a>:
+      <a style="color: gray"># Циклусот заврши без да пронајде делител.</a>
+      <a style="color: purple">print</a>(n <a style="color: orange">,</a>  <a style="color: green">'is a prime number'</a>)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                else наредбата ќе се изврши само ако n е прост број, т.е. if наредбата не е извршена за ниту една итерација од внатрешниот for циклус.
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+     <a style="color: gray"> Внатре во функцијата contains_even_number(), напишете for циклус кој ќе итерира низ список lst и,
+         ако се пронајде парен елемент, да испечати "Листата {lst} содржи парен број." и да излезе од циклусот,
+         ако нема таков елемент, да испечати "Листата {lst} не содржи парен број.".</a>
+      <a style="color: orangered">def</a> <a style="color: orange">contains_even_number</a>(<a style="color: gray">lst</a>):
+      <a style="color: orangered">pass</a>
+
+
+contains_even_number([<a style="color: blue">1</a><a style="color: orange">,</a> <a style="color: blue">9</a><a style="color: orange">,</a> <a style="color: blue">8</a>])
+      contains_even_number([<a style="color: blue">1</a><a style="color: orange">,</a> <a style="color: blue">3</a><a style="color: orange">,</a> <a style="color: blue">5</a>])
+
+  </code></pre>
+                                                </div>
+                                                </p>
+                                                <p style="clear: both;">
+                                                    <b>Клучниот збор "continue" (продолжи)</b>
+                                                    <br>
+                                                    <br>
+                                                    Клучниот збор "continue" се користи за да се прескокне преостанатиот дел од кодот внатре во циклусот само за тековната итерација и да се продолжи директно со следната итерација. Циклусот се враќа на for или while наредбата и повторно ја оценува условот. Ако нема следен елемент, се извршува делот "else" ако постои.
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">Печати само нечетните броеви 1, 3, 5, 7, 9.</a>
+      <a style="color: orange">for</a> i <a style="color: orange">in</a> <a style="color: purple">range</a>(<a style="color: blue">5</a>):
+      <a style="color: orange">if</a> i == <a style="color: blue">3</a>:
+      <a style="color: orange">continue</a>   <a style="color: gray"># Прескокни го останатиот код внатрешно во лупот за тековната вредност на i.</a>
+      <a style="color: purple">print</a>(i)
+
+      <a style="color: orange">for</a> x <a style="color: orange">in</a><a style="color: purple"> range</a>(<a style="color: blue">10</a>):
+      <a style="color: gray"># Додади услов.</a>
+      <a style="color: gray"># Додајте клучен збор за да го прескокнете печатењето(x) за оваа јамка</a>
+      <a style="color: purple">print</a>(x)
+
+
+  </code></pre>
+                                                </div>
+                                                </p>
+
+                                                <!--                                            <p class="tm-text">Price on this product is $150 <button type="submit" class="pull-xs-right tm-submit-btn pushable"onclick="document.location='pay1.html'" style="margin-left: 5px"><span class="front">Buy the product</span></button></p>-->
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- .tm-img-gallery-container -->
+                </div>
+            </div>
+        </li>
+    </ul> <!-- .cd-hero-slider -->
+
+
+</div> <!-- .cd-hero -->
+
+
+<!-- Preloader, https://ihatetomatoes.net/create-custom-preloading-screen/ -->
+<div id="loader-wrapper">
+
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+
+</div>
+
+<!-- load JS files -->
+<!--<script src="../static/js/jquery-1.11.3.min.js"></script>         &lt;!&ndash; jQuery (https://jquery.com/download/) &ndash;&gt;-->
+<!--<script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script> &lt;!&ndash; Tether for Bootstrap (http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h) &ndash;&gt;-->
+<!--<script src="../static/js/bootstrap.min.js"></script>             &lt;!&ndash; Bootstrap js (v4-alpha.getbootstrap.com/) &ndash;&gt;-->
+<!--<script src="../static/js/hero-slider-main.js"></script>          &lt;!&ndash; Hero slider (https://codyhouse.co/gem/hero-slider/) &ndash;&gt;-->
+<!--<script src="../static/js/jquery.magnific-popup.min.js"></script> &lt;!&ndash; Magnific popup (http://dimsemenov.com/plugins/magnific-popup/) &ndash;&gt;-->
+
+<script th:src="@{/js/jquery-1.11.3.min.js}"></script>
+<script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/hero-slider-main.js}"></script>
+<script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+
+
+<script>
+
+    function adjustHeightOfPage(pageNo) {
+
+        var offset = 80;
+        var pageContentHeight = 0;
+
+        var pageType = $('div[data-page-no="' + pageNo + '"]').data("page-type");
+
+        if (pageType != undefined && pageType == "gallery") {
+            pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .tm-img-gallery-container").height();
+        } else {
+            pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .js-tm-page-content").height();
+        }
+
+        if ($(window).width() >= 992) {
+            offset = 120;
+        } else if ($(window).width() < 480) {
+            offset = 40;
+        }
+
+        // Get the page height
+        var totalPageHeight = 15 + $('.cd-slider-nav').height()
+            + pageContentHeight + offset
+            + $('.tm-footer').height();
+
+        // Adjust layout based on page height and window height
+        if (totalPageHeight > $(window).height()) {
+            $('.cd-hero-slider').addClass('small-screen');
+            $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", totalPageHeight + "px");
+        } else {
+            $('.cd-hero-slider').removeClass('small-screen');
+            $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", "100%");
+        }
+    }
+
+    /*
+        Everything is loaded including images.
+    */
+    $(window).load(function () {
+
+        adjustHeightOfPage(1); // Adjust page height
+
+
+
+        /* Collapse menu after click
+        -----------------------------------------*/
+        $('#tmNavbar a').click(function () {
+            $('#tmNavbar').collapse('hide');
+
+            adjustHeightOfPage($(this).data("no")); // Adjust page height
+        });
+
+        /* Browser resized
+        -----------------------------------------*/
+        $(window).resize(function () {
+            var currentPageNo = $(".cd-hero-slider li.selected .js-tm-page-content").data("page-no");
+
+            // wait 3 seconds
+            setTimeout(function () {
+                adjustHeightOfPage(currentPageNo);
+            }, 1000);
+
+        });
+
+        // Remove preloader (https://ihatetomatoes.net/create-custom-preloading-screen/)
+        $('body').addClass('loaded');
+
+    });
+
+</script>
+
+</body>
+</html>

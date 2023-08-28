@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/%22%3E">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>CodePy</title>
+    <link rel="icon" th:href="@{/img/logo.png}" type="image">
+    <!--    <link rel="stylesheet" href="../static/sliki/css/all.css">-->
+    <!--    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">-->
+    <!--    <link rel="stylesheet" href="../static/font-awesome-4.5.0/css/font-awesome.min.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/bootstrap.min.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/hero-slider-style.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/magnific-popup.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/templatemo-style.css">-->
+
+    <link rel="stylesheet" th:href="@{/css/all.css}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <!--    <link rel="stylesheet" href="../static/font-awesome-4.5.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" th:href="@{/font-awesome-4.5.0/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/hero-slider-style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}"/>
+    <link rel="stylesheet" th:href="@{/css/templatemo-style11.css}"/>
+
+
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+</head>
+
+<body>
+<style>
+    /*.cd-hero-slider li:nth-of-type(1) {*/
+    /*    background-image: url(../../static/img/42.jpg);*/
+    /*}*/
+
+    /*.cd-hero-slider li:nth-of-type(2) {*/
+    /*    background-image: url(../../static/img/43.jpg);*/
+    /*}*/
+
+    .green a {
+        color: orangered;
+    }
+
+    .green i {
+        color: dodgerblue;
+    }
+
+    .tm-submit-btn:hover {
+        background-color: dodgerblue;
+    }
+
+    .tm-submit-btn:focus {
+        background-color: dodgerblue;
+    }
+
+    .tm-submit-btn {
+        background-color: dodgerblue;
+    }
+
+    .cd-slider-nav .nav-item.selected .nav-link,
+    .cd-slider-nav .nav-link:hover,
+    .cd-slider-nav .nav-link:focus {
+        background-color: rgba(255, 255, 255, 1);
+        color: orangered;
+    }
+
+    figure.effect-ruby {
+        background-color: orangered;
+    }
+
+    .tm-img {
+        max-height: 440px;
+        object-fit: cover;
+    }
+
+    .ako:hover {
+        text-shadow: 0 1px 0 orangered, 0 2px 0 orangered,
+        0 3px 0 orangered, 0 4px 0 orangered,
+        0 5px 0 orangered, 0 6px 0 orangered,
+        0 7px 0 orangered, 0 8px 0 orangered,
+        0 9px 0 orangered, 0 10px 0 orangered,
+        0 11px 0 orangered, 0 12px 0 orangered,
+        0 20px 30px rgba(0, 0, 0, 0.5);
+    }
+
+
+    .akoo:hover {
+        text-shadow: 0 1px 0 dodgerblue, 0 2px 0 dodgerblue,
+        0 3px 0 dodgerblue, 0 4px 0 dodgerblue,
+        0 5px 0 dodgerblue, 0 6px 0 dodgerblue,
+        0 7px 0 dodgerblue, 0 8px 0 dodgerblue,
+        0 9px 0 dodgerblue, 0 10px 0 dodgerblue,
+        0 11px 0 dodgerblue, 0 12px 0 dodgerblue,
+        0 20px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .pushable {
+        background-color: dodgerblue;
+        border-radius: 12px;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        outline-offset: 4px;
+    }
+
+    .front {
+        display: block;
+        padding: 12px 42px;
+        border-radius: 12px;
+        font-size: 1.25rem;
+        background-color: orangered;
+        color: white;
+        transform: translateY(-6px);
+    }
+
+    .pushable:active .front {
+        transform: translateY(-2px);
+    }
+    .code-block {
+        background-color: #2b2b2b;
+        color: #d0d0d0;
+        border: 1px solid #383838;
+        border-radius: 3px;
+        padding: 10px;
+        font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 14px;
+        line-height: 1.5;
+        overflow-x: auto;
+        counter-reset: linenumber;
+    }
+
+    .code-block pre {
+        margin: 0;
+        counter-increment: linenumber;
+    }
+
+    .code-block code {
+        display: block;
+        white-space: pre;
+        position: relative;
+    }
+
+    .code-block code::before {
+        content: counter(linenumber);
+        position: absolute;
+        left: -2em;
+        width: 2em;
+        text-align: right;
+        opacity: 0.5;
+    }
+
+    .code-block .token.keyword {
+        color: #d78700;
+        font-weight: bold;
+    }
+
+    .code-block .token.function {
+        color: #55b4d4;
+    }
+
+    .code-block .token.string {
+        color: #9c4d4d;
+    }
+
+
+</style>
+<div class="cd-hero">
+    <div class="cd-slider-nav">
+        <nav class="navbar">
+            <div class="tm-navbar-bg">
+                <div class="green">
+                    <a class="navbar-brand text-uppercase" href="/index2"><span class="ako">
+                        <i class="fa fa-solid fa-python tm-brand-icon"></i></span><span class="akoo">CodePy</span></a>
+                </div>
+
+            </div>
+
+        </nav>
+    </div>
+    <ul class="cd-hero-slider">
+
+        <!-- Page 1 -->
+        <li class="selected">
+            <div class="cd-full-width">
+                <div class="container-fluid js-tm-page-content" data-page-no="1" data-page-type="gallery">
+                    <div class="tm-img-gallery-container tm-img-gallery-container-3">
+                        <div class="tm-img-gallery gallery-three">
+                            <!-- Gallery Two pop up connected with JS code below -->
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="tm-flex">
+                                        <div class="tm-bg-white-translucent text-xs-left tm-textbox tm-textbox-padding tm-white-box-margin-b">
+                                            <form th:method="get" th:action="@{'/index2/smart_plant/buy'}">
+                                                <h2 class="tm-text-title">Класи и објекти</h2>
+                                                <p class="tm-text">
+                                                    <b>Дефиниција</b>
+                                                    <br>
+                                                    <br>
+
+                                                    Класите обезбедуваат начин за групирање на податоци и функционалности заедно. Креирање на нова класа создава нов тип на објект, дозволувајќи креирање на нови инстанци од тој тип. Класите се суштински шаблони за создавање на вашите објекти. Секоја инстанца на класата (објект) може да има прикачени атрибути за одржување на својата состојба. Функциите на објектите се нарекуваат методи, и тие може да го менуваат нивниот состојба. Методите се дефинирани од страна на класата на објектот.
+
+                                                    Општиот облик на дефиниција на класата изгледа вака:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">class</a> ClassName:
+      < statement-<a style="color: blue">1</a> >
+    .
+    .
+    .
+    < statement-N >
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Дефинициите на класи, како и дефинициите на функции (изјавите со "def"), мора да се извршат пред да имаат некаков ефект.
+
+                                                Изјавите внатре во дефиницијата на класата обично се дефиниции на функции, но понекогаш и други изјави се корисни. Дефинициите на функциите внатре во класата обично имаат посебна форма на листа на аргументи - ова ќе биде објаснето подоцна.
+
+                                                Објектите на класите поддржуваат два видови операции: референци на атрибути и креирање на инстанци. Референците на атрибути ќе бидат објаснети во следниве делови. Креирањето на инстанци од класата користи нотација на функции. Замислете го објектот на класата како безпараметарска функција која враќа нова инстанца од класата. На пример:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">class</a> SomeClass:
+      <a style="color: green">"""A simple example class"""</a>
+      i = <a style="color: blue">12345</a>
+
+x = SomeClass()
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                x = SomeClass() креира нова инстанца од класата и ја доделува оваа објект на локалната променлива x.
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+<a style="color: gray">#Доделете вредност на променливата внатре во MyClass и креирајте објект my_class од класата MyClass().
+    #Извршете го кодот и видете што се случува!</a>
+
+      <a style="color: orange">class</a> MyClass:
+    variable = ???
+
+      <a style="color: orangered">def </a><a style="color: orange">foo</a>(self):  <a style="color: gray"># Ќе објасниме параметарот self подоцна.</a>
+          <a style="color: purple">print</a>(<a style="color: green">"Hello from function foo"</a>)
+
+
+<a style="color: gray">#my_object содржи објект од класата "MyClass" кој содржи
+    # променливата и функцијата foo.</a>
+my_object = ???
+
+          my_object.foo() <a style="color: gray"> # Повикува методот foo дефиниран во класата MyClass.</a>
+          <a style="color: purple">print</a>(my_object.variable) <a style="color: gray"> # Печати ја вредноста на атрибутот variable дефиниран во класата MyClass.</a>
+
+  </code></pre>
+                                                </div>
+                                                <p style="clear: both;">
+
+                                                    <b>Пристап до променливи</b>
+                                                    <br>
+                                                    <br>
+                                                    Можете да користите референци на атрибути за пристап до променливи внатре во објектот. Референциите на атрибути користат стандардната синтакса за сите референци на атрибути во Python: obj.name. Валидни имиња на атрибути се сите имиња кои беа во просторот на имиња на класата кога класниот објект беше создаден. Па така, ако дефиницијата на класата изгледа вака:
+
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">class</a> MyClass:
+      year = <a style="color: blue">2021</a>
+
+      <a style="color: orangered">def</a> <a style="color: orange">say_hello</a>(self):
+      <a style="color: orange">return</a> <a style="color: green">'hello world'</a>
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+
+                                                тогаш MyClass.year и MyClass.say_hello се валидни референци на атрибути кои враќаат цел број и објект на функција, соодветно. Атрибутите на класата можат да се доделат, па може да ја промените вредноста на MyClass.year со доделување.
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Проверете го нашиот пример и испечатете ја вредноста на variable1 од my_object.
+          #Исповикете ја методата foo на објектот my_object, испечатете го резултатот.</a>
+      <a style="color: orange">class</a> MyClass:
+      variable1 = <a style="color: blue">1</a>
+      variable2 = <a style="color: blue">2</a>
+
+      <a style="color: orangered">def</a> <a style="color: orange">foo</a>(<a style="color: purple">self</a>):     <a style="color: gray"># Подоцна ќе го објасниме самиот параметар</a>
+      <a style="color: orange">return</a> <a style="color: green">"Hello from function foo"</a>
+
+
+my_object = MyClass()
+another_object = MyClass()
+
+      my_object.variable2 = <a style="color: blue">3</a>    <a style="color: gray"> # Доделете нова вредност на variable2 во my_object.</a>
+
+      <a style="color: purple">print</a>(my_object.variable2)
+      <a style="color: purple">print</a>(another_object.variable2)
+
+      <a style="color: purple">print</a>(<a style="color: green">'Print variable1 from my_object'</a>)
+      <a style="color: purple">print</a>(<a style="color: green">'Call method foo() of object my_object'</a>)
+
+
+  </code></pre>
+                                                </div>
+                                                <p style="clear: both;">
+                                                    <b>Ажурирајте ја променливата</b>
+                                                    <br>
+                                                    <br>
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+
+<a style="color: gray">#Во ова упражнување, креирајте нов објект од класата Car наречен car2 и потоа поставете го
+      #бојата на car2 на "црвена". Испечатете ги описите на car1 и car2 со
+    #повикување на методата description.</a>
+      <a style="color: orange">class</a> Car:
+      color = <a style="color: green">""</a>
+
+      <a style="color: orangered">def</a> <a style="color: orange">description</a>(<a style="color: purple">self</a>):  <a style="color: gray">#Ќе го објасниме параметарот self подоцна.</a>
+      description_string = <a style="color: green">f"This is a </a><a style="color: orange">{</a><a style="color: purple">self</a>.color<a style="color: orange">}</a> <a style="color: green">car."</a>
+      <a style="color: orange">return</a> description_string
+
+
+car1 = Car()
+car2 = ???
+
+      car1.color = <a style="color: green">"blue"</a>
+car2.color = ???
+
+      print(<a style="color: green">'Call description() method of car1'</a>)
+      print(<a style="color: green">'Call description() method of car2'</a>)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Параметарот self</b>
+                                                    <br>
+                                                    <br>
+                                                    Дојде време да објасниме параметарот self кој го видовме во претходните задачи. Првиот аргумент кој се предава на методот на класата е self. Ова не е ништо повеќе од конвенција: името self нема посебно значење за Python. Препорачува се да се следи оваа конвенција, инаку вашиот код може да биде помалку читлив за други Python програмери.
+
+                                                    Python ќе користи параметарот self за да се однесува на објектот кој е креиран или модифициран.
+                                                    Методите може да ги повикуваат другите методи користејќи ги атрибутите на методот на аргументот self:
+
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">class</a> Bag:
+      <a style="color: orangered">def</a> <a style="color: orange">__init__</a>(<a style="color: purple">self</a>):
+          <a style="color: purple">self</a>.data = []
+
+          <a style="color: orangered">def</a> <a style="color: orange">add</a>(self<a style="color: orange">,</a> x):
+          <a style="color: purple">self</a>.data.append(x)
+
+          <a style="color: orangered">def</a> <a style="color: orange">addtwice</a>(<a style="color: purple">self</a><a style="color: orange"></a>, x):
+          <a style="color: purple">self</a>.add(x)  <a style="color: gray">#Повикување на методот add од друг метод.</a>
+          <a style="color: purple">self</a>.add(x)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+
+<a style="color: gray">#Во уредникот за код, имплементирајте го методот add од класата Calculator.
+      #Тој треба да додаде amount на полето current. Покрај тоа, довршете го методот get_current.
+    #Извршете го кодот за да видите како функционира.</a>
+      <a style="color: orange">class</a> Complex:
+      <a style="color: orangered">def</a> <a style="color: orange">create</a>(<a style="color: purple">self</a><a style="color: orange">,</a> real_part<a style="color: orange">,</a> imag_part):
+      <a style="color: purple">self</a>.r = real_part
+      <a style="color: purple">self</a>.i = imag_part
+
+      <a style="color: orangered">def</a> <a style="color: orange">build</a>(<a style="color: purple">self</a>):
+      <a style="color: purple">self</a>.num = complex(<a style="color: purple">self</a>.r, <a style="color: purple">self</a>.i)
+
+
+complex_number = Complex()  <a style="color: gray">#Инстанцирајте објект за комплексен број.</a>
+      complex_number.create(<a style="color: blue">12</a><a style="color: orange">,</a> <a style="color: blue">5</a>)  <a style="color: gray"># Повикajте го методот create со real_part = 12 и imag_part = 5.</a>
+      complex_number.build()  <a style="color: gray">#Изградете го комплексниот број.</a>
+      <a style="color: purple">print</a>(complex_number.num)
+
+
+<a style="color: orange">class</a> Calculator:
+      current = <a style="color: blue">0</a>
+
+      <a style="color: orangered">def</a><a style="color: orange"> add</a>(<a style="color: purple">self</a><a style="color: orange">,</a> amount):
+      <a style="color: gray"># Ажурирајте го атрибутот current со додавање на amount на него.</a>
+
+      <a style="color: orangered">def</a> <a style="color: orange">get_current</a>(<a style="color: purple">self</a>):
+      <a style="color: orange"> return</a> ???
+
+
+my_value = Calculator()
+      my_value.add(<a style="color: blue">100500</a>)
+      <a style="color: purple">print</a>(my_value.get_current())
+
+
+  </code></pre>
+                                                </div>
+
+                                                <p style="clear: both;">
+                                                    <b>Повик на метод од друг метод</b>
+                                                    <br>
+                                                    <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+
+<a style="color: gray">#Како што го договоривме претходно, методите може да ги повикуваат другите методи
+      #користејќи ги атрибутите на методите од аргументот self. Користете го ова знаење
+      #за да го довршите методот exponentiate на класата Calculator. Тој треба да го повика
+    #методот multiply за да го пресмета резултатот</a>
+      <a style="color: orange">class</a> Calculator:
+      current = <a style="color: blue">0</a>
+
+      <a style="color: orangered">def</a> <a style="color: orange">add</a>(<a style="color: purple">self</a><a style="color: orange">,</a> number):
+      <a style="color: purple">self</a>.current += number
+
+      <a style="color: orangered">def</a> <a style="color: orange">multiply</a>(<a style="color: purple">self</a><a style="color: orange">,</a> number):
+      <a style="color: purple">self</a>.current *= number
+
+      <a style="color: orangered">def</a> <a style="color: orange">exponentiate</a>(<a style="color: purple">self</a><a style="color: orange">,</a> power):
+      base = <a style="color: yellowgreen"># TODO:Поставете го експонентниот base, тој треба да биде еднаков на тековната вредност.</a>
+      <a style="color: orange">for</a> i <a style="color: orange">in</a> <a style="color: purple">range</a>(power - <a style="color: blue">1</a>):
+      <a style="color: yellowgreen"># TODO: Користете го методот multiply со параметарот base за да го пресметате резултатот.</a>
+
+      <a style="color: orangered">def</a> <a style="color: orange">get_current</a>(<a style="color: purple">self</a>):
+      <a style="color: orange">return</a> <a style="color: purple">self</a>.current
+
+
+calc = Calculator()  <a style="color: gray"># Иницијализирајте го калкулаторот.</a>
+      <a style="color: purple">print</a>(calc.get_current()) <a style="color: gray"> #Осигурaјте се дека почетната вредност е 0.</a>
+
+      calc.add(<a style="color: blue">2</a>)  <a style="color: gray"># Додадете 2.</a>
+      <a style="color: purple">print</a>(calc.get_current())  <a style="color: gray"># Испечатете го резултатот, тој треба да биде 2.</a>
+
+      calc.multiply(<a style="color: blue">3</a>)  <a style="color: gray"># Множете со 3.</a>
+      <a style="color: purple">print</a>(calc.get_current())  <a style="color: gray"># Испечатете го резултатот, тој треба да биде 6.</a>
+
+      calc.exponentiate(3)  <a style="color: gray"># Зголемете го на моќност 3.</a>
+      <a style="color: purple">print</a>(calc.get_current())  <a style="color: gray"># Испечатете го резултатот, тој треба да биде 216.</a>
+
+
+  </code></pre>
+                                                </div>
+                                                </p>
+
+                                                <p style="clear: both;">
+                                                    <b>Специјален метод __init__</b>
+                                                    <br>
+                                                    <br>
+                                                    Операцијата на инстанцирање ("повикување" на објектот на класата) создава празен објект, но е корисно да се создаваат објекти со инстанци со прилагодена почетна состојба. Затоа, класата може да дефинира специјален метод наречен __init__(), како што следува:
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">class</a> MyClass:
+      <a style="color: orangered">def</a>  <a style="color: purple">__init__</a>(<a style="color: purple">self</a>):
+        self.data = []
+
+  </code></pre>
+                                                </div>
+                                                <br>
+
+                                                __init__ е еден од резервираните методи во Python. Ако е дефиниран, методот  __init__() се повикува автоматски кога се создава инстанца од класата и иницијализира објектот и неговите атрибути. Секогаш прима барем еден аргумент, self. Па така, во нашиот пример, нова иницијализирана инстанца може да се добие со:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      x = MyClass()
+
+  </code></pre>
+                                                </div>
+
+                                                Методот __init__() може да прима аргументи за поголема флексибилност. Во тој случај, аргументите дадени на операторот за инстанцирање на класата се пренесуваат на __init__(). На пример:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">class</a> Complex:
+      <a style="color: orangered">def</a>  <a style="color: purple">__init__</a>( <a style="color: purple">self</a> <a style="color: orange">,</a> real_part <a style="color: orange">,</a> imag_part):
+      <a style="color: purple">self</a>.r = real_part
+      <a style="color: purple"> self</a>.i = imag_part
+      <a style="color: purple">self</a>.num = complex( <a style="color: purple">self</a>.r <a style="color: orange">,</a>  <a style="color: purple">self</a>.i)
+
+      x = Complex(<a style="color: blue">3.0</a><a style="color: orangered">,</a> <a style="color: blue">-4.5</a>)  <a style="color: gray"># Инстанцирање на комплексен број</a>
+x.num
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      (3-4.5j)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Во уредникот за код, додадете параметри на методот
+          #__init__() од класата Car, за да можеме да ја креираме со специфицирана боја и марка</a>
+      <a style="color: orange">class</a> Square:
+      <a style="color: orangered">def</a><a style="color: purple"> __init__</a>(<a style="color: purple">self</a>):  <a style="color: gray"># Специјален метод __init__</a>
+      <a style="color: purple">self</a>.sides = <a style="color: blue">4</a>
+
+
+square = Square()
+      <a style="color: purple">print</a>(square.sides)
+
+
+<a style="color: orange">class</a> Car:
+      <a style="color: orangered">def</a> <a style="color: purple">__init__</a>(???):
+      <a style="color: purple">self</a>.color = color
+      <a style="color: purple">self</a>.brand = brand
+
+
+<a style="color: gray"># Забелешка: не треба да го предадете параметарот self експлицитно,
+    # само параметрите за боја и марка.</a>
+      car = Car(<a style="color: green">"blue"</a><a style="color: orange">,</a> <a style="color: green">"BMW"</a>)
+
+      <a style="color: purple">print</a>(car.color, car.brand)
+
+
+  </code></pre>
+                                                </div>
+                                                <p style="clear: both;">
+                                                    <b>__str__ vs __repr__ методи</b>
+                                                    <br>
+                                                    <br>
+                                                    И двете методи str() и repr() во Python се користат за стринговска репрезентација на објект, но има некои разлики. На пример:
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      s = <a style="color: green">'Hello World'</a>
+      <a style="color: purple">print</a> (str(s))
+      <a style="color: purple">print</a>(repr(s))
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      Hello World
+      'Hello World'
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Можете да видите дека ако печатиме стринг со користење на функцијата repr(), тогаш се печати со две наводници. str() се користи за создавање на излез за корисникот, додека repr() обично се користи за дебагирање и развој. repr() треба да биде неамбигуитетен, а str() треба да биде читлив.
+
+                                                Како и __init__, методите  __repr__  и __str__  се резервирани во Python. Изјавата print() и вградената функција str() користат методот str дефиниран во класата на објектот за прикажување на неговата стринг репрезентација. Вградената функција repr() користи методот repr дефиниран во класата на објектот.
+
+                                                Сопствената дефинирана класа треба затоа да има  __repr__ ако ни е потребна детална информација за дебагирање. Исто така, ако мислиме дека би било корисно да имаме стринговска репрезентација за корисниците, треба да креираме функција __str__ . Погледнете друга имплементација на класата Complex во уредникот за код. Извршете го кодот за да видите што печатат двете наредби за печатење.
+
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+     <a style="color: gray">#Имплементирајте ги методите __str__  и __repr__ за класата Cat. __str__
+      #методот треба да врати стринг како овој: "My siamese cat's name is Lucy";
+      #__repr__ методот треба да врати стринг како овој:
+         #"Cat, breed: siamese, name: Lucy". Користете f-стрингови.</a>
+
+      <a style="color: orange">class</a> Complex:
+      <a style="color: orangered">def</a><a style="color: purple"> __init__</a>(<a style="color: purple">self</a><a style="color: orange">,</a> real_part<a style="color: orange">,</a> imag_part):
+      <a style="color: purple">self</a>.real = real_part
+        self.img = imag_part
+
+      <a style="color: orangered">def</a> <a style="color: purple">__repr__</a>(<a style="color: purple">self</a>):
+      <a style="color: orange">return</a> <a style="color: green">f'Complex(10, 20)'</a>
+
+      <a style="color: orangered">def</a> <a style="color: purple">__str__</a>(<a style="color: purple">self</a>):
+      return <a style="color: green">f'</a><a style="color: orange">{</a>self.real<a style="color: orange">}</a><a style="color: green"> + i</a><a style="color: orange">{</a><a style="color: purple">self</a>.img<a style="color: orange">}</a><a style="color: green">'</a>
+
+
+x = Complex(<a style="color: blue">2</a><a style="color: orange">,</a> <a style="color: blue">5</a>)
+      <a style="color: purple">print</a>(<a style="color: purple">str</a>(x))
+      <a style="color: purple">print</a>(<a style="color: purple">repr</a>(x))
+
+
+<a style="color: orange">class</a> Cat:
+      <a style="color: orangered">def</a> <a style="color: purple">__init__</a>(<a style="color: purple">self</a><a style="color: orange">,</a> breed<a style="color: orange">,</a> name):
+      <a style="color: purple">self</a>.breed = breed
+      <a style="color: purple">self</a>.name = name
+
+      <a style="color: orangered">def</a> <a style="color: purple">__repr__</a>(<a style="color: purple">self</a>):
+      <a style="color: orange">return</a> ???
+
+      <a style="color: orangered">def</a> <a style="color: purple">__str__</a>(<a style="color: purple">self</a>):
+      <a style="color: orange">return</a> ???
+
+
+lucy = Cat(<a style="color: green">'siamese'</a><a style="color: orange">,</a> <a style="color: green">'Lucy'</a>)
+      <a style="color: purple">print</a>(<a style="color: purple">str</a>(lucy))
+      <a style="color: purple">print</a>(<a style="color: purple">repr</a>(lucy))
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Класни и инстанцни променливи</b>
+                                                    <br>
+                                                    <br>
+
+                                                    Општо, инстанцни променливи се користат за податоци уникатни за секоја инстанца, додека класни променливи се користат за атрибути и методи споделени од сите инстанци на класата.
+
+                                                </p>
+                                                <div class="code-block" style="clear: both;">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">class</a> Cat:
+
+      species = <a style="color: green">"Felis catus"</a>
+
+      <a style="color: orangered">def</a> <a style="color: purple">__init__</a>(<a style="color: purple">self</a><a style="color: orange">,</a> breed<a style="color: orange">,</a> name):
+      <a style="color: purple">self</a>.breed = breed
+      <a style="color: purple">self</a>.name = name
+
+      cleo = Cat(<a style="color: green">'mix'</a><a style="color: orange">,</a> <a style="color: green">'Cleo'</a>)
+      furry = Cat(<a style="color: green">'bengal'</a><a style="color: orange">,</a> <a style="color: green">'Furry'</a>)
+
+      <a style="color: purple">print</a>(cleo.name)
+      <a style="color: purple">print</a>(cleo.species)
+      <a style="color: purple">print</a>(furry.name)
+      <a style="color: purple">print</a>(furry.species)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block" style="clear: both;">
+  <pre><code style="color: white" class="language-javascript">
+Cleo
+Felis catus
+Furry
+Felis catus
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Можете да видите дека "species" е класна променлива споделена од сите инстанци, додека "name" и "breed" се инстанцни променливи уникатни за секоја инстанца.
+
+                                                Споделените податоци можат да имаат изненадувачки ефекти кога се користат мутабилни објекти, како листи и речници. Ако класната променлива е листа и ја модификувате за еден објект, таа ќе се промени за сите објекти од класата (погледнете го примерот во уредникот за код - видете што ќе испечати print(barsik.favorite_food)). Ако намеравате да користите листа за чување на карактеристики уникатни за секоја инстанца, треба да го направите тоа инстанцен атрибут.
+                                                <br>
+                                                <div class="code-block" style="clear: both;">
+  <pre><code style="color: white" class="language-javascript">
+       <a style="color: gray">#Во уредникот за код, завршете го извршувањето на класата Animals така што print-от
+      #подолу ќе испечати линија како ова: "This is Doggy the dog, one of my pets." за секој од милениците.
+# Листата favorite_food во следниот код не треба да се користи како
+           #Класната променлива затоа што една листа би била споделена од сите инстанци на класата Cat:</a>
+      <a style="color: orange">class</a> Cat:
+
+    favorite_food = []
+
+      <a style="color: orangered">def</a> <a style="color: purple">__init__</a>(<a style="color: purple">self</a><a style="color: orange">,</a> name):
+      <a style="color: purple">self</a>.name = name
+
+      <a style="color: orangered">def</a> <a style="color: orange">add_food</a>(<a style="color: purple">self</a><a style="color: orange">,</a> food):  <a style="color: gray"># Метод кој го менува класниот варијабла.</a>
+      <a style="color: purple">self</a>.favorite_food.append(food)
+
+
+kitty = Cat(<a style="color: green">'Kitty'</a>)
+      barsik = Cat(<a style="color: green">'Barsik'</a>)
+      kitty.add_food(<a style="color: green">'salmon'</a>)  <a style="color: gray">#Ми додаваме само омилена храна за Kitty, но Barsik ја добива истата</a>
+      <a style="color: purple">print</a>(barsik.favorite_food)
+
+
+<a style="color: gray"># Затоа што секоја мачка има своја омилена храна,
+    # оваа класа треба да биде имплементирана на следниот начин:</a>
+      <a style="color: orange">class</a> Cats:
+
+      <a style="color: orangered">def</a> <a style="color: purple">__init__</a>(<a style="color: purple">self</a><a style="color: orange">,</a> name):
+      <a style="color: purple">self</a>.name = name
+      <a style="color: purple">self</a>.favorite_food = []
+
+      <a style="color: orangered">def</a> <a style="color: orange">add_food</a>(<a style="color: purple">self</a><a style="color: orange">,</a> food):  <a style="color: gray"># Method modifying an instance variable</a>
+      <a style="color: purple"> self</a>.favorite_food.append(food)
+
+
+kitty = Cats(<a style="color: green">'Kitty'</a>)
+      barsik = Cats(<a style="color: green">'Barsik'</a>)
+      kitty.add_food(<a style="color: green">'salmon'</a>)
+      <a style="color: purple">print</a>(barsik.favorite_food)  <a style="color: gray"># Овој пат е празeн!</a>
+
+
+<a style="color: orange">class</a> Animals:
+      <a style="color: gray"># Додадете класна променлива kind и зададете ѝ ги бараните вредности.</a>
+
+      <a style="color: orangered">def</a> <a style="color: purple">__init__</a>(<a style="color: purple">self</a><a style="color: orange">,</a> name<a style="color: orange">,</a> species):
+      <a style="color: gray"># Додадете променлива на инстанца name.</a>
+      <a style="color: orange">pass</a>
+      <a style="color: gray"> # Додадете една променлива на инстанца species.</a>
+
+      <a style="color: orangered">def</a> <a style="color: purple">__str__</a>(<a style="color: purple">self</a>):
+      <a style="color: orange">return</a> <a style="color: green">f'\nThis is</a> <a style="color: orange">{</a><a style="color: purple">self</a>.name<a style="color: orange">}</a><a style="color: green"> the</a> <a style="color: orange">{</a><a style="color: purple">self</a>.species<a style="color: orange">}</a><a style="color: green">, one of my</a> <a style="color: orange">{</a><a style="color: purple">self</a>.kind<a style="color: orange">}</a><a style="color: green">.'</a>
+
+
+george = Animals(<a style="color: green">'George'</a><a style="color: orange">,</a> <a style="color: green">'rabbit'</a>)
+      sally = Animals(<a style="color: green">'Sally'</a><a style="color: orange">,</a> <a style="color: green">'horse'</a>)
+      <a style="color: purple">print</a>(george<a style="color: orange">,</a> sally)
+      <a style="color: purple">print</a>(type(george.kind))
+
+  </code></pre>
+                                                </div>
+                                                <p style="clear: both;">
+                                                    <b>Класни и инстантни променливи 2</b>
+                                                    <br>
+                                                    <br>
+
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+
+<a style="color: gray">#Во класата City, додадете мутабилна класна променлива - листа наречена
+    #all_cities - за да зачувате ги имињата на сите додадени градови.
+    #Имплементирајте го методот add_city кој ќе додаде име на градот во листата all_cities.
+    #Не заборавајте да го отстраните изјавувањето pass!
+    #Во методот __init__ , повикате го методот add_city за да додадете името на градот
+    #во листата при иницијализација на објектот.</a>
+
+      <a style="color: orange">class</a> City:
+      <a style="color: yellowgreen"># TODO: Додадете мутабилна класна променлива (листа all_cities) за зачувување на сите додадени имиња на градови.</a>
+
+      <a style="color: orangered">def</a> <a style="color: purple">__init__</a>(<a style="color: purple">self</a><a style="color: orange">,</a> name<a style="color: orange">,</a> population<a style="color: orange">,</a> country):
+      <a style="color: purple">self</a>.name = name
+      <a style="color: purple">self</a>.population = population
+      <a style="color: purple">self</a>.country = country
+      <a style="color: yellowgreen"># TODO: повик на методот add_city за да се додаде името на градот во листата при иницијализација на објектот</a>
+
+      <a style="color: orangered">def</a> <a style="color: orange">add_city</a>(<a style="color: purple">self</a>):
+      <a style="color: orange">pass</a>
+      <a style="color: yellowgreen"># TODO: Имплементирајте метод кој ќе додаде име на град во листата all_cities. Избришете го pass изјавата!</a>
+
+
+<a style="color: orange">if</a><a style="color: purple"> __name__</a> == <a style="color: green">'__main__'</a>:
+      malaga = City(<a style="color: green">'Malaga'</a><a style="color: orange">,</a> <a style="color: blue">569005</a><a style="color: orange">,</a> <a style="color: green">'Spain'</a>)
+      boston = City(<a style="color: green">'Boston'</a><a style="color: orange">,</a> <a style="color: blue">689326</a><a style="color: orange">,</a> <a style="color: green">'USA'</a>)
+      beijing = City(<a style="color: green">'Beijing'</a><a style="color: orange">,</a> <a style="color: blue">21540000</a><a style="color: orange">,</a> <a style="color: green">'China'</a>)
+
+      <a style="color: purple">print</a>(malaga.all_cities)  <a style="color: gray"># Ова треба да испечати "['Malaga', 'Boston', 'Beijing']".</a>
+
+  </code></pre>
+                                                </div>
+
+                                                </p>
+                                                </p>
+
+                                                <!--                                            <p class="tm-text">Price on this product is $150 <button type="submit" class="pull-xs-right tm-submit-btn pushable"onclick="document.location='pay1.html'" style="margin-left: 5px"><span class="front">Buy the product</span></button></p>-->
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- .tm-img-gallery-container -->
+                </div>
+            </div>
+        </li>
+    </ul> <!-- .cd-hero-slider -->
+
+
+</div> <!-- .cd-hero -->
+
+
+<!-- Preloader, https://ihatetomatoes.net/create-custom-preloading-screen/ -->
+<div id="loader-wrapper">
+
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+
+</div>
+
+<!-- load JS files -->
+<!--<script src="../static/js/jquery-1.11.3.min.js"></script>         &lt;!&ndash; jQuery (https://jquery.com/download/) &ndash;&gt;-->
+<!--<script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script> &lt;!&ndash; Tether for Bootstrap (http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h) &ndash;&gt;-->
+<!--<script src="../static/js/bootstrap.min.js"></script>             &lt;!&ndash; Bootstrap js (v4-alpha.getbootstrap.com/) &ndash;&gt;-->
+<!--<script src="../static/js/hero-slider-main.js"></script>          &lt;!&ndash; Hero slider (https://codyhouse.co/gem/hero-slider/) &ndash;&gt;-->
+<!--<script src="../static/js/jquery.magnific-popup.min.js"></script> &lt;!&ndash; Magnific popup (http://dimsemenov.com/plugins/magnific-popup/) &ndash;&gt;-->
+
+<script th:src="@{/js/jquery-1.11.3.min.js}"></script>
+<script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/hero-slider-main.js}"></script>
+<script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+
+
+<script>
+
+    function adjustHeightOfPage(pageNo) {
+
+        var offset = 80;
+        var pageContentHeight = 0;
+
+        var pageType = $('div[data-page-no="' + pageNo + '"]').data("page-type");
+
+        if (pageType != undefined && pageType == "gallery") {
+            pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .tm-img-gallery-container").height();
+        } else {
+            pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .js-tm-page-content").height();
+        }
+
+        if ($(window).width() >= 992) {
+            offset = 120;
+        } else if ($(window).width() < 480) {
+            offset = 40;
+        }
+
+        // Get the page height
+        var totalPageHeight = 15 + $('.cd-slider-nav').height()
+            + pageContentHeight + offset
+            + $('.tm-footer').height();
+
+        // Adjust layout based on page height and window height
+        if (totalPageHeight > $(window).height()) {
+            $('.cd-hero-slider').addClass('small-screen');
+            $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", totalPageHeight + "px");
+        } else {
+            $('.cd-hero-slider').removeClass('small-screen');
+            $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", "100%");
+        }
+    }
+
+    /*
+        Everything is loaded including images.
+    */
+    $(window).load(function () {
+
+        adjustHeightOfPage(1); // Adjust page height
+
+
+
+        /* Collapse menu after click
+        -----------------------------------------*/
+        $('#tmNavbar a').click(function () {
+            $('#tmNavbar').collapse('hide');
+
+            adjustHeightOfPage($(this).data("no")); // Adjust page height
+        });
+
+        /* Browser resized
+        -----------------------------------------*/
+        $(window).resize(function () {
+            var currentPageNo = $(".cd-hero-slider li.selected .js-tm-page-content").data("page-no");
+
+            // wait 3 seconds
+            setTimeout(function () {
+                adjustHeightOfPage(currentPageNo);
+            }, 1000);
+
+        });
+
+        // Remove preloader (https://ihatetomatoes.net/create-custom-preloading-screen/)
+        $('body').addClass('loaded');
+
+    });
+
+</script>
+
+</body>
+</html>

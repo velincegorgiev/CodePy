@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/%22%3E">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>CodePy</title>
+    <link rel="icon" th:href="@{/img/logo.png}" type="image">
+    <!--    <link rel="stylesheet" href="../static/sliki/css/all.css">-->
+    <!--    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">-->
+    <!--    <link rel="stylesheet" href="../static/font-awesome-4.5.0/css/font-awesome.min.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/bootstrap.min.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/hero-slider-style.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/magnific-popup.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/templatemo-style.css">-->
+
+    <link rel="stylesheet" th:href="@{/css/all.css}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <!--    <link rel="stylesheet" href="../static/font-awesome-4.5.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" th:href="@{/font-awesome-4.5.0/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/hero-slider-style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}"/>
+    <link rel="stylesheet" th:href="@{/css/templatemo-style11.css}"/>
+
+
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+</head>
+
+<body>
+<style>
+    /*.cd-hero-slider li:nth-of-type(1) {*/
+    /*    background-image: url(../../static/img/42.jpg);*/
+    /*}*/
+
+    /*.cd-hero-slider li:nth-of-type(2) {*/
+    /*    background-image: url(../../static/img/43.jpg);*/
+    /*}*/
+
+    .green a {
+        color: orangered;
+    }
+
+    .green i {
+        color: dodgerblue;
+    }
+
+    .tm-submit-btn:hover {
+        background-color: dodgerblue;
+    }
+
+    .tm-submit-btn:focus {
+        background-color: dodgerblue;
+    }
+
+    .tm-submit-btn {
+        background-color: dodgerblue;
+    }
+
+    .cd-slider-nav .nav-item.selected .nav-link,
+    .cd-slider-nav .nav-link:hover,
+    .cd-slider-nav .nav-link:focus {
+        background-color: rgba(255, 255, 255, 1);
+        color: orangered;
+    }
+
+    figure.effect-ruby {
+        background-color: orangered;
+    }
+
+    .tm-img {
+        max-height: 440px;
+        object-fit: cover;
+    }
+
+    .ako:hover {
+        text-shadow: 0 1px 0 orangered, 0 2px 0 orangered,
+        0 3px 0 orangered, 0 4px 0 orangered,
+        0 5px 0 orangered, 0 6px 0 orangered,
+        0 7px 0 orangered, 0 8px 0 orangered,
+        0 9px 0 orangered, 0 10px 0 orangered,
+        0 11px 0 orangered, 0 12px 0 orangered,
+        0 20px 30px rgba(0, 0, 0, 0.5);
+    }
+
+
+    .akoo:hover {
+        text-shadow: 0 1px 0 dodgerblue, 0 2px 0 dodgerblue,
+        0 3px 0 dodgerblue, 0 4px 0 dodgerblue,
+        0 5px 0 dodgerblue, 0 6px 0 dodgerblue,
+        0 7px 0 dodgerblue, 0 8px 0 dodgerblue,
+        0 9px 0 dodgerblue, 0 10px 0 dodgerblue,
+        0 11px 0 dodgerblue, 0 12px 0 dodgerblue,
+        0 20px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .pushable {
+        background-color: dodgerblue;
+        border-radius: 12px;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        outline-offset: 4px;
+    }
+
+    .front {
+        display: block;
+        padding: 12px 42px;
+        border-radius: 12px;
+        font-size: 1.25rem;
+        background-color: orangered;
+        color: white;
+        transform: translateY(-6px);
+    }
+
+    .pushable:active .front {
+        transform: translateY(-2px);
+    }
+    .code-block {
+        background-color: #2b2b2b;
+        color: #d0d0d0;
+        border: 1px solid #383838;
+        border-radius: 3px;
+        padding: 10px;
+        font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 14px;
+        line-height: 1.5;
+        overflow-x: auto;
+        counter-reset: linenumber;
+    }
+
+    .code-block pre {
+        margin: 0;
+        counter-increment: linenumber;
+    }
+
+    .code-block code {
+        display: block;
+        white-space: pre;
+        position: relative;
+    }
+
+    .code-block code::before {
+        content: counter(linenumber);
+        position: absolute;
+        left: -2em;
+        width: 2em;
+        text-align: right;
+        opacity: 0.5;
+    }
+
+    .code-block .token.keyword {
+        color: #d78700;
+        font-weight: bold;
+    }
+
+    .code-block .token.function {
+        color: #55b4d4;
+    }
+
+    .code-block .token.string {
+        color: #9c4d4d;
+    }
+
+
+</style>
+<div class="cd-hero">
+    <div class="cd-slider-nav">
+        <nav class="navbar">
+            <div class="tm-navbar-bg">
+                <div class="green">
+                    <a class="navbar-brand text-uppercase" href="/index2"><span class="ako">
+                        <i class="fa fa-solid fa-python tm-brand-icon"></i></span><span class="akoo">CodePy</span></a>
+                </div>
+
+            </div>
+
+        </nav>
+    </div>
+    <ul class="cd-hero-slider">
+
+        <!-- Page 1 -->
+        <li class="selected">
+            <div class="cd-full-width">
+                <div class="container-fluid js-tm-page-content" data-page-no="1" data-page-type="gallery">
+                    <div class="tm-img-gallery-container tm-img-gallery-container-3">
+                        <div class="tm-img-gallery gallery-three">
+                            <!-- Gallery Two pop up connected with JS code below -->
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="tm-flex">
+                                        <div class="tm-bg-white-translucent text-xs-left tm-textbox tm-textbox-padding tm-white-box-margin-b">
+                                            <form th:method="get" th:action="@{'/index2/smart_plant/buy'}">
+                                                <h2 class="tm-text-title">Условни изрази</h2>
+                                                <p class="tm-text">
+                                                    <b>Булови оператори</b>
+                                                    <br>
+                                                    <br>
+                                                    Буловите оператори споредуваат изјави и враќаат вредности во булови вредности. Буловиот оператор "and" враќа True кога изразите на двете страни на "and" се True. Буловиот оператор "or" враќа True кога барем еден израз на едната или другата страна на "or" е True. Буловиот оператор "not" инвертира буловскиот израз пред него.
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+       <a style="color: gray">#Напишете израз кој ќе се врати вистинит ако името е еднакво на "John" и ако тој има 16 години или повеќе.</a>
+      name = <a style="color: green">"John"</a>
+      age = <a style="color: blue">17</a>
+
+      <a style="color: purple">print</a>(name == <a style="color: green">"John"</a> <a style="color: orange">or</a> name == <a style="color: green">"Jane"</a>)    <a style="color: gray"># Проверете дали името е еднакво на "John" до "Jane"</a>
+
+      <a style="color: purple">print</a>(???)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Редослед на булови оператори</b>
+                                                    <br>
+                                                    <br>
+                                                    Буловите оператори не се вреднуваат од лево кон десно. Постои редослед на операции за буловите оператори: прво се вреднува операторот "not", потоа операторот "and", а на крај операторот "or".
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+     <a style="color: gray"> #Напишете израз кој ќе се врати вистинит ако името е или "John" или "Jane", и ако тие се на возраст од 16 години или повеќе, но помлади од 25.</a>
+      name = <a style="color: green">"John"</a>
+      age = <a style="color: blue">17</a>
+
+      <a style="color: purple">print</a>(name == <a style="color: green">"John"</a> <a style="color: orange">or not</a> age > <a style="color: blue">17</a>)
+
+      <a style="color: purple">print</a>(name == <a style="color: green">"John"</a> <a style="color: orange">and not</a> age == <a style="color: blue">17</a>)
+
+      <a style="color: purple">print</a>('???')
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>If наредба</b>
+                                                    <br>
+                                                    <br>
+                                                    Сложените наредби во Python содржат (групи од) други наредби; тие влијаат или контролираат извршувањето на тие други наредби на некој начин.
+<br>
+                                                    Најпознатиот вид на наредба е if наредбата. Клучниот збор if се користи за формирање условна наредба која извршува одреден код откако ќе го провери дали изразот е True. Python користи вметнатост за дефинирање на групи на код:
+                                                    <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">if</a> value > <a style="color: blue">1000</a>:
+      <a style="color: purple">print</a>(<a style="color: green">"It's a large number!"</a>)  <a style="color: gray"># Вовлечен блок</a>
+      a += 1                         <a style="color: gray"># Вовлечен блок</a>
+
+      <a style="color: purple">print</a>(<a style="color: green">"Outside the block!"</a>)
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Блокот на код започнува со вметнување и завршува со првата линија која не е вметната. Количината на вметнувањето мора да биде консистентна во целиот блок. Обично се користат четири празнини или еден таб за вметнување. Неправилно вметнување ќе резултира со IndentationError (Грешка во вметнувањето).
+
+                                                Ако имате само една наредба за извршување, можете да ја ставите на истата линија како и if наредбата.
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">if</a> a > b: <a style="color: purple">print</a>(<a style="color: green">"a is greater than b"</a>)
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Испечатете "празно" ако листата на задачи е празна.
+          #Откако листата ќе биде избришана, проверете повторно (можеби ќе ви треба различна услов!) и испечатете 'Сега е празна!' ако е така.</a>
+      name = <a style="color: green">"John"</a>
+      age = <a style="color: blue">17</a>
+
+      <a style="color: orange">if</a> name ==  <a style="color: green">"John" </a><a style="color: orange"> or</a> age ==  <a style="color: blue">17</a>:   <a style="color: gray"> # Проверете дали името е „John“ или возраста е 17. Ако е така, испечатете ги следните 2 реда.</a>
+      <a style="color: purple">print</a>( <a style="color: green">"name is John"</a>)
+      <a style="color: purple">print</a>( <a style="color: green">"John is 17 years old"</a>)
+
+      tasks = [ <a style="color: green">"task1"</a> <a style="color: orange">,</a>  <a style="color: green">"task2"</a>]     <a style="color: gray"># Направете нова листа</a>
+
+      <a style="color: greenyellow"># TODO: Напишете изјава if со услов да проверите дали листата `tasks` е празнa.</a>
+      <a style="color: purple">print</a>( <a style="color: green">"Not an empty list!"</a>)
+
+      tasks.clear()   <a style="color: gray"># Испразнете ја листата</a>
+
+      <a style="color: greenyellow"># TODO: Проверете дали листата е празна сега и испечатете 'Now empty!' ако e така.</a>
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b> Наредбите elif и else</b>
+<br>
+                                                    <br>
+                                                    Наредбите elif и else дополнуваат if наредбата. Може да има нула или повеќе делови elif, а делот else е опционален. Клучниот збор elif е скратено од 'else if' и е корисен за избегнување на прекумерно вметнување.
+<br>
+
+                                                    Во условното извршување, само еден од блоковите се избира со тоа што се вреднуваат изразите еден по еден сè додека не се пронајде израз кој е True. Тогаш тој блок се извршува и ниту еден друг дел од if наредбата не се вреднува. Ако сите изрази се лажни, се извршува блокот од делот else, ако постои.
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      a = <a style="color: blue">200</a>
+      b = <a style="color: blue">33</a>
+      <a style="color: orange">if</a> b > a:
+      <a style="color: purple">print</a>(<a style="color: green">"b is greater than a"</a>)
+      <a style="color: orange">elif</a> a == b:
+      <a style="color: purple">print</a>(<a style="color: green">"a and b are equal"</a>)
+      <a style="color: orange">else</a>:
+      <a style="color: purple">print</a>(<a style="color: green">"a is greater than b"</a>)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+     a is greater than b
+  </code></pre>
+                                                </div>
+                                                <br>
+
+                                                Едноставната if-else наредба може да се смести и во една линија код, исто како што го покажавме во претходната задача. На пример,
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">if</a> a > b:
+      a += <a style="color: blue">1</a>
+      <a style="color: orange">else</a>:
+      a -= <a style="color: blue">1</a>
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                може да се напише како
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      a +=  <a style="color: blue">1</a>  <a style="color: orange">if</a> a > b  <a style="color: orange">else</a> a -=  <a style="color: blue">1</a>
+
+  </code></pre>
+                                                </div>
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Испечатете Вистина ако името е еднакво на "John", а Лажа во спротивно.</a>
+      x = <a style="color: blue">28</a>
+
+      <a style="color: orange">if</a> x < <a style="color: blue">0</a>:
+      <a style="color: purple">print</a>(<a style="color: green">'x < 0'</a>)                    <a style="color: gray"> # Извршува само ако x < 0</a>
+      <a style="color: orange">elif</a> x == <a style="color: blue">0</a>:
+      <a style="color: purple">print</a>(<a style="color: green">'x is zero'</a>)                 <a style="color: gray"># Ако не е точно дека x < 0, проверете ако x == 0</a>
+      <a style="color: orange">elif</a> x == <a style="color: blue">1</a>:
+      <a style="color: purple">print</a>(<a style="color: green">'x == 1'</a>)                    <a style="color: gray"># Ако не е точно дека x < 0 и x != 0, проверете дали x == 1</a>
+      <a style="color: orange">else</a>:
+      <a style="color: purple">print</a>(<a style="color: green">'none of the above is true'</a>)
+
+      name = <a style="color: green">"John"</a>
+
+      <a style="color: greenyellow"># TODO: проверете дали името е еднакво на "John"</a>
+      <a style="color: purple">print</a>(<a style="color: orange">True</a>)
+      <a style="color: greenyellow"># TODO: во спротивно...</a>
+      <a style="color: purple">print</a>(<a style="color: orange">False</a>)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Едно-линиска if-else наредба</b>
+                                                    <br>
+                                                    <br>
+                                                    Како што видовте во претходните задачи, едноставната if-else наредба може фактички да се напише како една линија. Препишете ја наредбата во кодниот едитор така што да се вклопува во една линија, но резултатот од нејзиното извршување да остане точно истиот.
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">from</a> random <a style="color: orange">import</a> random  <a style="color: gray"># Внесување на модул за псевдо-случаен генератор на броеви.</a>
+
+      my_random_number = random() * <a style="color: blue">100</a>
+
+      <a style="color: orange">if</a> my_random_number > <a style="color: blue">50</a>:
+      <a style="color: purple">print</a>(my_random_number)
+      <a style="color: orange">else</a>:
+      <a style="color: purple">print</a>(<a style="color: green">"Too small!"</a>)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Вметнување на индентација</b>
+                                                    <br>
+                                                    <br>
+                                                    Поправете ја if-else наредбата во кодот во едиторот!
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">import</a> datetime  <a style="color: gray">#Внесување на модулот за датум и време (datetime) кој ни овозможува пристап до денешниот датум.</a>
+
+      <a style="color: orange">if</a> datetime.date.today().day < <a style="color: blue">15</a>:
+      <a style="color: purple">print</a>(<a style="color: green">"It's the beginning of the month still!"</a>)
+      <a style="color: orange">else</a>:
+      <a style="color: purple">print</a>(<a style="color: green">"It's not the beginning of the month anymore :("</a>)
+
+
+  </code></pre>
+                                                </div>
+                                                </p>
+                                                <!--                                            <p class="tm-text">Price on this product is $150 <button type="submit" class="pull-xs-right tm-submit-btn pushable"onclick="document.location='pay1.html'" style="margin-left: 5px"><span class="front">Buy the product</span></button></p>-->
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- .tm-img-gallery-container -->
+                </div>
+            </div>
+        </li>
+    </ul> <!-- .cd-hero-slider -->
+
+
+</div> <!-- .cd-hero -->
+
+
+<!-- Preloader, https://ihatetomatoes.net/create-custom-preloading-screen/ -->
+<div id="loader-wrapper">
+
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+
+</div>
+
+<!-- load JS files -->
+<!--<script src="../static/js/jquery-1.11.3.min.js"></script>         &lt;!&ndash; jQuery (https://jquery.com/download/) &ndash;&gt;-->
+<!--<script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script> &lt;!&ndash; Tether for Bootstrap (http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h) &ndash;&gt;-->
+<!--<script src="../static/js/bootstrap.min.js"></script>             &lt;!&ndash; Bootstrap js (v4-alpha.getbootstrap.com/) &ndash;&gt;-->
+<!--<script src="../static/js/hero-slider-main.js"></script>          &lt;!&ndash; Hero slider (https://codyhouse.co/gem/hero-slider/) &ndash;&gt;-->
+<!--<script src="../static/js/jquery.magnific-popup.min.js"></script> &lt;!&ndash; Magnific popup (http://dimsemenov.com/plugins/magnific-popup/) &ndash;&gt;-->
+
+<script th:src="@{/js/jquery-1.11.3.min.js}"></script>
+<script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/hero-slider-main.js}"></script>
+<script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+
+
+<script>
+
+    function adjustHeightOfPage(pageNo) {
+
+        var offset = 80;
+        var pageContentHeight = 0;
+
+        var pageType = $('div[data-page-no="' + pageNo + '"]').data("page-type");
+
+        if (pageType != undefined && pageType == "gallery") {
+            pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .tm-img-gallery-container").height();
+        } else {
+            pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .js-tm-page-content").height();
+        }
+
+        if ($(window).width() >= 992) {
+            offset = 120;
+        } else if ($(window).width() < 480) {
+            offset = 40;
+        }
+
+        // Get the page height
+        var totalPageHeight = 15 + $('.cd-slider-nav').height()
+            + pageContentHeight + offset
+            + $('.tm-footer').height();
+
+        // Adjust layout based on page height and window height
+        if (totalPageHeight > $(window).height()) {
+            $('.cd-hero-slider').addClass('small-screen');
+            $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", totalPageHeight + "px");
+        } else {
+            $('.cd-hero-slider').removeClass('small-screen');
+            $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", "100%");
+        }
+    }
+
+    /*
+        Everything is loaded including images.
+    */
+    $(window).load(function () {
+
+        adjustHeightOfPage(1); // Adjust page height
+
+
+
+        /* Collapse menu after click
+        -----------------------------------------*/
+        $('#tmNavbar a').click(function () {
+            $('#tmNavbar').collapse('hide');
+
+            adjustHeightOfPage($(this).data("no")); // Adjust page height
+        });
+
+        /* Browser resized
+        -----------------------------------------*/
+        $(window).resize(function () {
+            var currentPageNo = $(".cd-hero-slider li.selected .js-tm-page-content").data("page-no");
+
+            // wait 3 seconds
+            setTimeout(function () {
+                adjustHeightOfPage(currentPageNo);
+            }, 1000);
+
+        });
+
+        // Remove preloader (https://ihatetomatoes.net/create-custom-preloading-screen/)
+        $('body').addClass('loaded');
+
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/%22%3E">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>CodePy</title>
+    <link rel="icon" th:href="@{/img/logo.png}" type="image">
+    <!--    <link rel="stylesheet" href="../static/sliki/css/all.css">-->
+    <!--    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">-->
+    <!--    <link rel="stylesheet" href="../static/font-awesome-4.5.0/css/font-awesome.min.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/bootstrap.min.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/hero-slider-style.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/magnific-popup.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/templatemo-style.css">-->
+
+    <link rel="stylesheet" th:href="@{/css/all.css}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <!--    <link rel="stylesheet" href="../static/font-awesome-4.5.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" th:href="@{/font-awesome-4.5.0/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/hero-slider-style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}"/>
+    <link rel="stylesheet" th:href="@{/css/templatemo-style11.css}"/>
+
+
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+</head>
+
+<body>
+<style>
+    /*.cd-hero-slider li:nth-of-type(1) {*/
+    /*    background-image: url(../../static/img/42.jpg);*/
+    /*}*/
+
+    /*.cd-hero-slider li:nth-of-type(2) {*/
+    /*    background-image: url(../../static/img/43.jpg);*/
+    /*}*/
+
+    .green a {
+        color: orangered;
+    }
+
+    .green i {
+        color: dodgerblue;
+    }
+
+    .tm-submit-btn:hover {
+        background-color: dodgerblue;
+    }
+
+    .tm-submit-btn:focus {
+        background-color: dodgerblue;
+    }
+
+    .tm-submit-btn {
+        background-color: dodgerblue;
+    }
+
+    .cd-slider-nav .nav-item.selected .nav-link,
+    .cd-slider-nav .nav-link:hover,
+    .cd-slider-nav .nav-link:focus {
+        background-color: rgba(255, 255, 255, 1);
+        color: orangered;
+    }
+
+    figure.effect-ruby {
+        background-color: orangered;
+    }
+
+    .tm-img {
+        max-height: 440px;
+        object-fit: cover;
+    }
+
+    .ako:hover {
+        text-shadow: 0 1px 0 orangered, 0 2px 0 orangered,
+        0 3px 0 orangered, 0 4px 0 orangered,
+        0 5px 0 orangered, 0 6px 0 orangered,
+        0 7px 0 orangered, 0 8px 0 orangered,
+        0 9px 0 orangered, 0 10px 0 orangered,
+        0 11px 0 orangered, 0 12px 0 orangered,
+        0 20px 30px rgba(0, 0, 0, 0.5);
+    }
+
+
+    .akoo:hover {
+        text-shadow: 0 1px 0 dodgerblue, 0 2px 0 dodgerblue,
+        0 3px 0 dodgerblue, 0 4px 0 dodgerblue,
+        0 5px 0 dodgerblue, 0 6px 0 dodgerblue,
+        0 7px 0 dodgerblue, 0 8px 0 dodgerblue,
+        0 9px 0 dodgerblue, 0 10px 0 dodgerblue,
+        0 11px 0 dodgerblue, 0 12px 0 dodgerblue,
+        0 20px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .pushable {
+        background-color: dodgerblue;
+        border-radius: 12px;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        outline-offset: 4px;
+    }
+
+    .front {
+        display: block;
+        padding: 12px 42px;
+        border-radius: 12px;
+        font-size: 1.25rem;
+        background-color: orangered;
+        color: white;
+        transform: translateY(-6px);
+    }
+
+    .pushable:active .front {
+        transform: translateY(-2px);
+    }
+    .code-block {
+        background-color: #2b2b2b;
+        color: #d0d0d0;
+        border: 1px solid #383838;
+        border-radius: 3px;
+        padding: 10px;
+        font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 14px;
+        line-height: 1.5;
+        overflow-x: auto;
+        counter-reset: linenumber;
+    }
+
+    .code-block pre {
+        margin: 0;
+        counter-increment: linenumber;
+    }
+
+    .code-block code {
+        display: block;
+        white-space: pre;
+        position: relative;
+    }
+
+    .code-block code::before {
+        content: counter(linenumber);
+        position: absolute;
+        left: -2em;
+        width: 2em;
+        text-align: right;
+        opacity: 0.5;
+    }
+
+    .code-block .token.keyword {
+        color: #d78700;
+        font-weight: bold;
+    }
+
+    .code-block .token.function {
+        color: #55b4d4;
+    }
+
+    .code-block .token.string {
+        color: #9c4d4d;
+    }
+
+
+</style>
+<div class="cd-hero">
+    <div class="cd-slider-nav">
+        <nav class="navbar">
+            <div class="tm-navbar-bg">
+                <div class="green">
+                    <a class="navbar-brand text-uppercase" href="/index2"><span class="ako">
+                        <i class="fa fa-solid fa-python tm-brand-icon"></i></span><span class="akoo">CodePy</span></a>
+                </div>
+
+            </div>
+
+        </nav>
+    </div>
+    <ul class="cd-hero-slider">
+
+        <!-- Page 1 -->
+        <li class="selected">
+            <div class="cd-full-width">
+                <div class="container-fluid js-tm-page-content" data-page-no="1" data-page-type="gallery">
+                    <div class="tm-img-gallery-container tm-img-gallery-container-3">
+                        <div class="tm-img-gallery gallery-three">
+                            <!-- Gallery Two pop up connected with JS code below -->
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="tm-flex">
+                                        <div class="tm-bg-white-translucent text-xs-left tm-textbox tm-textbox-padding tm-white-box-margin-b">
+                                            <form th:method="get" th:action="@{'/index2/smart_plant/buy'}">
+                                                <h2 class="tm-text-title">Модули и пакети</h2>
+                                                <p class="tm-text">
+                                                    <b>Внесување модул</b>
+                                                    <br>
+                                                    <br>
+                                                    Со тоа што програмата ви станува подолга, веројатно ќе сакате да ја поделите на повеќе датотеки за полесно одржување. Исто така, можеби ќе сакате да користите корисна функција што сте ја напишале во неколку програми, без да ја копирате дефиницијата на секоја од нив.
+
+                                                    Во Python, модулите се едноставно Python датотеки со .py екстензија кои содржат Python дефиниции и наредби. Модулите се внесуваат од други модули користејќи го зборот import и името на датотеката без .py екстензија.
+
+                                                    Пример, претпоставете дека напишавте скрипта наречена my_funcs.py со неколку функции (func1, func2 итн.). Сега, ако сакате да ги користите тие функции во друга скрипта која е сместена во истата директорија, можете да направите import my_funcs. Ова не ги внесува имињата на функциите дефинирани во my_funcs директно, но користејќи го името на модулот, можете да пристапите до функциите, на пример:
+
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      my_funcs.func1()
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Модулите можат да внесуваат други модули. Обично, но не е задолжително, сите наредби за внесување се ставаат на почетокот на модулот.
+                                                <br>
+                                                Во кодот во едиторот, внесете го модулот calculator и креирајте инстанца од класата Calculator (calc). Користете ја методата add дефинирана во Calculator во јамка за да соберете броеви од 0 до 99.
+<br>
+                                                <div class="grid-item">
+
+                                                    <img th:src="@{/img/mmm.png}" alt="Image" class="img-fluid tm-img">
+
+
+                                                </div>
+                                                <p style="clear: both;">
+                                                    my_module.py
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+     <a style="color: green"> """ низа за документација за модулот my_module
+Овој модул ја содржи функцијата hello_world
+         """</a>
+
+
+<a style="color: orangered">def</a> <a style="color: orange">hello_world</a>(name):
+      <a style="color: purple">print</a>(<a style="color: green">f"Hello, World! My name is</a> <a style="color: orange">{</a>name<a style="color: orange">}</a><a style="color: green">"</a>)
+
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                imports.py
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">import</a> my_module
+      <a style="color: gray"># Внесете ја модулата calculator тука</a>
+
+      my_module.hello_world(<a style="color: green">"John"</a>)
+
+
+calc = <a style="color: green">'Create a new instance of Calculator class defined in calculator'</a>
+      <a style="color: orange">for</a> i <a style="color: orange">in</a> <a style="color: purple">range</a>(<a style="color: blue">100</a>):
+      <a style="color: gray"># Користете го методот Калкулатор „add“ за да додадете „i“ на тековната вредност.</a>
+
+      <a style="color: purple">print</a>(calc.get_current())
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                calculator.py
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: green">"""
+Овој модул содржи класата Calculator
+          """</a>
+
+
+<a style="color: orange">class</a> Calculator:
+      <a style="color: orangered">def</a> <a style="color: purple">__init__</a>(<a style="color: purple">self</a>):
+      <a style="color: purple">self</a>.current = 0
+
+      <a style="color: orangered">def</a> <a style="color: orange">add</a>(<a style="color: purple">self</a><a style="color: orange">,</a> amount):
+      <a style="color: purple">self</a>.current += amount
+
+      <a style="color: orangered">def</a> <a style="color: orange">get_current</a>(<a style="color: purple">self</a>):
+      <a style="color: orange">return</a> <a style="color: purple">self</a>.current
+
+  </code></pre>
+                                                </div>
+                                                </p>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Вградени модули</b>
+                                                    <br>
+                                                    <br>
+
+                                                    Пајтон доаѓа со библиотека на стандардни модули.
+
+                                                    Некои модули се вградени во интерпретерот; тие обезбедуваат пристап до операции кои не се дел од срцето на јазикот, но се вградени за ефикасност или за пристап до примитиви на оперативниот систем, како системски повици.
+                                                    Еден посебен модул заслужува посебно внимание: sys, кој е вграден во секој интерпретер на Пајтон. Променливите sys.ps1 и sys.ps2 ги дефинираат низите кои се користат како примарни и секундарни промпти, ако интерпретерот е во интерактивен режим:
+                                               <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      >>> import sys
+>>> sys.ps1
+'>>> '
+>>> sys.ps2
+'... '
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Променливата sys.path е список од низи кои одредуваат патеката за пребарување на модули на интерпретерот: видете што печати кога ќе го извршите кодот на задачата.
+
+                                                Запомнете дека можете да користите Ctrl+Space по точка (.) за истражување на достапните методи на модул.
+
+
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Испечатете ја тековната дата користејќи го внесениот вграден модул datetime.</a>
+      <a style="color: orange">import</a> sys
+      <a style="color: orange">import</a> datetime
+
+      <a style="color: purple">print</a>(sys.path)
+      <a style="color: purple">print</a>(???)
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Oд внесување</b>
+                                                    <br>
+                                                    <br>
+
+                                                    Една форма на import наредбата ги внесува имињата од модулот директно. На овој начин, можете да го користите внесеното име без префиксот module_name. На пример:
+
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">from</a> calculator  <a style="color: orange">import</a> Add
+
+      calc = Add()     <a style="color: gray"># Името Add се користи директно без префиксот calculator`</a>
+
+  </code></pre>
+                                                </div>
+                                                <br>Ова не го внесува името на модулот од кој се земаат увозите во локалната табела на симболи (па така, во нашиот пример, calculator не е дефиниран).
+
+                                                Има и опција да се увезат сите имиња што ги дефинира модулот:
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">from</a> calculator <a style="color: orange">import</a> *
+      calc = Multiply()
+
+  </code></pre>
+                                                </div>
+                                                <br>
+
+                                                Ова ги увезува сите имиња, освен оние кои започнуваат со долница _ . Во повеќето случаи, Python програмерите не го користат ова, бидејќи внесува непознат сет на имиња во интерпретерот, што може да ги скрие некои од нештата што веќе сте ги дефинирале.
+
+                                                Ако зад името на модулот следи as, тогаш името што следи по as се поврзува директно со увезаниот модул:
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">import</a> my_module <a style="color: orange">as</a> mm
+      mm.hello_world()
+
+  </code></pre>
+                                                </div>
+                                                <br>
+
+                                                Ова на практика увезува модулот на истиот начин како што import my_module ќе направи, со единствената разлика што е достапен како mm. Ова може да се користи и кога се користи from со слични ефекти:
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">from</a> calculator <a style="color: orange">import</a> Subtract <a style="color: orange">as</a> Minus
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Импортирајте класата Calculator од calculator и креирајте една инстанца од оваа класа. Се сеќавате како да пристапите до неа точно во овој случај.
+                                                <br>
+                                                <div class="grid-item">
+
+                                                    <img th:src="@{/img/m1.png}" alt="Image" class="img-fluid tm-img">
+
+
+                                                </div>
+                                                <p style="clear: both;">
+                                                    my_module.py
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray"># Импортирајте класата Calculator од друг модул.</a>
+      <a style="color: orange">from</a> my_module <a style="color: orange">import</a> hello <a style="color: orange">as</a> hey
+
+      <a style="color: purple">print</a>(hey(<a style="color: green">"User"</a>))
+
+      calc = <a style="color: green">'Instantiate a calculator'</a>  <a style="color: gray"># Користи го името Calculator директно без префикс на calculator</a>
+      calc.add(<a style="color: blue">2</a>)
+      calc.multiply(<a style="color: blue">100</a>)
+      calc.divide(<a style="color: blue">3</a>)
+
+      <a style="color: purple">print</a>(calc.get_current())
+
+
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                calculator.py
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+       <a style="color: green">"""
+Оваа модул содржи калкулатор.
+           """</a>
+
+
+      <a style="color: orange">class</a> Calculator:
+      <a style="color: orangered">def</a>  <a style="color: purple">__init__</a>( <a style="color: purple">self</a>):
+      <a style="color: purple">self</a>.current =  <a style="color: blue">0</a>
+
+      <a style="color: orangered">def</a>  <a style="color: orange">add</a>( <a style="color: purple">self</a> <a style="color: orange">,</a> amount):
+      <a style="color: purple">self</a>.current += amount
+
+      <a style="color: orangered">def</a> <a style="color: orange"> subtract</a>(self <a style="color: orange">,</a> amount):
+      <a style="color: purple">self</a>.current -= amount
+
+      <a style="color: orangered">def</a>  <a style="color: orange">multiply</a>( <a style="color: purple">self</a> <a style="color: orange">,</a> amount):
+      <a style="color: purple">self</a>.current *= amount
+
+      <a style="color: orangered">def</a>  <a style="color: orange">divide</a>( <a style="color: purple">self</a> <a style="color: orange">,</a> amount):
+      <a style="color: orange">try</a>:
+      <a style="color: purple">self</a>.current /= amount
+      <a style="color: orange">except</a> <a style="color: purple"> ZeroDivisionError</a>:
+      <a style="color: purple">print</a>( <a style="color: green">'Can not divide by zero.'</a>)
+
+      <a style="color: orangered">def</a>  <a style="color: orange">get_current</a>( <a style="color: purple">self</a>):
+      <a style="color: orange">return</a>  <a style="color: purple">self</a>.current
+
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                from_import.py
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Импортирајте класата Calculator од друг модул</a>
+      <a style="color: orange">from</a> my_module <a style="color: orange">import</a> hello <a style="color: orange">as</a> hey
+
+      <a style="color: purple">print</a>(hey(<a style="color: green">"User"</a>))
+
+      calc = <a style="color: green">'Instantiate a calculator'</a>  <a style="color: gray"># Класата "Calculator" се користи директно без префикс "calculator"</a>
+      calc.add(<a style="color: blue">2</a>)
+      calc.multiply(<a style="color: blue">100</a>)
+      calc.divide(<a style="color: blue">3</a>)
+
+      <a style="color: purple">print</a>(calc.get_current())
+
+
+  </code></pre>
+                                                </div>
+                                                </p>
+                                                </p>
+                                                <p style="clear: both;">
+                                                    <b>Пакетите</b>
+                                                    <br>
+                                                    <br>
+                                                    Пакетите се начин на структурирање на просторот на имиња на модулите во Python користејќи "точкасто име на модул". На пример, името на модул A.B го означува подмодулот B во пакетот наречен A. Исто како што користењето на модулите ги заштитува авторите на различни модули од загриженост околу имињата на глобалните променливи, користењето на точкасти имиња на модули ги заштитува авторите на повеќемодулни пакети како NumPy или Pillow од загриженост околу имињата на модулите еден на друг.
+
+                                                    Проверете ги функциите и класите на пакетот кои ги создадовме. Корисниците на пакетот можат да увезуваат поединечни модули од пакетот, на пример:
+
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">import</a> functions.greeting.hello
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Ова го вчитува подмодулот functions.greeting.hello. Тој мора да биде споменат со неговото целосно име:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      functions.greeting.hello.hello(<a style="color: green">'Susan'</a>)
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Алтернативен начин за увоз на подмодулот е:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">from</a> functions.greeting <a style="color: orange">import</a> hello
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Ова исто така увози подмодулот hello и го прави достапен без префиксот на пакетот, па може да се користи на следниот начин:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      hello.hello(<a style="color: green">'Susan'</a>)
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Во кодот, правилно увезете го официјалниот модул за да овозможите правилно функционирање на последната наредба за печатење.
+
+                                                Во втората наредба за печатење, додадете повик на функција (пронајдете ја соодветната функција) за да испечатите збогум на 'Alex'.
+<br>
+                                                <div class="grid-item">
+
+                                                    <img th:src="@{/img/mm.png}" alt="Image" class="img-fluid tm-img">
+
+
+                                                </div>
+                                                <p style="clear: both;">
+                                                    classes\__init__.py
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                classes\calculator.py
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+       <a style="color: green">"""
+Оваа модул содржи калкулатор.
+           """</a>
+
+
+      <a style="color: orange">class</a> Calculator:
+      <a style="color: orangered">def</a>  <a style="color: purple">__init__</a>( <a style="color: purple">self</a>):
+      <a style="color: purple">self</a>.current =  <a style="color: blue">0</a>
+
+      <a style="color: orangered">def</a>  <a style="color: orange">add</a>( <a style="color: purple">self</a> <a style="color: orange">,</a> amount):
+      <a style="color: purple">self</a>.current += amount
+
+      <a style="color: orangered">def</a> <a style="color: orange"> subtract</a>(self <a style="color: orange">,</a> amount):
+      <a style="color: purple">self</a>.current -= amount
+
+      <a style="color: orangered">def</a>  <a style="color: orange">multiply</a>( <a style="color: purple">self</a> <a style="color: orange">,</a> amount):
+      <a style="color: purple">self</a>.current *= amount
+
+      <a style="color: orangered">def</a>  <a style="color: orange">divide</a>( <a style="color: purple">self</a> <a style="color: orange">,</a> amount):
+      <a style="color: orange">try</a>:
+      <a style="color: purple">self</a>.current /= amount
+      <a style="color: orange">except</a> <a style="color: purple"> ZeroDivisionError</a>:
+      <a style="color: purple">print</a>( <a style="color: green">'Can not divide by zero.'</a>)
+
+      <a style="color: orangered">def</a>  <a style="color: orange">get_current</a>( <a style="color: purple">self</a>):
+      <a style="color: orange">return</a>  <a style="color: purple">self</a>.current
+
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                functions\greeting\__init__.py
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                functions\greeting\hello.py
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+<a style="color: green">""" Документација за модулот my_module:
+Овој модул содржи функцијата hello.
+    """</a>
+
+
+<a style="color: orangered">def</a> <a style="color: orange">hello</a>(name):
+      <a style="color: orange"> return</a> <a style="color: green">f"Hey there,</a> <a style="color: orange">{</a>name<a style="color: orange">}</a><a style="color: green">!"</a>
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                functions\greeting\official.py
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+<a style="color: green">"""Документација за модулот my_module:
+Овој модул содржи официјалната функција hello.
+    """</a>
+
+
+<a style="color: orangered">def</a> <a style="color: orange">hello</a>(name):
+      <a style="color: orange">return</a> <a style="color: green">f"Dear</a> <a style="color: orange">{</a>name<a style="color: orange">}</a><a style="color: green">, I am glad to finally meet you in person."</a>
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                functions\__init__.py
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                functions\goodbye.py
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+<a style="color: green">""" Документација за модулот my_module:
+Овој модул содржи функцијата good_bye.
+    """</a>
+
+
+<a style="color: orangered">def</a> <a style="color: orange">good_bye</a>(name):
+      <a style="color: orange">return</a> <a style="color: green">f"See you later, </a><a style="color: orange">{</a>name<a style="color: orange">}</a><a style="color: green">!"</a>
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                packages.py
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">import</a> functions.goodbye <a style="color: orange">as</a> bye
+      <a style="color: orange">import</a> functions.greeting.hello
+      <a style="color: orange">from</a> classes<a style="color: orange"> import</a> calculator
+      <a style="color: gray"># Внесете го модулот official овде.</a>
+
+
+<a style="color: purple">print</a>(functions.greeting.hello.hello(<a style="color: green">'Susan'</a>))
+      <a style="color: purple">print</a>(<a style="color: green">'Say goodbye to Alex'</a>)
+
+c = calculator.Calculator()
+      c.add(<a style="color: blue">2</a>)
+      c.multiply(<a style="color: blue">10</a>)
+      <a style="color: purple">print</a>(c.get_current())
+
+      <a style="color: purple">print</a>(official.hello(<a style="color: green">'Sam'</a>))
+
+  </code></pre>
+                                                </div>
+                                                </p>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Извршување на модули како скрипти</b>
+                                                    <br>
+                                                    <br>
+                                                    Еден Python модул е датотека која содржи извршни наредби како и дефиниции на функции или класи. Овие наредби се извршуваат кога името на модулот се сретнува во наредба за внесување (import). Името на датотеката е името на модулот со додаден суфикс .py. Внатре во модулот, името на модулот (како стринг) е достапно како вредност на глобалната променлива name.
+
+                                                    Кога ќе извршите модул директно (тоа е, не преку внесување во друг модул), кодот во модулот ќе се изврши, како да го внесувате, но со name поставено на "main".
+
+                                                    Можете да користите name и main на следниот начин:
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">if</a> <a style="color: purple">__name__</a> == <a style="color: green">"__main__"</a>:
+      <a style="color: gray"> # Направи нешто овде</a>
+  </code></pre>
+                                                </div>
+                                                <br>
+
+                                                Наредбите внатре во овој блок ќе бидат извршени само ако модулот се извршува директно, а не преку внесување во друг модул. На пример, да ги земеме две датотеки:
+
+                                                main_program:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">import</a> some_module
+
+      <a style="color: purple">print</a>(<a style="color: green">f"main_program __name__ is:</a> <a style="color: orange">{</a><a style="color: purple">__name__</a><a style="color: orange">}</a><a style="color: green">"</a>)
+
+      <a style="color: orange">if</a> <a style="color: purple">__name__</a> == <a style="color: green">"__main__"</a>:
+      <a style="color: purple">print</a>(<a style="color: green">"main_program executed directly"</a>)
+      <a style="color: orange">else</a>:
+      <a style="color: purple">print</a>(<a style="color: green">"main_program executed when imported"</a>)
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                some_module:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: purple">print</a>(<a style="color: green">f"some_module __name__ is: </a><a style="color: orange">{</a><a style="color: purple">__name__</a><a style="color: orange">}</a><a style="color: green">"</a>)
+
+      <a style="color: orange">if</a> <a style="color: purple">__name__</a> == <a style="color: green">"__main__"</a>:
+      <a style="color: purple">print</a>(<a style="color: green">"some_module executed directly"</a>)
+      <a style="color: orange">else</a>:
+      <a style="color: purple">print</a>(<a style="color: green">"some_module executed when imported"</a>)
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Излезот по извршувањето на главниот програмски код:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      some_module __name__ is: some_module
+      some_module executed when imported
+      main_program __name__ is: __main__
+      main_program executed directly
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Излезот по извршувањето на some_module:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      some_module __name__ is: __main__
+      some_module executed directly
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Датотеките во оваа задача имаат исто име како во примерите погоре, но нивниот код е малку различен.
+
+                                                Променете ги task.py и some_module.py така што кога ќе го извршите task.py, вашето излез ќе биде како следниот:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      This is a message from some_module.
+      This is a message from __main__.
+      This is a message from the function in the imported module.
+      This should be printed ONLY when task.py is called directly.
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="grid-item">
+
+                                                    <img th:src="@{/img/q2.png}" alt="Image" class="img-fluid tm-img">
+
+
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    task.py
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">import</a> some_module
+
+      <a style="color: purple">print</a>(<a style="color: green">f'This is a message from</a> <a style="color: orange">{</a>__name__<a style="color: orange">}</a><a style="color: green">.'</a>)
+      <a style="color: gray"># Повикајте го func() од увезаниот модул.</a>
+
+      <a style="color: gray"># Направете промена тука.</a>
+      <a style="color: purple">print</a>(<a style="color: gray">'This should be printed ONLY when dict_keys.py is called directly.'</a>)
+
+
+  </code></pre>
+                                                </div>
+                                                some_module.py
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orangered">def</a> <a style="color: orange">func</a>():
+      <a style="color: purple">print</a>(<a style="color: green">'This is a message from the function in the imported module.'</a>)
+
+
+<a style="color: purple">print</a>(<a style="color: green">f'This is a message from </a><a style="color: orange">{</a>__name__<a style="color: orange">}</a><a style="color: green">.'</a>)
+
+      <a style="color: gray">#Направете промена тука (додадете главен блок!)</a>
+      <a style="color: purple">print</a>(<a style="color: green">'This should not be printed'</a>)
+
+
+
+  </code></pre>
+                                                </div>
+                                                </p>
+                                                </p>
+
+                                                <!--                                            <p class="tm-text">Price on this product is $150 <button type="submit" class="pull-xs-right tm-submit-btn pushable"onclick="document.location='pay1.html'" style="margin-left: 5px"><span class="front">Buy the product</span></button></p>-->
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- .tm-img-gallery-container -->
+                </div>
+            </div>
+        </li>
+    </ul> <!-- .cd-hero-slider -->
+
+
+</div> <!-- .cd-hero -->
+
+
+<!-- Preloader, https://ihatetomatoes.net/create-custom-preloading-screen/ -->
+<div id="loader-wrapper">
+
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+
+</div>
+
+<!-- load JS files -->
+<!--<script src="../static/js/jquery-1.11.3.min.js"></script>         &lt;!&ndash; jQuery (https://jquery.com/download/) &ndash;&gt;-->
+<!--<script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script> &lt;!&ndash; Tether for Bootstrap (http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h) &ndash;&gt;-->
+<!--<script src="../static/js/bootstrap.min.js"></script>             &lt;!&ndash; Bootstrap js (v4-alpha.getbootstrap.com/) &ndash;&gt;-->
+<!--<script src="../static/js/hero-slider-main.js"></script>          &lt;!&ndash; Hero slider (https://codyhouse.co/gem/hero-slider/) &ndash;&gt;-->
+<!--<script src="../static/js/jquery.magnific-popup.min.js"></script> &lt;!&ndash; Magnific popup (http://dimsemenov.com/plugins/magnific-popup/) &ndash;&gt;-->
+
+<script th:src="@{/js/jquery-1.11.3.min.js}"></script>
+<script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/hero-slider-main.js}"></script>
+<script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+
+
+<script>
+
+    function adjustHeightOfPage(pageNo) {
+
+        var offset = 80;
+        var pageContentHeight = 0;
+
+        var pageType = $('div[data-page-no="' + pageNo + '"]').data("page-type");
+
+        if (pageType != undefined && pageType == "gallery") {
+            pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .tm-img-gallery-container").height();
+        } else {
+            pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .js-tm-page-content").height();
+        }
+
+        if ($(window).width() >= 992) {
+            offset = 120;
+        } else if ($(window).width() < 480) {
+            offset = 40;
+        }
+
+        // Get the page height
+        var totalPageHeight = 15 + $('.cd-slider-nav').height()
+            + pageContentHeight + offset
+            + $('.tm-footer').height();
+
+        // Adjust layout based on page height and window height
+        if (totalPageHeight > $(window).height()) {
+            $('.cd-hero-slider').addClass('small-screen');
+            $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", totalPageHeight + "px");
+        } else {
+            $('.cd-hero-slider').removeClass('small-screen');
+            $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", "100%");
+        }
+    }
+
+    /*
+        Everything is loaded including images.
+    */
+    $(window).load(function () {
+
+        adjustHeightOfPage(1); // Adjust page height
+
+
+
+        /* Collapse menu after click
+        -----------------------------------------*/
+        $('#tmNavbar a').click(function () {
+            $('#tmNavbar').collapse('hide');
+
+            adjustHeightOfPage($(this).data("no")); // Adjust page height
+        });
+
+        /* Browser resized
+        -----------------------------------------*/
+        $(window).resize(function () {
+            var currentPageNo = $(".cd-hero-slider li.selected .js-tm-page-content").data("page-no");
+
+            // wait 3 seconds
+            setTimeout(function () {
+                adjustHeightOfPage(currentPageNo);
+            }, 1000);
+
+        });
+
+        // Remove preloader (https://ihatetomatoes.net/create-custom-preloading-screen/)
+        $('body').addClass('loaded');
+
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="col-12" th:if="${podatoci.size() > 0}">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col"> Podatoci Photo</th>
+
+                <th scope="col"> Podatoci Name</th>
+                <th scope="col"> Podatoci Description</th>
+                <th scope="col"> Podatoci Manufacturer</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="p : ${podatoci}" class="podatoci">
+                <td><img alt="" th:src="*{'data:image/jpeg;base64,'+{p.getImage()}}" style="width: 100px;height: 100px;"></td>
+
+                <td th:text="${p.getName()}"></td>
+<!--                <td th:text="${b.getDescription()}"></td>-->
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

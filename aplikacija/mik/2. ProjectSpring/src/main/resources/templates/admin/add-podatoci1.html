@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/%22%3E">
+<head>
+    <meta charset="UTF-8">
+    <title>EcoHaven</title>
+    <link rel="icon" th:href="@{/img/logo.png}" type="image">
+
+    <link rel="stylesheet" th:href="@{/css/all.css}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <link rel="stylesheet" th:href="@{/font-awesome-4.5.0/css/font-awesome.min.css}">
+
+    <!--        <link rel="stylesheet" href="../static/css/bootstrap.min.css">-->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <!--        <link rel="stylesheet" href="../static/css/hero-slider-style.css">-->
+    <link rel="stylesheet" th:href="@{/css/hero-slider-style.css}"/>
+    <!--        <link rel="stylesheet" href="../static/css/magnific-popup.css">-->
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}"/>
+    <!--        <link rel="stylesheet" href="../static/css/templatemo-style.css">-->
+    <link rel="stylesheet" th:href="@{/css/templatemo-style9.css}"/>
+
+
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <style>
+        /*.cd-hero-slider li:nth-of-type(1) { background-image: url(img/1-nature.jpg); }*/
+
+        .green a{
+            color:#185875;
+        }
+        .green i{
+            color:#4A90E2;
+        }
+        .ako:hover {
+            text-shadow: 0 1px 0 #185875, 0 2px 0 #185875,
+            0 3px 0 #185875, 0 4px 0 #185875,
+            0 5px 0 #185875, 0 6px 0 #185875,
+            0 7px 0 #185875, 0 8px 0 #185875,
+            0 9px 0 #185875, 0 10px 0 #185875,
+            0 11px 0 #185875, 0 12px 0 #185875,
+            0 20px 30px rgba(0, 0, 0, 0.5);
+        }
+
+
+        .akoo:hover {
+            text-shadow: 0 1px 0 #4A90E2, 0 2px 0 #4A90E2,
+            0 3px 0 #4A90E2, 0 4px 0 #4A90E2,
+            0 5px 0 #4A90E2, 0 6px 0 #4A90E2,
+            0 7px 0 #4A90E2, 0 8px 0 #4A90E2,
+            0 9px 0 #4A90E2, 0 10px 0 #4A90E2,
+            0 11px 0 #4A90E2, 0 12px 0 #4A90E2,
+            0 20px 30px rgba(0, 0, 0, 0.5);
+        }
+        .pushable {
+            background-color: #4A90E2;
+            border-radius: 12px;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            outline-offset: 4px;
+        }
+        .front {
+            display: block;
+            padding: 12px 42px;
+            border-radius: 12px;
+            font-size: 1.25rem;
+            background-color: #185875;
+            color: white;
+            transform: translateY(-6px);
+        }
+
+        .pushable:active .front {
+            transform: translateY(-2px);
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="cd-hero">
+
+    <ul class="cd-hero-slider">
+
+        <!-- Page 6 Contact Us -->
+        <li class="selected">
+            <div class="cd-full-width">
+                <div class="container-fluid js-tm-page-content tm-page-pad" data-page-no="1">
+                    <div class="tm-contact-page">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <br>
+                                <br>
+                                <div class="tm-flex tm-contact-container">
+                                    <div class="tm-bg-white-translucent text-xs-left tm-textbox tm-2-col-textbox-2 tm-textbox-padding tm-textbox-padding-contact">
+                                        <form th:action="@{'/admin/add1'}" th:method="POST" enctype="multipart/form-data">
+                                            <!--                <input id="id" name="id" th:value="(${balloon} != null ? ${balloon.getId()} : '')">-->
+                                            <!--                Mora id da e hidden za da ne se gleda koga se prakja preku forma, za da se
+                                                                prebara soodveniot balon za negova manipulacija ponatamu-->
+                                            <input id="id" type="hidden" name="id" th:value="(${podatoci1} != null ? ${podatoci1.getId()} : '')">
+                                            <!--        <div>-->
+                                            <!--        OVDE MISLAM ADMINOT NE TREBA DA MENUVA SLIKA-->
+                                            <!--            <label th:for="name">Image</label>-->
+                                            <!--            <input type="file"-->
+                                            <!--                   id="myfile"-->
+                                            <!--                   name="myfile"-->
+                                            <!--                   required>-->
+                                            <!--        </div>-->
+
+                                            <div>
+                                                <label th:for="name">Name</label>
+                                                <input type="text"
+                                                       id="name"
+                                                       name="name"
+                                                       th:value="(${podatoci1} != null ? ${podatoci1.getName()} : '')"
+                                                       required
+                                                       placeholder="Enter balloon name">
+                                            </div>
+
+
+                                            <div>
+                                                <label th:for="email">Email</label>
+                                                <input type="text"
+                                                       id="email"
+                                                       name="email"
+                                                       th:value="(${podatoci1} != null ? ${podatoci1.getEmail()} : '')"
+                                                       required
+                                                       placeholder="Enter balloon description">
+                                            </div>
+
+                                            <div>
+                                                <label th:for="phoneNumber">Phone Number</label>
+                                                <input type="text"
+                                                       id="phoneNumber"
+                                                       name="phoneNumber"
+                                                       th:value="(${podatoci1} != null ? ${podatoci1.getPhoneNumber()} : '')"
+                                                       required
+                                                       placeholder="Enter balloon description">
+                                            </div>
+
+                                            <div>
+                                                <label th:for="description">Description</label>
+                                                <br>
+                                                <textarea id="contact_message" name="description"
+                                                          class="form-control" rows="5" placeholder="Message"
+                                                          th:text="${podatoci1.getDescription()}"
+                                                          required>
+                </textarea>
+                                            </div>
+
+
+                                            <!--            <input type="submit" value="Submit">-->
+                                            <!--            <button id="submit" th:type="submit" class="btn btn-primary" th:value="Submit">Submit</button>-->
+
+                                        </form>
+                                        <br>
+                                        <button id="submit" type="submit" class="btn btn-primary pull-xs-right pushable" name="submit" style="margin-left: 10px"><span class="front">Submit</span></button>
+                                        <a type="button" class="btn btn-primary pull-xs-right pushable" href="/admin/animal-reports"><span class="front">Back</span></a>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div> <!-- .cd-full-width -->
+        </li>
+    </ul> <!-- .cd-hero-slider -->
+
+
+
+</div> <!-- .cd-hero -->
+
+
+<!--<div class="row">-->
+<!--    <form th:action="@{'/admin/add1'}" th:method="POST" enctype="multipart/form-data">-->
+<!--        &lt;!&ndash;                <input id="id" name="id" th:value="(${balloon} != null ? ${balloon.getId()} : '')">&ndash;&gt;-->
+<!--        &lt;!&ndash;                Mora id da e hidden za da ne se gleda koga se prakja preku forma, za da se-->
+<!--                            prebara soodveniot balon za negova manipulacija ponatamu&ndash;&gt;-->
+<!--        <input id="id" type="hidden" name="id" th:value="(${podatoci1} != null ? ${podatoci1.getId()} : '')">-->
+<!--        &lt;!&ndash;        <div>&ndash;&gt;-->
+<!--        &lt;!&ndash;        OVDE MISLAM ADMINOT NE TREBA DA MENUVA SLIKA&ndash;&gt;-->
+<!--        &lt;!&ndash;            <label th:for="name">Image</label>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <input type="file"&ndash;&gt;-->
+<!--        &lt;!&ndash;                   id="myfile"&ndash;&gt;-->
+<!--        &lt;!&ndash;                   name="myfile"&ndash;&gt;-->
+<!--        &lt;!&ndash;                   required>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </div>&ndash;&gt;-->
+
+<!--        <div>-->
+<!--            <label th:for="name">Name</label>-->
+<!--            <input type="text"-->
+<!--                   id="name"-->
+<!--                   name="name"-->
+<!--                   th:value="(${podatoci1} != null ? ${podatoci1.getName()} : '')"-->
+<!--                   required-->
+<!--                   placeholder="Enter balloon name">-->
+<!--        </div>-->
+
+
+<!--        <div>-->
+<!--            <label th:for="email">Email</label>-->
+<!--            <input type="text"-->
+<!--                   id="email"-->
+<!--                   name="email"-->
+<!--                   th:value="(${podatoci1} != null ? ${podatoci1.getEmail()} : '')"-->
+<!--                   required-->
+<!--                   placeholder="Enter balloon description">-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--            <label th:for="phoneNumber">Phone Number</label>-->
+<!--            <input type="text"-->
+<!--                   id="phoneNumber"-->
+<!--                   name="phoneNumber"-->
+<!--                   th:value="(${podatoci1} != null ? ${podatoci1.getPhoneNumber()} : '')"-->
+<!--                   required-->
+<!--                   placeholder="Enter balloon description">-->
+<!--        </div>-->
+
+<!--        <div>-->
+<!--            <label th:for="description">Description</label>-->
+<!--            <br>-->
+<!--            <textarea id="contact_message" name="description"-->
+<!--                      class="form-control" rows="5" placeholder="Message"-->
+<!--                      th:text="${podatoci1.getDescription()}"-->
+<!--                      required>-->
+<!--                </textarea>-->
+<!--        </div>-->
+
+
+<!--        &lt;!&ndash;            <input type="submit" value="Submit">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <button id="submit" th:type="submit" class="btn btn-primary" th:value="Submit">Submit</button>&ndash;&gt;-->
+<!--        <button id="submit" type="submit" class="btn btn-primary" name="submit">Submit</button>-->
+<!--        <a type="button" class="btn btn-primary" href="/admin/animal-reports">Back</a>-->
+
+
+<!--    </form>-->
+
+<!--</div>-->
+<div id="loader-wrapper">
+
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+
+</div>
+
+<script th:src="@{/js/jquery-1.11.3.min.js}"></script>
+<script th:src="@{https://www.atlasestateagents.co.uk/javascript/tether.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/hero-slider-main.js}"></script>
+<script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+
+<script>
+
+    function adjustHeightOfPage(pageNo) {
+
+        var offset = 80;
+        var pageContentHeight = 0;
+
+        var pageType = $('div[data-page-no="' + pageNo + '"]').data("page-type");
+
+        if (pageType != undefined && pageType == "gallery") {
+            pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .tm-img-gallery-container").height();
+        } else {
+            pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .js-tm-page-content").height();
+        }
+
+        if ($(window).width() >= 992) {
+            offset = 120;
+        } else if ($(window).width() < 480) {
+            offset = 40;
+        }
+
+        // Get the page height
+        var totalPageHeight = 15 + $('.cd-slider-nav').height()
+            + pageContentHeight + offset
+            + $('.tm-footer').height();
+
+        // Adjust layout based on page height and window height
+        if (totalPageHeight > $(window).height()) {
+            $('.cd-hero-slider').addClass('small-screen');
+            $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", totalPageHeight + "px");
+        } else {
+            $('.cd-hero-slider').removeClass('small-screen');
+            $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", "100%");
+        }
+    }
+
+    /*
+        Everything is loaded including images.
+    */
+    $(window).load(function () {
+
+        adjustHeightOfPage(1); // Adjust page height
+
+        /* Collapse menu after click
+        -----------------------------------------*/
+        $('#tmNavbar a').click(function () {
+            $('#tmNavbar').collapse('hide');
+
+            adjustHeightOfPage($(this).data("no")); // Adjust page height
+        });
+
+        /* Browser resized
+        -----------------------------------------*/
+        $(window).resize(function () {
+            var currentPageNo = $(".cd-hero-slider li.selected .js-tm-page-content").data("page-no");
+
+            // wait 3 seconds
+            setTimeout(function () {
+                adjustHeightOfPage(currentPageNo);
+            }, 1000);
+
+        });
+
+        $('body').addClass('loaded');
+
+    });
+
+
+</script>
+</body>
+</html>

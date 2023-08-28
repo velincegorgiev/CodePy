@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org/%22%3E">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>CodePy</title>
+    <link rel="icon" th:href="@{/img/logo.png}" type="image">
+    <!--    <link rel="stylesheet" href="../static/sliki/css/all.css">-->
+    <!--    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">-->
+    <!--    <link rel="stylesheet" href="../static/font-awesome-4.5.0/css/font-awesome.min.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/bootstrap.min.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/hero-slider-style.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/magnific-popup.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/templatemo-style.css">-->
+
+    <link rel="stylesheet" th:href="@{/css/all.css}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <!--    <link rel="stylesheet" href="../static/font-awesome-4.5.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" th:href="@{/font-awesome-4.5.0/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/hero-slider-style.css}"/>
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}"/>
+    <link rel="stylesheet" th:href="@{/css/templatemo-style11.css}"/>
+
+
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+</head>
+
+<body>
+<style>
+    /*.cd-hero-slider li:nth-of-type(1) {*/
+    /*    background-image: url(../../static/img/42.jpg);*/
+    /*}*/
+
+    /*.cd-hero-slider li:nth-of-type(2) {*/
+    /*    background-image: url(../../static/img/43.jpg);*/
+    /*}*/
+
+    .green a {
+        color: orangered;
+    }
+
+    .green i {
+        color: dodgerblue;
+    }
+
+    .tm-submit-btn:hover {
+        background-color: dodgerblue;
+    }
+
+    .tm-submit-btn:focus {
+        background-color: dodgerblue;
+    }
+
+    .tm-submit-btn {
+        background-color: dodgerblue;
+    }
+
+    .cd-slider-nav .nav-item.selected .nav-link,
+    .cd-slider-nav .nav-link:hover,
+    .cd-slider-nav .nav-link:focus {
+        background-color: rgba(255, 255, 255, 1);
+        color: orangered;
+    }
+
+    figure.effect-ruby {
+        background-color: orangered;
+    }
+
+    .tm-img {
+        max-height: 440px;
+        object-fit: cover;
+    }
+
+    .ako:hover {
+        text-shadow: 0 1px 0 orangered, 0 2px 0 orangered,
+        0 3px 0 orangered, 0 4px 0 orangered,
+        0 5px 0 orangered, 0 6px 0 orangered,
+        0 7px 0 orangered, 0 8px 0 orangered,
+        0 9px 0 orangered, 0 10px 0 orangered,
+        0 11px 0 orangered, 0 12px 0 orangered,
+        0 20px 30px rgba(0, 0, 0, 0.5);
+    }
+
+
+    .akoo:hover {
+        text-shadow: 0 1px 0 dodgerblue, 0 2px 0 dodgerblue,
+        0 3px 0 dodgerblue, 0 4px 0 dodgerblue,
+        0 5px 0 dodgerblue, 0 6px 0 dodgerblue,
+        0 7px 0 dodgerblue, 0 8px 0 dodgerblue,
+        0 9px 0 dodgerblue, 0 10px 0 dodgerblue,
+        0 11px 0 dodgerblue, 0 12px 0 dodgerblue,
+        0 20px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .pushable {
+        background-color: dodgerblue;
+        border-radius: 12px;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        outline-offset: 4px;
+    }
+
+    .front {
+        display: block;
+        padding: 12px 42px;
+        border-radius: 12px;
+        font-size: 1.25rem;
+        background-color: orangered;
+        color: white;
+        transform: translateY(-6px);
+    }
+
+    .pushable:active .front {
+        transform: translateY(-2px);
+    }
+    .code-block {
+        background-color: #2b2b2b;
+        color: #d0d0d0;
+        border: 1px solid #383838;
+        border-radius: 3px;
+        padding: 10px;
+        font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 14px;
+        line-height: 1.5;
+        overflow-x: auto;
+        counter-reset: linenumber;
+    }
+
+    .code-block pre {
+        margin: 0;
+        counter-increment: linenumber;
+    }
+
+    .code-block code {
+        display: block;
+        white-space: pre;
+        position: relative;
+    }
+
+    .code-block code::before {
+        content: counter(linenumber);
+        position: absolute;
+        left: -2em;
+        width: 2em;
+        text-align: right;
+        opacity: 0.5;
+    }
+
+    .code-block .token.keyword {
+        color: #d78700;
+        font-weight: bold;
+    }
+
+    .code-block .token.function {
+        color: #55b4d4;
+    }
+
+    .code-block .token.string {
+        color: #9c4d4d;
+    }
+
+
+</style>
+<div class="cd-hero">
+    <div class="cd-slider-nav">
+        <nav class="navbar">
+            <div class="tm-navbar-bg">
+                <div class="green">
+                    <a class="navbar-brand text-uppercase" href="/index2"><span class="ako">
+                        <i class="fa fa-solid fa-python tm-brand-icon"></i></span><span class="akoo">CodePy</span></a>
+                </div>
+
+            </div>
+
+        </nav>
+    </div>
+    <ul class="cd-hero-slider">
+
+        <!-- Page 1 -->
+        <li class="selected">
+            <div class="cd-full-width">
+                <div class="container-fluid js-tm-page-content" data-page-no="1" data-page-type="gallery">
+                    <div class="tm-img-gallery-container tm-img-gallery-container-3">
+                        <div class="tm-img-gallery gallery-three">
+                            <!-- Gallery Two pop up connected with JS code below -->
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="tm-flex">
+                                        <div class="tm-bg-white-translucent text-xs-left tm-textbox tm-textbox-padding tm-white-box-margin-b">
+                                            <form th:method="get" th:action="@{'/index2/smart_plant/buy'}">
+                                                <h2 class="tm-text-title">Функции</h2>
+                                                <p class="tm-text">
+                                                    <b>Дефиниција</b>
+                                                    <br>
+                                                    <br>
+                                                    Функциите се удобен начин да го поделите вашиот код на корисни блокови, да го направите подоцнлив, и да го повторно користите. Клучниот збор "def" внесува дефиниција на функција. Потоа треба да следи името на функцијата и заградената листа на формални параметри (која може да биде празна). Наредбите кои го составуваат телото на функцијата започнуваат на следната линија и мораат да бидат индентирани.
+
+                                                    Формалните параметри се затворени во загради; тоа се променливи дефинирани од функцијата, кои добиваат вредности кога функцијата се повикува. Листата состои од имиња на променливи кои примаат вредности потребни за методот. Секој формален параметар се одделува со запирка. Кога методот не прима влезни вредности, треба да има празна множина од загради по името на методот, на пример, addition().
+
+                                                    Функциите се извршуваат само кога се повикуваат. За да се повика функција, користете го нејзиното име, а потоа следи со загради:
+
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orangered">def</a> my_function():  <a style="color: gray"># дефиниција на функцијата</a>
+      <a style="color: purple">print</a>(<a style="color: green">"Hello from a function"</a>)
+
+      my_function()  <a style="color: gray"># функциски повик</a>
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">Повикајте го функцијата my_function внатре во лупот за повторување на нејзиното повикување 5 пати.
+          Дефинирајте функција која може да ги замени дуплираните print наредби во датотеката.</a>
+
+      <a style="color: orangered">def</a> my_function():  <a style="color: gray">#Функција наречена my_function</a>
+      <a style="color: purple">print</a>(<a style="color: green">"Hello, World!"</a>)
+
+
+<a style="color: orange">for</a> i <a style="color: orange">in</a> <a style="color: purple">range</a>(<a style="color: blue">5</a>):
+      <a style="color: gray">#Повикај my_function тука.   # Повикај ја функцијата што е дефинирана горе 5 пати.</a>
+
+      <a style="color: purple">print</a>(<a style="color: green">"I want to be a function"</a>)
+      <a style="color: purple">print</a>(<a style="color: green">"I want to be a function"</a>)
+      <a style="color: purple">print</a>(<a style="color: green">"I want to be a function"</a>)
+
+
+<a style="color: gray"># Дефинирај функција наречена "fun" за да ја замени три линии што се горе.</a>
+      <a style="color: purple">print</a>(<a style="color: green">"I want to be a function"</a>)
+
+
+<a style="color: orange">for</a> i <a style="color: orange">in</a> <a style="color: purple">range</a>(<a style="color: blue">3</a>):
+    fun()
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Параметри и аргументи на повикот</b>
+                                                    <br>
+                                                    <br>
+                                                    Параметрите на функцијата се дефинирани внатре во заградите () следејќи го името на функцијата. Параметарот претставува име на променлива за аргументот што се предава на функцијата.
+
+                                                    Термините параметар и аргумент се однесуваат на истата работа: информацијата што се предава на функцијата. Сепак, параметарот е променливата наведена во заградите во дефиницијата на функцијата, додека аргументот е вредноста што се праќа на функцијата при повикот.
+
+                                                    По стандард, функцијата мора да се повика со точниот број на аргументи. Ако функцијата очекува 2 аргументи, мора да се повика со 2 аргументи:
+
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orange">def</a> my_function(name <a style="color: orange">,</a> surname):
+      <a style="color: purple">print</a>(name +  <a style="color: green">" "</a> + surname)
+
+      my_function( <a style="color: green">"Jon"</a> <a style="color: orange">,</a>  <a style="color: green">"Snow"</a>)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                Резултат:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      Jon Snow
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    Меѓутоа, ако му дадете само еден аргумент за време на повикот:
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      my_function(<a style="color: green">"Sam"</a>)
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    Ќе биде предизвикано TypeError:
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+     TypeError                                 Traceback (most recent call last)
+     < ipython-input-29-40eb74e4b26a > in < module >
+     ----> 1 my_function('Jon')
+
+     TypeError: my_function() missing 1 required positional argument: 'surname'
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Во уредувачот на кодот, дефинирајте функција која ќе го испечати квадратот на предадениот параметар.</a>
+      <a style="color: orangered">def</a> <a style="color: orange">foo</a>(x):  <a style="color: gray"># x е параметар на функцијата.</a>
+      <a style="color: purple">print</a>(<a style="color: green">"x = "</a> + <a style="color: purple">str</a>(x))
+
+
+foo(<a style="color: blue">5</a>)  <a style="color: gray"># Предадете 5 на функцијата foo(). Овде, 5 е аргументот што се предава на функцијата foo.</a>
+
+
+<a style="color: gray">#Дефинирајте функција наречена "square" која ќе испечати квадрат на предадениот параметар.</a>
+      <a style="color: purple">print</a>(x ** <a style="color: blue">2</a>)
+
+
+square(<a style="color: blue">4</a>)
+      square(<a style="color: blue">8</a>)
+      square(<a style="color: blue">15</a>)
+      square(<a style="color: blue">23</a>)
+      square(<a style="color: blue">42</a>)
+
+  </code></pre>
+                                                </div>
+                                                </p>
+                                                <p style="clear: both;">
+                                                    <b>Return value</b>
+                                                    <br>
+                                                    <br>
+                                                    Функциите можат да вратат вредност на повикателот користејќи го клучниот збор return. Можете да користите вратената вредност за да ја присвоите на променлива или само да ја испечатите. Во вистина, дури и функциите без return наредба враќаат вредност. Оваа вредност се нарекува None (вградено име). Иако вредноста None обично се потиска од интерпретерот, ако сте заинтересирани да ја видите, можете да ја искористите print(some_func()).
+
+                                                    Првата наредба во телото на функцијата опционално може да биде литерален зборен низ; овој зборен низ е документацион зборен низ на функцијата, познат како докстринг.
+
+                                                    Во Фибоначиевата низа, првите два броја се 1 и 1, и секој следен број е збир на претходните два.
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Напишете функција која ќе врати список од броеви во Фибоначиевата низа до n.</a>
+      <a style="color: orangered">def</a> sum_two_numbers(a<a style="color: orange">,</a> b):
+      <a style="color: orangered">return</a> a + b  <a style="color: gray"># Вратете резултат на повикувачот на функцијата.</a>
+
+
+c = sum_two_numbers(<a style="color: blue">3</a><a style="color: orange">,</a><a style="color: blue"> 12</a>)  <a style="color: gray"># Присвојете резултатот од извршувањето на функцијата на променливата 'c'.</a>
+
+
+<a style="color: orangered">def</a><a style="color: orange"> fib</a>(n):
+    <a style="color: green">"""Ова е документација за функцијата. Ќе биде достапна преку fib.doc().
+        Враќа листа што содржи Фибоначи серија до n."""</a>
+    result = []
+      a = <a style="color: blue">1</a>
+      b = <a style="color: gray"># Присвои почетна вредност на променливата 'b'.</a>
+      <a style="color: orangered">while</a> a < n:
+        result.append(a)
+      <a style="color: gray">tmp_var</a> = b
+        <a style="color: gray"># Ажурирај некоја вредност со збир.
+        # Врати вредност на променливата од временската (претходно снимена) вредност.
+            # Овде треба да ја вратиме вредноста на повикателот (корисникот) со употреба на return наредбата.</a>
+
+      <a style="color: orangered">if</a> __name__ == <a style="color: green">'__main__'</a>:
+      <a style="color: purple">print</a>(fib(<a style="color: blue">10</a>))
+
+
+  </code></pre>
+                                                </div>
+                                                </p>
+                                                <p style="clear: both;">
+                                                    <b>Docstrings</b>
+                                                    <br>
+                                                    <br>
+
+                                                    Докстринговите од една линија се наменети за многу очигледни случаи. Докстринговите со повеќе линии се состојат од резиме линија, исто како и едно-линиски докстрингови, следено од празна линија, и потоа од подетален опис. Докстрингот за функција или метод треба да содржи резиме за неговото однесување и да документира аргументите, вредностите што се враќаат, побочните ефекти, исклучоците што можат да се предизвикаат и ограничувањата за неговото повикување (ако е применливо). Опционалните аргументи треба да се наведат. Треба да се документира дали клучните аргументи се дел од интерфејсот.
+
+                                                    Докстринговите треба исто така да се користат за дефиниции на модул, класи и методи.
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Додадете ја следната docstring во функцијата дефинирана во уредувачот на кодови:</a>
+      <a style="color: green">"""Оваа функција додава 1 на секој елемент на листата."""</a>
+      <a style="color: orangered">def</a><a style="color: orange"> increment_list</a>(mylist):
+      <a style="color: yellowgreen"># TODO: додајте docstring овде</a>
+
+      <a style="color: orange">for</a> i <a style="color: orange">in</a> <a style="color: purple">range</a>(<a style="color: purple">len</a>(mylist)):
+      mylist[i] += <a style="color: blue">1</a>
+
+      <a style="color: orange">return</a> mylist
+
+
+<a style="color: purple">print</a>(increment_list.<a style="color: deeppink">__doc__</a>)
+      <a style="color: purple">print</a>(increment_list([<a style="color: blue">1</a><a style="color: orange">,</a> <a style="color: blue">2</a><a style="color: orange">,</a> <a style="color: blue">3</a>]))
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Стандардни параметри</b>
+                                                    <br>
+                                                    <br>
+                                                    Исто така, можна е дефинирање на функции со променлив број на аргументи. Постојат три форми, кои можат да се комбинираат. Најкорисната форма е да се наведе стандардна вредност за еден или повеќе аргументи. Ова создава функција која може да се повика со помалку аргументи од колку што е дефинирана. На пример, погледнете ја првата функција во редакторот на кодот. Оваа функција може да се повика на неколку начини:
+
+                                                    давање само на задолжителниот аргумент a: multiply_by(3)
+
+                                                    давање на еден од опционалните аргументи: multiply_by(3, 47), или multiply_by(3, c=47)
+
+                                                    или давање на сите аргументи: multiply_by(3, 47, 0)
+
+                                                    Можете да наведете кој аргумент го предавате во повикот на функцијата, исто како што го направивме во третиот случај со c=47. Ако не го наведете тоа, вредностите ќе бидат доделени според нивниот редослед. Не ставајте празни места околу знакот = во повикувањето и дефиницијата на функциите.
+
+                                                </p>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Додадете параметри во функцијата hello() и поставете стандардна вредност за параметарот name.</a>
+
+      <a style="color: orangered">def</a>  <a style="color: orange">multiply_by</a>(a <a style="color: orange">,</a> b= <a style="color: blue">2</a> <a style="color: orange">,</a> c= <a style="color: blue">1</a>):
+      <a style="color: orangered">return</a> a * b + c
+
+
+<a style="color: purple">print</a>(multiply_by(<a style="color: blue">3</a><a style="color: orange">,</a> <a style="color: blue">47</a><a style="color: orange">,</a> <a style="color: blue">0</a>))  <a style="color: gray"># Повикајте ја функцијата користејќи прилагодени вредности за сите параметри.</a>
+      <a style="color: purple">print</a>(multiply_by(<a style="color: orange">3</a><a style="color: orange">,</a> <a style="color: blue">47</a>))  <a style="color: gray"># Повикајте ја функцијата користејќи го стандардното (default) значение за параметарот c.</a>
+      <a style="color: purple">print</a>(multiply_by(<a style="color: blue">3</a><a style="color: orange">,</a> <a style="color: red">c</a>=<a style="color: blue">47</a>))  <a style="color: gray"># Повикајте ја функцијата користејќи го стандардното (default) значение за параметарот b.</a>
+      <a style="color: purple">print</a>(multiply_by(<a style="color: blue">3</a>))  <a style="color: gray"># Повикајте ја функцијата користејќи ги стандардните (default) вредности за параметрите b и c.</a>
+      <a style="color: purple">print</a>(multiply_by(<a style="color: red">a</a>=<a style="color: blue">7</a>))  <a style="color: gray">#Повик на функцијата користејќи стандардни (default) вредности за параметрите b и c.</a>
+
+
+<a style="color: orangered">def</a><a style="color: orange"> hello</a>(???):
+      <a style="color: purple">print</a>(<a style="color: green">f"Hello</a> <a style="color: orange">{</a>subject<a style="color: orange">}</a><a style="color: green">! My name is</a> <a style="color: orange">{</a>name<a style="color: orange">}</a><a style="color: green">"</a>)
+
+
+hello( <a style="color: green">"PyCharm"</a> <a style="color: orange">,</a>  <a style="color: green">"Jane"</a>)   <a style="color: gray">#Исфаќање на функцијата "hello" со "PyCharm" како параметар за предмет и "Jane" како име.</a>
+      hello( <a style="color: green">"PyCharm"</a>)   <a style="color: gray">#Повик на функцијата "hello" со "PyCharm" како параметар за предмет и стандардна вредност за името.</a>
+
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    <b>Клучни аргументи (Keyword Arguments)</b>
+                                                    <br>
+                                                    <br>
+                                                    Веќе наведовме дека функциите може да се повикуваат и со клучни аргументи со формата kwarg=value. На пример, функцијата cat(), која ја дефиниравме за вас, прифаќа еден задолжителен аргумент (food) и три опционални аргументи (state, action и breed). Истата може да биде повикана на следниов начин (може да ги испробате сите):
+
+                                                <br>
+                                                </p>
+                                                <div class="code-block" style="clear: both;">
+  <pre><code style="color: white" class="language-javascript">
+      cat(<a style="color: green">'chicken'</a>)                     <a style="color: gray"># 1 позиционен аргумент</a>
+      cat(food=<a style="color: green">'chicken'</a>)                <a style="color: gray"># 1 Клучни аргументи</a>
+      cat(food=<a style="color: green">'fish'</a><a style="color: orange">,</a> action=<a style="color: green">'bite'</a>)    <a style="color: gray"># 2 Клучни аргументи</a>
+      cat(action=<a style="color: green">'bite'</a><a style="color: orange">,</a> food=<a style="color: green">'fish'</a>)    <a style="color: gray"># 2 Клучни аргументи</a>
+      cat(<a style="color: green">'beef'</a><a style="color: orange">,</a> <a style="color: green">'happy'</a><a style="color: orange">,</a> <a style="color: green">'hiss'</a>)       <a style="color: gray"># 3 позициони аргументи</a>
+      cat(<a style="color: green">'a hug'</a><a style="color: orange">,</a> state=<a style="color: green">'purrring'</a>)     <a style="color: gray"># 1 позиционен, 1 клучен</a>
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <p style="clear: both;">
+                                                    При повик на функција, клучните аргументи мора да следат по позиционалните аргументи. Сите клучни аргументи кои се предаваат мора да се совпаѓаат со еден од аргументите што ги прифаќа функцијата (на пример, book не е валиден аргумент за функцијата cat), и нивниот редослед не е важен. Ова вклучува и неопционални аргументи (на пример, cat(food='fish') е валидно). Ниеден аргумент не може да добие вредност повеќе од еднаш. Сите следни повици би биле невалидни:
+
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      cat()                              <a style="color: gray">#Недостасува задолжителен аргумент.</a>
+      cat(food=<a style="color: green">'fish'</a><a style="color: orange">,</a> <a style="color: green">'dead'</a>)           <a style="color: green"># Позиционален аргумент поставен посто после клучниот аргумент.</a>
+      cat(<a style="color: green">'veggies'</a><a style="color: orange">,</a> food=<a style="color: green">'nothing'</a>)     <a style="color: gray"># Дуплицирана вредност за истиот аргумент.</a>
+      cat(actor=<a style="color: green">'Johnny Depp'</a>)           <a style="color: gray"># Непознат аргумент со клуч.</a>
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Во уредникот, пополнете го повикот на функцијата со аргументи за да го отпечати следново:
+      #-- This cat wouldn't growl if you gave it soup
+#-- Lovely fur, the Sphinx
+          #-- It's still hungry!</a>
+      <a style="color: orangered">def</a><a style="color: orange"> cat</a>(food<a style="color: orange">,</a> state=<a style="color: green">'still hungry'</a><a style="color: orange">,</a> action=<a style="color: green">'meow'</a><a style="color: orange">,</a> breed=<a style="color: green">'Siamese'</a>):
+      <a style="color: purple">print</a>(<a style="color: green">f"-- This cat wouldn't </a><a style="color: orange">{</a>action<a style="color: orange">}</a><a style="color: green">"</a><a style="color: orange">,</a> <a style="color: red">end</a>=<a style="color: green">' '</a>)
+      <a style="color: purple">print</a>(<a style="color: green">f"if you gave it </a><a style="color: orange">{</a>food<a style="color: orange">}</a><a style="color: green">"</a>)
+      <a style="color: purple">print</a>(<a style="color: green">f"-- Lovely fur, the</a> {breed<a style="color: orange">}</a><a style="color: green">"</a>)
+      <a style="color: purple">print</a>(<a style="color: green">f"-- It's </a><a style="color: orange">{</a>state<a style="color: orange">}</a><a style="color: green">!"</a>)
+
+
+cat(???)
+
+  </code></pre>
+                                                </div>
+                                                </p>
+                                                </p>
+                                                <p style="clear: both;">
+                                                    <b>Редослед на аргументи (Argument Order)</b>
+                                                    <br>
+                                                    <br>
+
+                                                    Во кодот подолу има функција која печати табела со даден број на редици и колони; исто така, може да користи различни симболи за печатење на табелата. Повикот на функцијата подолу содржи некои грешки; исправете ги за да се испечати табела како она што следи:
+
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      |____|____|____|____|____|
+
+      |____|____|____|____|____|
+
+      |____|____|____|____|____|
+
+      |____|____|____|____|____|
+
+      |____|____|____|____|____|
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray"> #Само треба да го измениш кодот во местото за одговор (answer placeholder)!</a>
+      <a style="color: orangered">def</a> <a style="color: orange">print_table</a>(height<a style="color: orange">,</a> length=<a style="color: blue">3</a><a style="color: orange">,</a> symbol=<a style="color: green">'++++'</a>):
+      <a style="color: orange">for</a> y <a style="color: orange">in</a> <a style="color: purple">range</a>(height):
+      <a style="color: orange">for</a> x <a style="color: orange">in</a> <a style="color: purple">range</a>(length):
+      <a style="color: purple">print</a>(<a style="color: green">f'|</a><a style="color: orange">{</a>symbol<a style="color: orange">}</a><a style="color: green">'</a><a style="color: orange">,</a> end=<a style="color: green">''</a>)
+      <a style="color: purple">print</a>(<a style="color: green">'|\n'</a>)
+
+
+print_table(length=<a style="color: blue">5</a><a style="color: orange">,</a> <a style="color: blue">5</a><a style="color: orange">,</a> <a style="color: green">'____'</a>)
+
+  </code></pre>
+                                                </div>
+                                                </p>
+                                                <p style="clear: both;">
+                                                    <b>Args и kwargs</b>
+                                                    <br>
+                                                    <br>
+                                                    Кога крајната формална параметара од формата **name е присутна, таа добива речник (видете Структури на податоци - Речници) кој содржи сите именувани аргументи, освен оние кои одговараат на формалните параметри. Ова може да се комбинира со формален параметар во форма *name кој добива кортеж кој содржи било кој број на позиционирани аргументи после листата на формални параметри (*name мора да се најде пред **name). На пример, ако дефинираме функција како онаа во кодниот едитор, таа може да се повика како што е прикажано во повикот 1, кој ќе испечати:
+
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      -- Do you know how to get to the Library ?
+-- I'm sorry, I am not from here, no idea about the Library
+Do you at least have a cigar, sir?
+Sure, help yourself.
+----------------------------------------
+lost_person : old banker
+other_guy : street clown
+scene : in a park
+
+  </code></pre>
+                                                </div>
+                                                <br>
+
+                                                Оваа функција може да се повика со произволен број на аргументи. Овие аргументи ќе бидат ставени во кортеж (видете Кортежи). Пред променливиот број на аргументи, може да се појават нула или повеќе нормални аргументи; во нашиот случај имаме еден - place. Сите формални параметри што се појавуваат после параметарот *args се "само-клучни" аргументи, што значи дека може да се користат само како клучеви, а не како позициони аргументи. Друг начин за повик на оваа функција е прикажан во повикот 2, и ќе донесе ист излез.
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Во кодот под функцијата cat(), модифицирајте го кодот како што е прикажано подолу, така што ќе испечати следново:
+          #-- This cat would eat if you gave it anything
+          #-- Lovely fur, the Maine Coon
+          #-- It's fat !
+          #IT IS TOO FAT.
+          #YOU ARE FEEDING YOUR CAT TOO MUCH.</a>
+      <a style="color: orangered">def</a> <a style="color: orange">random_dialogue</a>(place<a style="color: orange">,</a> *args<a style="color: orange">,</a> **kwargs):
+      <a style="color: purple">print</a>(<a style="color: green">"-- Do you know how to get to the"</a><a style="color: orange">,</a> place<a style="color: orange">,</a> <a style="color: green">"?"</a>)
+      <a style="color: purple">print</a>(<a style="color: green">"-- I'm sorry, I am not from here, no idea about the"</a><a style="color: orange">,</a> place)
+      <a style="color: orange">for</a> arg <a style="color: orange">in</a> args:
+      <a style="color: purple">print</a>(arg)
+      <a style="color: purple">print</a>(<a style="color: green">"-"</a> * 40)
+      <a style="color: orange">for</a> kw <a style="color: orange">in</a> kwargs:
+      <a style="color: purple">print</a>(kw<a style="color: orange">,</a> <a style="color: green">":"</a><a style="color: orange">,</a> kwargs[kw])
+      <a style="color: purple">print</a>(<a style="color: green">'</a><a style="color: orange">\n</a><a style="color: green">'</a>)
+
+
+random_dialogue(<a style="color: green">"Library"</a><a style="color: orange">,</a> <a style="color: green">"Do you at least have a cigar, sir?"</a><a style="color: orange">,</a>  <a style="color: gray"># Call 1</a>
+      <a style="color: green">"Sure, help yourself."</a><a style="color: orange">,</a>
+      <a style="color: red">lost_person</a>=<a style="color: green">"old banker"</a><a style="color: orange">,</a>
+      <a style="color: red">other_guy</a>=<a style="color: green">"street clown"</a><a style="color: orange">,</a>
+      <a style="color: red">scene</a>=<a style="color: green">"in a park"</a>)
+
+      dic = {<a style="color: green">"lost_person"</a>: <a style="color: green">"old banker"</a><a style="color: orange">,</a> <a style="color: green">"other_guy"</a>: <a style="color: green">"street_clown"</a><a style="color: orange">,</a> <a style="color: green">"scene"</a>: <a style="color: green">"in a park"</a>}
+      lst = [<a style="color: green">"Do you at least have a cigar, sir?"</a><a style="color: orange">,</a> <a style="color: green">"Sure, help yourself."</a>]
+      random_dialogue(<a style="color: green">"Library"</a><a style="color: orange">,</a> *lst<a style="color: orange">,</a> **dic)  <a style="color: gray"># Call 2 - токму истиот излез</a>
+
+
+<a style="color: orangered">def</a> <a style="color: orange">cat</a>(food, *args<a style="color: orange">,</a> state=<a style="color: green">'still hungry'</a><a style="color: orange">,</a> action=<a style="color: green">'meow'</a><a style="color: orange">,</a> breed=<a style="color: green">'Siamese'</a>):
+      <a style="color: purple">print</a>(<a style="color: green">f"-- This cat would</a> <a style="color: orange">{</a>action<a style="color: orange">}</a><a style="color: green">"</a><a style="color: orange">,</a> <a style="color: red">end</a>=<a style="color: green">' '</a>)
+      <a style="color: purple">print</a>(<a style="color: green">f"if you gave it </a><a style="color: orange">{</a>food<a style="color: orange">}</a><a style="color: green">"</a>)
+      <a style="color: purple">print</a>(<a style="color: green">f"-- Lovely fur, the </a><a style="color: orange">{</a>breed<a style="color: orange">}</a><a style="color: green">"</a>)
+      <a style="color: purple">print</a>(<a style="color: green">f"-- It's </a><a style="color: orange">{</a>state<a style="color: orange">}</a><a style="color: green">!"</a>)
+      <a style="color: orange">for</a> arg <a style="color: orange">in</a> args:
+      <a style="color: purple">print</a>(arg.upper())
+
+
+<a style="color: gray"># Додадете ја листата со изрази кои треба да се капитализираат.</a>
+      phrases = <a style="color: gray"># Внесете ги изразите пред излезот, како во описот на задачата.</a>
+      <a style="color: gray"># Додадете речник со клучни аргументи.</a>
+keywords = <a style="color: gray">#Наредба на клучни зборови за вметнување во наративот.
+      Клучевите треба да се совпаѓаат со именуваните аргументи на функцијата cat().</a>
+<a style="color: gray"># Исклучете ја функцијата cat() како што е прикажано во примерот горе за да се испечати бараниот излез.
+    #Исклучете ја функцијата cat() со некоја храна, фрази и клучни зборови како што е прикажано во примерот горе.</a>.
+
+
+  </code></pre>
+                                                </div>
+                                                </p>
+                                                <p style="clear: both;">
+                                                    <b>Рекурзија</b>
+                                                    <br>
+                                                    <br>
+
+                                                    Производот "рекурзија" потекнува од латинската зборувачка "recurrere", што значи да се врати, да се рекурзивира или повторно да се појави. Во програмирањето, рекурзија се однесува на кодирачка техника во која функцијата се повикува самата.
+
+                                                    Во најмногу случаи, рекурзијата не е потребна, но во некои ситуации, се налага самореферентна дефиниција. Добар пример би било навигирањето низ податочни структури слични на дрво. Таквите структури се вгнездени и лесно можат да се дефинираат рекурзивно. Нерекурзивен алгоритам за истата задача би бил многу неудобен.
+
+                                                    Еве еден едноставен пример на рекурзивна функција. Прима број како аргумент и ги печати броевите од наведениот аргумент до нула. Во рекурзивниот повик, аргументот е еден помал од тековната вредност на n, така што секоја рекурзија се движи кон базниот случај (што е нула).
+
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: orangered">def</a> <a style="color: orange">countdown</a>(n):
+      <a style="color: purple">print</a>(n, end=<a style="color: green">' '</a>)
+      <a style="color: orange">if</a> n == <a style="color: blue">0</a>:
+      <a style="color: orange">return</a>             <a style="color: gray"># Ја прекинува рекурзијата</a>
+      <a style="color: orange">else</a>:
+      countdown(n - <a style="color: blue">1</a>)   <a style="color: gray"># Рекурзивен повик</a>
+
+
+countdown(<a style="color: blue">4</a>)
+
+  </code></pre>
+                                                </div>
+                                                <br>
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      4 3 2 1 0
+
+  </code></pre>
+                                                </div>
+
+                                                Имајте предвид дека рекурзијата не е корисна во секоја ситуација. За некои проблеми, рекурзивно решение, иако можливо, би било неудобно, понатаму во однос на елеганција. Рекурзивните имплементации често користат повеќе меморија од нерекурзивните и во некои случаи може да резултираат во помала брзина на извршување.
+
+                                                <div class="code-block">
+  <pre><code style="color: white" class="language-javascript">
+      <a style="color: gray">#Во уредувачот за код, имплементирајте рекурзивна функција која пресметува факториел на позитивен цел број.
+          #За 1 и 0 враќа 1,за секој друг број пресметува производ на овој број (n) и факториел на претходниот број (n-1).</a>
+      <a style="color: orangered">def</a><a style="color: orange"> factorial</a>(n):
+      <a style="color: orange">if</a> n <= <a style="color: blue">1</a>:
+      <a style="color: orange">return</a><a style="color: blue"> 1</a>
+      <a style="color: orange">else</a>:
+      <a style="color: gray"> # пресметај n помножен со факторот од n - 1</a>
+      <a style="color: orange">return</a> ???
+
+
+<a style="color: purple">print</a>(factorial(<a style="color: blue">12</a>))
+
+
+  </code></pre>
+                                                </div>
+
+                                                </p>
+
+                                                <!--                                            <p class="tm-text">Price on this product is $150 <button type="submit" class="pull-xs-right tm-submit-btn pushable"onclick="document.location='pay1.html'" style="margin-left: 5px"><span class="front">Buy the product</span></button></p>-->
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- .tm-img-gallery-container -->
+                </div>
+            </div>
+        </li>
+    </ul> <!-- .cd-hero-slider -->
+
+
+</div> <!-- .cd-hero -->
+
+
+<!-- Preloader, https://ihatetomatoes.net/create-custom-preloading-screen/ -->
+<div id="loader-wrapper">
+
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+
+</div>
+
+<!-- load JS files -->
+<!--<script src="../static/js/jquery-1.11.3.min.js"></script>         &lt;!&ndash; jQuery (https://jquery.com/download/) &ndash;&gt;-->
+<!--<script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script> &lt;!&ndash; Tether for Bootstrap (http://stackoverflow.com/questions/34567939/how-to-fix-the-error-error-bootstrap-tooltips-require-tether-http-github-h) &ndash;&gt;-->
+<!--<script src="../static/js/bootstrap.min.js"></script>             &lt;!&ndash; Bootstrap js (v4-alpha.getbootstrap.com/) &ndash;&gt;-->
+<!--<script src="../static/js/hero-slider-main.js"></script>          &lt;!&ndash; Hero slider (https://codyhouse.co/gem/hero-slider/) &ndash;&gt;-->
+<!--<script src="../static/js/jquery.magnific-popup.min.js"></script> &lt;!&ndash; Magnific popup (http://dimsemenov.com/plugins/magnific-popup/) &ndash;&gt;-->
+
+<script th:src="@{/js/jquery-1.11.3.min.js}"></script>
+<script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/hero-slider-main.js}"></script>
+<script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+
+
+<script>
+
+    function adjustHeightOfPage(pageNo) {
+
+        var offset = 80;
+        var pageContentHeight = 0;
+
+        var pageType = $('div[data-page-no="' + pageNo + '"]').data("page-type");
+
+        if (pageType != undefined && pageType == "gallery") {
+            pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .tm-img-gallery-container").height();
+        } else {
+            pageContentHeight = $(".cd-hero-slider li:nth-of-type(" + pageNo + ") .js-tm-page-content").height();
+        }
+
+        if ($(window).width() >= 992) {
+            offset = 120;
+        } else if ($(window).width() < 480) {
+            offset = 40;
+        }
+
+        // Get the page height
+        var totalPageHeight = 15 + $('.cd-slider-nav').height()
+            + pageContentHeight + offset
+            + $('.tm-footer').height();
+
+        // Adjust layout based on page height and window height
+        if (totalPageHeight > $(window).height()) {
+            $('.cd-hero-slider').addClass('small-screen');
+            $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", totalPageHeight + "px");
+        } else {
+            $('.cd-hero-slider').removeClass('small-screen');
+            $('.cd-hero-slider li:nth-of-type(' + pageNo + ')').css("min-height", "100%");
+        }
+    }
+
+    /*
+        Everything is loaded including images.
+    */
+    $(window).load(function () {
+
+        adjustHeightOfPage(1); // Adjust page height
+
+
+
+        /* Collapse menu after click
+        -----------------------------------------*/
+        $('#tmNavbar a').click(function () {
+            $('#tmNavbar').collapse('hide');
+
+            adjustHeightOfPage($(this).data("no")); // Adjust page height
+        });
+
+        /* Browser resized
+        -----------------------------------------*/
+        $(window).resize(function () {
+            var currentPageNo = $(".cd-hero-slider li.selected .js-tm-page-content").data("page-no");
+
+            // wait 3 seconds
+            setTimeout(function () {
+                adjustHeightOfPage(currentPageNo);
+            }, 1000);
+
+        });
+
+        // Remove preloader (https://ihatetomatoes.net/create-custom-preloading-screen/)
+        $('body').addClass('loaded');
+
+    });
+
+</script>
+
+</body>
+</html>
